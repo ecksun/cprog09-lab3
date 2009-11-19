@@ -1,3 +1,5 @@
+#ifndef envoirement_HEADER
+#define envoirement_HEADER
 #include <string>
 #include <vector>
 #include "actor.h"
@@ -36,3 +38,4 @@ namespace da_game {
         virtual void drop(Object &) = 0;
     };
 }
+#endif

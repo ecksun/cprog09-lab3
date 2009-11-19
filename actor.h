@@ -1,3 +1,5 @@
+#ifndef ACTOR_HEADER
+#define ACTOR_HEADER
 #include <string>
 #include "Object.h"
 namespace da_game {
@@ -14,3 +16,4 @@ namespace da_game {
         virtual void talk_to(actor &) = 0;
     };
 }
+#endif

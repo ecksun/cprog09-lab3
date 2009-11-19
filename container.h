@@ -1,3 +1,5 @@
+#ifndef CONTAINER_HEADER
+#define CONTAINER_HEADER
 #include "Object.h"
 namespace da_game {
     class container : public Object  {
@@ -8,4 +10,4 @@ namespace da_game {
             virtual int remove(Object &) = 0;
     };
 }
-
+#endif

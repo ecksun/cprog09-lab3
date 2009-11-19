@@ -1,3 +1,5 @@
+#ifndef TROLL_HEADER
+#define TROLL_HEADER
 #include "actor.h"
 namespace da_game {
     class troll : public actor {
@@ -5,3 +7,4 @@ namespace da_game {
         void eat(actor &f);
     };
 }
+#endif

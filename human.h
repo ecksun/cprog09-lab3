@@ -1,3 +1,5 @@
+#ifndef HUMAN_HEADER
+#define HUMAN_HEADER
 #include "actor.h"
 #include "Food.h"
 namespace da_game {
@@ -8,3 +10,4 @@ namespace da_game {
         void eat(Food &f);
     };
 }
+#endif
