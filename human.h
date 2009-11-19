@@ -1,3 +1,5 @@
+#include "actor.h"
+#include "Food.h"
 namespace da_game {
     class human : public actor {
         bool hasHeart;

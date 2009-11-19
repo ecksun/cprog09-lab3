@@ -1,3 +1,7 @@
+#include <string>
+#include <vector>
+#include "actor.h"
+#include "Object.h"
 namespace da_game {
     class envoirement {
         /*
@@ -13,22 +17,22 @@ namespace da_game {
          * returnera granne (t.ex. referens till objekt) i gi-
          * ven riktning
          */
-        virtual envoirement neighbor(std::string) = 0;
+        virtual envoirement & neighbor(std::string) = 0;
         /*
          * enter(Character) - aktöommer till platsen
          */
-        virtual void enter(Actor) = 0;
+        virtual void enter(actor &) = 0;
         /*
          * leave(Character) - aktöåfråplatsen
          */
-        virtual void leave(Actor) = 0;
+        virtual void leave(actor &) = 0;
         /*
          * pick_up(Object) - nån tar upp ett föåsom finns pålatsen
          */
-        virtual bool pick_up(Object) = 0;
+        virtual bool pick_up(Object &) = 0;
         /*
          * drop(Object) - nån läer ner ett föåpålatsen
          */
-        virtual void drop(Object) = 0;
+        virtual void drop(Object &) = 0;
     };
 }

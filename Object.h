@@ -1,9 +1,13 @@
+#ifndef OBJECT_HEADER
+#define OBJECT_HEADER
+#include <string>
 namespace da_game {
     class Object {
-        int weight;
         public:
         virtual int weight() = 0;
         virtual int volume() = 0;
         virtual int price() = 0;
+        virtual std::string type() = 0;
     };
 }
+#endif
