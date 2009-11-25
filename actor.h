@@ -1,5 +1,8 @@
+#ifndef DA_GAME_ACTOR_H
+#define DA_GAME_ACTOR_H
+
 namespace da_game {
-    class actor {
+    class Actor {
         int hp;
         public:
         void run();
@@ -12,3 +15,5 @@ namespace da_game {
         virtual void talk_to(Character) = 0;
     };
 }
+
+#endif // DA_GAME_ACTOR_H

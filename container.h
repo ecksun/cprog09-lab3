@@ -1,5 +1,8 @@
+#ifndef DA_GAME_CONTAINER_H
+#define DA_GAME_CONTAINER_H
+
 namespace da_game {
-    class container : public Object  {
+    class Container : public Object  {
         public:
             virtual int hold_weight() = 0;
             virtual int hold_volume() = 0;
@@ -8,3 +11,4 @@ namespace da_game {
     };
 }
 
+#endif // DA_GAME_CONTAINER_H

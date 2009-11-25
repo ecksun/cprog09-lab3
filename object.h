@@ -1,3 +1,6 @@
+#ifndef DA_GAME_OBJECT_H
+#define DA_GAME_OBJECT_H
+
 namespace da_game {
     class Object {
         int weight;
@@ -7,3 +10,5 @@ namespace da_game {
         virtual int price() = 0;
     };
 }
+
+#endif // DA_GAME_OBJECT_H

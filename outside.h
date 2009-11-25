@@ -1,5 +1,9 @@
+#ifndef DA_GAME_OUTSIDE_H
+#define DA_GAME_OUTSIDE_H
+
 namespace da_game {
-    class outside : public envoirement{
+    class Outside : public Environment {
     };
 }
 
+#endif // DA_GAME_OUTSIDE_H
