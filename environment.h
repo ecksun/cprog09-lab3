@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 #include "actor.h"
-#include "Object.h"
+#include "object.h"
 
 namespace da_game {
     class Environment {
@@ -24,11 +24,11 @@ namespace da_game {
         /*
          * enter(Character) - aktöommer till platsen
          */
-        virtual void enter(actor &) = 0;
+        virtual void enter(Actor &) = 0;
         /*
          * leave(Character) - aktöåfråplatsen
          */
-        virtual void leave(actor &) = 0;
+        virtual void leave(Actor &) = 0;
         /*
          * pick_up(Object) - nån tar upp ett föåsom finns pålatsen
          */
