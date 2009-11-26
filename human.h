@@ -1,7 +1,7 @@
 #ifndef DA_GAME_HUMAN_H
 #define DA_GAME_HUMAN_H
 #include "actor.h"
-#include "Food.h"
+#include "food.h"
 
 namespace da_game {
     class Human : public Actor {

@@ -1,6 +1,13 @@
+FILES=game.cpp
+FLAGS=-o da_game
+
 all: compile clean
 
 compile:
-	g++ actor.h container.h environment.h human.h inside.h object.h outside.h room.h troll.h wizard.h
+	g++ $(FILES) $(FLAGS)
+
 clean:
-	rm *.gch
+	rm -f *.gch
+
+run: all
+	./da_game

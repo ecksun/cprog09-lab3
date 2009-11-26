@@ -1,5 +1,10 @@
 #ifndef DA_GAME_ENVIRONMENT_H
 #define DA_GAME_ENVIRONMENT_H
+
+namespace da_game {
+    class Environment;
+}
+
 #include <string>
 #include <vector>
 #include "actor.h"
@@ -8,7 +13,7 @@
 namespace da_game {
     class Environment {
         /*
-         * returnera beskrivning av vad miljönnehåer, vilka
+         * returnera beskrivning av vad miljön innehåller, vilka
          * föåman kan ta och vilka aktö som befinner sig pålatsen.
          */
         virtual std::string description() = 0;
@@ -22,7 +27,7 @@ namespace da_game {
          */
         virtual Environment & neighbor(std::string) = 0;
         /*
-         * enter(Character) - aktöommer till platsen
+         * enter(Character) - actior enters the place
          */
         virtual void enter(Actor &) = 0;
         /*
