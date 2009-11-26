@@ -18,8 +18,8 @@ namespace da_game {
             virtual int price() const;
             virtual std::string type() const;
 
-            virtual int hold_weight() const;
-            virtual int hold_volume() const;
+            virtual int get_hold_weight() const;
+            virtual int get_hold_volume() const;
             virtual bool add(Object &);
             virtual bool remove(Object &);
 

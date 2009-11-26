@@ -3,11 +3,11 @@
 namespace da_game {
 
     Bag::Bag() {
-        this->objects = new std::vector<Object *>();
+        objects = new std::vector<Object *>();
     }
 
     Bag::~Bag() {
-        this->objects->clear();
+        objects->clear();
         delete this->objects;
     }
 
@@ -27,12 +27,12 @@ namespace da_game {
         return "Orch bag";
     }
 
-    int Bag::hold_weight() const {
-        return this->hold_weight_;
+    int Bag::get_hold_weight() const {
+        return this->hold_weight;
     }
 
-    int Bag::hold_volume() const {
-        return this->hold_volume_;
+    int Bag::get_hold_volume() const {
+        return this->hold_volume;
     }
 
     bool Bag::add(Object & object) {

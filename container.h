@@ -6,21 +6,23 @@
 #include "object.h"
 
 namespace da_game {
+
     class Container : public Object  {
+
         protected:
-            int hold_weight_;
-            int hold_volume_;
+            int hold_weight;
+            int hold_volume;
             std::vector<Object *> * objects;
             
         public:
             /*
              * Weight before container breaks
              */
-            virtual int hold_weight() const = 0;
+            virtual int get_hold_weight() const = 0;
             /*
              * Volume capacity of container
              */
-            virtual int hold_volume() const = 0;
+            virtual int get_hold_volume() const = 0;
             /*
              * Add an object to this container
              */
@@ -31,5 +33,7 @@ namespace da_game {
             virtual bool remove(Object &) = 0;
 
     };
+
 }
+
 #endif // DA_GAME_CONTAINER_H
