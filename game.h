@@ -2,11 +2,13 @@
 #define  DA_GAME_GAME_H
 
 #include <vector>
+
 #include "actor.h"
+
 namespace da_game {
     class Game {
         public:
-            Game ();        
+            Game();        
             void init();
 
         private:

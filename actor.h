@@ -1,13 +1,15 @@
 #ifndef DA_GAME_ACTOR_H
 #define DA_GAME_ACTOR_H
-namespace da_game {
-    class Actor;
-}
+
 #include <string>
+
 #include "object.h"
 #include "environment.h"
 
 namespace da_game {
+    
+    class Object;
+
     class Actor {
         public:
             virtual void run() = 0;

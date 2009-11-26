@@ -1,16 +1,17 @@
 #ifndef DA_GAME_ENVIRONMENT_H
 #define DA_GAME_ENVIRONMENT_H
 
-namespace da_game {
-    class Environment;
-}
-
 #include <string>
 #include <vector>
+
 #include "actor.h"
 #include "object.h"
 
 namespace da_game {
+
+    class Actor;
+    class Object;
+
     class Environment {
         /*
          * returnera beskrivning av vad miljön innehåller, vilka
