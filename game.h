@@ -9,7 +9,7 @@ namespace da_game {
     class Game {
         public:
             Game();        
-            void init();
+            void initialize();
 
         private:
             std::vector<Actor *> actors;

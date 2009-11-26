@@ -17,22 +17,22 @@ namespace da_game {
          * returnera beskrivning av vad miljön innehåller, vilka
          * föåman kan ta och vilka aktö som befinner sig pålatsen.
          */
-        virtual std::string description() = 0;
+        virtual std::string description() const = 0;
         /*
          * returnera vilka utgåar som finns
          */
-        virtual std::vector<std::string> directions() = 0;
+        virtual std::vector<std::string> directions() const = 0;
         /*
          * returnera granne (t.ex. referens till objekt) i gi-
          * ven riktning
          */
-        virtual Environment & neighbor(std::string) = 0;
+        virtual Environment & neighbor(std::string) const = 0;
         /*
-         * enter(Character) - actior enters the place
+         * enter(Character) - actor enters the place
          */
         virtual void enter(Actor &) = 0;
         /*
-         * leave(Character) - aktöåfråplatsen
+         * leave(Character) - actor leaves this environment
          */
         virtual void leave(Actor &) = 0;
         /*

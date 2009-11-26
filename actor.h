@@ -13,8 +13,8 @@ namespace da_game {
     class Actor {
         public:
             virtual void run() = 0;
-            virtual std::string type() = 0;
-            virtual std::string name() = 0;
+            virtual std::string type() const = 0;
+            virtual std::string name() const = 0;
             virtual void go(std::string) = 0;
             virtual void fight(Actor &) = 0;
             virtual void pick_up(Object &) = 0;
