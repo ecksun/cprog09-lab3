@@ -1,6 +1,7 @@
-#ifndef OBJECT_HEADER
-#define OBJECT_HEADER
+#ifndef DA_GAME_OBJECT_H
+#define DA_GAME_OBJECT_H
 #include <string>
+
 namespace da_game {
     class Object {
         public:
@@ -10,4 +11,4 @@ namespace da_game {
         virtual std::string type() = 0;
     };
 }
-#endif
+#endif // DA_GAME_OBJECT_H

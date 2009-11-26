@@ -1,8 +1,8 @@
-#ifndef OUTSIDE_HEADER
-#define OUTSIDE_HEADER
+#ifndef DA_GAME_OUTSIDE_H
+#define DA_GAME_OUTSIDE_H
 #include "envoirement.h"
+
 namespace da_game {
-    class outside : public envoirement{
+    class Outside : public Environment {
     };
 }
-#endif

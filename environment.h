@@ -1,11 +1,12 @@
-#ifndef envoirement_HEADER
-#define envoirement_HEADER
+#ifndef DA_GAME_ENVIRONMENT_H
+#define DA_GAME_ENVIRONMENT_H
 #include <string>
 #include <vector>
 #include "actor.h"
 #include "Object.h"
+
 namespace da_game {
-    class envoirement {
+    class Environment {
         /*
          * returnera beskrivning av vad miljönnehåer, vilka
          * föåman kan ta och vilka aktö som befinner sig pålatsen.
@@ -19,7 +20,7 @@ namespace da_game {
          * returnera granne (t.ex. referens till objekt) i gi-
          * ven riktning
          */
-        virtual envoirement & neighbor(std::string) = 0;
+        virtual Environment & neighbor(std::string) = 0;
         /*
          * enter(Character) - aktöommer till platsen
          */
@@ -38,4 +39,4 @@ namespace da_game {
         virtual void drop(Object &) = 0;
     };
 }
-#endif
+#endif // DA_GAME_ENVIRONTMENT_H

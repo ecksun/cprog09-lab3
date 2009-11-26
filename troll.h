@@ -1,10 +1,12 @@
-#ifndef TROLL_HEADER
-#define TROLL_HEADER
+#ifndef DA_GAME_TROLL_H
+#define DA_GAME_TROLL_H
 #include "actor.h"
+
 namespace da_game {
-    class troll : public actor {
+    class Troll : public Actor {
         public:
-        void eat(actor &f);
+        void eat(Actor &);
+        void eat(Food &);
     };
 }
-#endif
+#endif // DA_GAME_TROLL_H

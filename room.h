@@ -1,9 +1,11 @@
-#ifndef ROOM_HEADER
-#define ROOM_HEADER
+#ifndef DA_GAME_ROOM_H
+#define DA_GAME_ROOM_H
 #include "inside.h"
+
 namespace da_game {
-    class room : public inside {
+    class Room : public Inside {
     };
 }
 
-#endif
+#endif // DA_GAME_ROOM_H
+

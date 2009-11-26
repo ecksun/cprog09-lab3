@@ -1,13 +1,14 @@
-#ifndef HUMAN_HEADER
-#define HUMAN_HEADER
+#ifndef DA_GAME_HUMAN_H
+#define DA_GAME_HUMAN_H
 #include "actor.h"
 #include "Food.h"
+
 namespace da_game {
-    class human : public actor {
-        bool hasHeart;
-        int maxHealth;
+    class Human : public Actor {
+        bool has_heart;
+        int max_health;
         public:
-        void eat(Food &f);
+        void eat(Food &);
     };
 }
-#endif
+#endif // DA_GAME_HUMAN_H
