@@ -6,7 +6,10 @@ namespace da_game {
 
     Game::Game() {
         initialize();
-        run();
+        while (true) {
+            run();
+            sleep(1);
+        }
     }
 
     /*
