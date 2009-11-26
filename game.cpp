@@ -7,7 +7,10 @@ int main() {
 namespace da_game {
     Game::Game() {
         init();
-        run();
+        while (true) {
+            run();
+            sleep(1);
+        }
     }
 
     /*
