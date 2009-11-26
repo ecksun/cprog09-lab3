@@ -8,6 +8,7 @@ EXECUTABLE=da_game
 
 all: $(SOURCES) $(EXECUTABLE)
 
+# $@ expands to prerequisities
 $(EXECUTABLE): $(OBJECTS)
 	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
 
@@ -18,4 +19,6 @@ $(EXECUTABLE): $(OBJECTS)
 clean:
 	-rm -f $(OBJECTS)
 
-# $@ expands to prerequisities
+run: all
+	./$(EXECUTABLE)
+
