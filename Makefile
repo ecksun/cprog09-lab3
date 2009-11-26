@@ -1,4 +1,3 @@
-<<<<<<< HEAD:Makefile
 CC=g++
 CDFLAGS=-c -Wall -Wextra
 LDFLAGS=
