@@ -1,7 +1,9 @@
 #include "game.h"
 #include "troll.h"
+#include "bag.h"
 
 namespace da_game {
+
     Game::Game() {
         initialize();
         run();
@@ -13,19 +15,22 @@ namespace da_game {
     void Game::initialize() {
         Actor * t = new Troll(1000, 88);
         actors.push_back(t);
+
+        Bag bag;
     }
 
     void Game::run() {
         std::vector<Actor *>::iterator it;
-        it = actors.begin();
 
-        for (; it != actors.end(); ++it) {
+        for (it = actors.begin(); it != actors.end(); ++it) {
             (*it)->run();
         }
     }
+
 }
 
 int main() {
     da_game::Game game;
+
 }
 

@@ -1,12 +1,15 @@
 #include "food.h"
 
 namespace da_game {
+
     Food::Food(int food) {
-        foodLeft = food;
+        food_left = food;
     }
+
     int Food::health_increase() {
-        int tmp = foodLeft;
-        foodLeft = 0;
+        int tmp = food_left;
+        food_left = 0;
         return tmp;
     }
+
 }

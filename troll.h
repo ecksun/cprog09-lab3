@@ -6,8 +6,6 @@
 
 namespace da_game {
     
-    class Food;
-
     class Troll : public Actor {
         public:
             Troll(int, int);
