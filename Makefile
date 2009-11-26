@@ -13,6 +13,9 @@ $(EXECUTABLE): $(OBJECTS)
 
 # Implicit rule (http://www.gnu.org/software/make/manual/make.html#Implicit-Rules)
 .cpp.o:
-	$(CC) $(CFLAGS) $< -o $@
+	$(CC) $(CDFLAGS) $< -o $@
+
+clean:
+	-rm -f $(OBJECTS)
 
 # $@ expands to prerequisities

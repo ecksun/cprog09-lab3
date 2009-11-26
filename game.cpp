@@ -1,8 +1,5 @@
 #include "game.h"
 #include "troll.h"
-int main() {
-    da_game::Game game;
-}
 
 namespace da_game {
     Game::Game() {
@@ -27,3 +24,8 @@ namespace da_game {
         }
     }
 }
+
+int main() {
+    da_game::Game game;
+}
+
