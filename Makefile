@@ -1,4 +1,4 @@
-FILES=game.cpp
+FILES=game.cpp troll.cpp food.cpp
 FLAGS=-o da_game
 
 all: compile clean

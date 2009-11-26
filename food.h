@@ -4,7 +4,10 @@
 namespace da_game {
     class Food : public Object  {
         public:
-            int healtIncrease();
+            Food(int);
+            int health_increase();
+        private:
+            int foodLeft;
     };
 }
 
