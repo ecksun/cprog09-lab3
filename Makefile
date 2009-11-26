@@ -1,13 +1,19 @@
-FILES=game.cpp
-FLAGS=-o da_game
+CC=g++
+CDFLAGS=-c -Wall -Wextra
+LDFLAGS=
+SOURCES=game.cpp
+# Substitution variable that turns a list of *.cpp to *.o
+OBJECTS=$(SOURCES:.cpp=.o)
+EXECUTABLE=da_game
 
-all: compile clean
+all: $(SOURCES) $(EXECUTABLE)
 
-compile:
-	g++ $(FILES) $(FLAGS)
 
-clean:
-	rm -f *.gch
+$(EXECUTABLE): $(OBJECTS)
+	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
 
-run: all
-	./da_game
+# Implicit rule (http://www.gnu.org/software/make/manual/make.html#Implicit-Rules)
+.cpp.o:
+	$(CC) $(CFLAGS) $< -o $@
+
+# $@ expands to prerequisities
