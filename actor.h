@@ -3,11 +3,9 @@
 
 #include <string>
 
-#include "object.h"
-#include "environment.h"
-
 namespace da_game {
     
+    class Environment;
     class Object;
 
     class Actor {

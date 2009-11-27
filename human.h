@@ -5,13 +5,16 @@
 #include "food.h"
 
 namespace da_game {
+
     class Food;
 
     class Human : public Actor {
-        bool has_heart;
-        int max_health;
+        private:
+            bool has_heart;
+            int max_health;
+
         public:
-        void eat(Food &);
+            void eat(Food &);
     };
 }
 #endif // DA_GAME_HUMAN_H
