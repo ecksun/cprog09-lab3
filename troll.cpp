@@ -6,7 +6,7 @@ namespace da_game {
         this->hp = hp;
         this->strength = strength;
     }
-    void Troll::eat(Actor & actor) {
+    void Troll::eat(Actor &) {
         std::cout << "I dont like white meat" << std::endl;
     }
 
@@ -33,7 +33,7 @@ namespace da_game {
     /*
      * I have no idea how we should implement this
      */
-    void Troll::fight(Actor & actor) {
+    void Troll::fight(Actor &) {
         return;
     }
 
