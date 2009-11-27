@@ -5,6 +5,11 @@
 
 namespace da_game {
     class Room : public Inside {
+        public:
+            virtual std::string description() const;
+            virtual std::vector<std::string> directions() const;
+            virtual Environment & neighbor(std::string) const;
+        private:
     };
 }
 

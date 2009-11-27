@@ -2,6 +2,7 @@
 #include "troll.h"
 #include "terminal.h"
 #include "bag.h"
+#include "room.h"
 
 namespace da_game {
 
@@ -26,6 +27,10 @@ namespace da_game {
     void Game::initialize() {
         Actor * t = new Troll(1000, 88);
         actors.push_back(t);
+        
+        Environment * env = new Room();
+
+        envs.push_back(env);
 
         Bag bag;
     }
