@@ -41,4 +41,8 @@ namespace da_game {
                 std::pair<std::string, int (*)(std::string)>(string, function));
         return ret.second;
     }
+
+    const std::map<std::string, int (*)(std::string)> Terminal::get_functions() {
+        return functions;
+    }
 }

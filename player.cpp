@@ -3,10 +3,10 @@
 
 namespace da_game {
     void Player::run(){}
-    std::string Player::type() const{
+    std::string Player::get_type() const{
         return "DEMAN";
     }
-    std::string Player::name() const{
+    std::string Player::get_name() const{
         return "Klas-Göran";
     }
     void Player::go(std::string direction) { 

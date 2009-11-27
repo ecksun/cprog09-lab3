@@ -13,6 +13,7 @@ namespace da_game {
             static int pick_up(std::string);
             static int drop(std::string);
             static int talk_to(std::string);
+            static int help(std::string);
         private:
             static Player player;
     };
