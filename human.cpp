@@ -9,16 +9,16 @@ namespace da_game {
 
     }
 
-    void run() {
+    void Human::run() {
         std::cout << "Ruuunning!" << std::endl;
     }
 
-    std::string get_name() {
+    std::string Human::get_name() const {
         return name;
     }
 
     void Human::eat(Food & food) {
-        std::cout << "Yum! Food is great!" << std::endl;
+        std::cout << "Yum! Food is great! Give me more " << std::endl;
     }
 
 }

@@ -27,8 +27,8 @@ namespace da_game {
         Troll * t = new Troll(1000, 88);
         actors.push_back(t);
 
-        Wizard * w = new Wizard(true, 100, 10);
-        actors.push_back(w);
+//        Wizard * w = new Wizard(true, 100, 10);
+//        actors.push_back(w);
 
         Bag bag;
     }
