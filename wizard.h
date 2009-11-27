@@ -9,6 +9,10 @@ namespace da_game {
 
         private:
             int magic;
+            int max_magic;
+
+        public: 
+            Wizard(bool, int, int);
 
     };
 

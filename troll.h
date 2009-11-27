@@ -12,8 +12,8 @@ namespace da_game {
             void eat(Actor &);
             void eat(Food &);
             virtual void run();
-            virtual std::string type() const;
-            virtual std::string name() const;
+            virtual std::string get_type() const;
+            virtual std::string get_name() const;
             virtual void go(std::string);
             virtual void fight(Actor &);
             virtual void pick_up(Object &);

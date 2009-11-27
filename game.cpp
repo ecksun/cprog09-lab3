@@ -1,5 +1,7 @@
+#include "bag.h"
 #include "game.h"
 #include "troll.h"
+#include "wizard.h"
 #include "terminal.h"
 #include "bag.h"
 #include "room.h"
@@ -21,16 +23,23 @@ namespace da_game {
         }
     }
 
+    Game::~Game() {
+        actors.clear();
+    }
+
     /*
      * Create the map and all objects
      */
     void Game::initialize() {
-        Actor * t = new Troll(1000, 88);
+        Troll * t = new Troll(1000, 88);
         actors.push_back(t);
         
         Environment * env = new Room();
 
         envs.push_back(env);
+
+//        Wizard * w = new Wizard(true, 100, 10);
+//        actors.push_back(w);
 
         Bag bag;
     }

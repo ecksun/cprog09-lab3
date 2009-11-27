@@ -9,11 +9,19 @@ namespace da_game {
     class Food;
 
     class Human : public Actor {
-        private:
+
+        protected:
             bool has_heart;
             int max_health;
+            std::string name;
 
         public:
+            Human(bool, int);
+
+            virtual void run();
+            virtual std::string get_name() const;
+            virtual void go(std::string);
+
             void eat(Food &);
     };
 }

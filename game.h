@@ -12,6 +12,7 @@ namespace da_game {
     class Game {
         public:
             Game();        
+            ~Game();        
             void initialize();
 
         private:

@@ -18,11 +18,11 @@ namespace da_game {
         std::cout << "Im just sTrolling arround" << std::endl;
     }
 
-    std::string Troll::type() const {
+    std::string Troll::get_type() const {
         return "troll";
     }
 
-    std::string Troll::name() const {
+    std::string Troll::get_name() const {
         return "nisse";
     }
 
