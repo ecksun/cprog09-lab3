@@ -14,7 +14,7 @@ namespace da_game {
         // std::cin >> row;
         std::string command = row.substr(0, row.find_first_of(' '));
         std::string arguments = row.substr(row.find_first_of(' ')+1);
-        std::cout << "Recived command: '" << command << "' with arguments: '" << arguments << "'" << std::endl;
+        // std::cout << "Recived command: '" << command << "' with arguments: '" << arguments << "'" << std::endl;
 
         std::map<std::string, int (*)(std::string)>::iterator it = functions.find(command);
 
@@ -24,7 +24,6 @@ namespace da_game {
         else {
             std::cout << "No such command" << std::endl;
         }
-        std::cout << "Done executing command" << std::endl;
         return 0;
     }
 

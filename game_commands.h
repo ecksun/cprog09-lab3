@@ -9,6 +9,10 @@ namespace da_game {
             GameCommands();
             static int exit(std::string);
             static int go(std::string);
+            static int fight(std::string);
+            static int pick_up(std::string);
+            static int drop(std::string);
+            static int talk_to(std::string);
         private:
             static Player player;
     };

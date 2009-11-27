@@ -4,7 +4,12 @@ namespace da_game {
     Player GameCommands::player;
     GameCommands::GameCommands() {
         Terminal::add_function(std::string("exit"), &GameCommands::exit);
+        Terminal::add_function(std::string("quit"), &GameCommands::exit);
         Terminal::add_function(std::string("go"), &GameCommands::go);
+        Terminal::add_function(std::string("fight"), &GameCommands::fight);
+        Terminal::add_function(std::string("pick_up"), &GameCommands::pick_up);
+        Terminal::add_function(std::string("drop"), &GameCommands::drop);
+        Terminal::add_function(std::string("talk_to"), &GameCommands::talk_to);
     }
     int GameCommands::exit(std::string) {
         return 1;
@@ -14,4 +19,30 @@ namespace da_game {
         player.go(direction);
         return 0;
     }
+
+    /*
+     * TODO: need a way to get a opponent from a string
+     */
+    int GameCommands::fight(std::string oponent) {
+        return 0;
+    }
+    /*
+     * TODO: need a way to get a object from a string
+     */
+    int GameCommands::pick_up(std::string object) {
+        return 0;
+    }
+    /*
+     * TODO: need a way to get a object from a string
+     */
+    int GameCommands::drop(std::string object) {
+        return 0;
+    }
+    /*
+     * TODO: need a way to get a actor from a string
+     */
+    int GameCommands::talk_to(std::string actor) {
+        return 0;
+    }
+
 }
