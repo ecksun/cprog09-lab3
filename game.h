@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "actor.h"
+#include "terminal.h"
 
 namespace da_game {
     class Game {
@@ -14,6 +15,7 @@ namespace da_game {
         private:
             std::vector<Actor *> actors;
             void run();
+            Terminal terminal;
     };
 }
 

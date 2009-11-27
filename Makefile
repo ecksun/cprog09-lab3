@@ -1,7 +1,7 @@
 CC=g++
 CDFLAGS=-c -Wall -Wextra
 LDFLAGS=
-SOURCES=game.cpp troll.cpp food.cpp
+SOURCES=game.cpp troll.cpp food.cpp terminal.cpp
 # Substitution variable that turns a list of *.cpp to *.o
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=da_game
