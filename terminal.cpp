@@ -2,21 +2,44 @@
 #include <iostream>
 
 namespace da_game {
-    void Terminal::run() {
+
+    std::map<std::string, int (*)(std::string)> Terminal::functions;
+
+    int Terminal::run() {
         std::string row;
         std::cout << "> ";
-        std::cin >> row;
-        std::cout << "Recived: " << row << std::endl;
+
+        getline(std::cin, row);
+
+        // std::cin >> row;
+        std::string command = row.substr(0, row.find_first_of(' '));
+        std::string arguments = row.substr(row.find_first_of(' ')+1);
+        std::cout << "Recived command: '" << command << "' with arguments: '" << arguments << "'" << std::endl;
+
+        std::map<std::string, int (*)(std::string)>::iterator it = functions.find(command);
+
+        if (it != functions.end()) {
+            return it->second(arguments);
+        }
+        else {
+            std::cout << "No such command" << std::endl;
+        }
+        std::cout << "Done executing command" << std::endl;
+        return 0;
     }
 
+    /*
+     * Add a static member function to the list of avalible arguments.
+     * NOTE: the function HAVE to be a static member function or an ordinary function (outside of a class)
+     */
     bool Terminal::add_function(
             std::string string, 
-            void (*function)(std::string, std::string)) {
+            int (*function)(std::string)) {
 
-        std::pair<std::map<std::string, void (*)(std::string, std::string)>::iterator, bool> ret;
+        std::pair<std::map<std::string, int (*)(std::string)>::iterator, bool> ret;
 
-        ret = functions.insert(
-                std::pair<std::string, void (*)(std::string, std::string)>(string, function));
+        ret = Terminal::functions.insert(
+                std::pair<std::string, int (*)(std::string)>(string, function));
         return ret.second;
     }
 }
