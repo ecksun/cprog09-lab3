@@ -8,11 +8,17 @@
 namespace da_game {
 
     Game::Game() {
+        bool running = true;
         initialize();
-        while (true) {
-            terminal.run();
-            run();
-            sleep(1);
+        while (running) {
+            switch (terminal.run()) {
+                case 1:
+                    running = false;
+                    break;
+                default:
+                    run();
+                    break;
+            }
         }
     }
 

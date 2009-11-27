@@ -5,10 +5,10 @@
 namespace da_game {
     class Terminal {
         public:
-            void run();
-            static bool add_function(std::string, void (*)(std::string, std::string));
+            int run();
+            static bool add_function(std::string, int (*)(std::string));
         private:
-            static std::map<std::string, void (*)(std::string, std::string)> functions;
+            static std::map<std::string, int (*)(std::string)> functions;
     };
 }
 

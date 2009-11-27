@@ -5,6 +5,7 @@
 
 #include "actor.h"
 #include "terminal.h"
+#include "game_commands.h"
 
 namespace da_game {
     class Game {
@@ -17,6 +18,7 @@ namespace da_game {
             std::vector<Actor *> actors;
             void run();
             Terminal terminal;
+            GameCommands commands;
     };
 }
 
