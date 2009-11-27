@@ -2,12 +2,15 @@
 #include "game.h"
 #include "troll.h"
 #include "wizard.h"
+#include "terminal.h"
+#include "bag.h"
 
 namespace da_game {
 
     Game::Game() {
         initialize();
         while (true) {
+            terminal.run();
             run();
             sleep(1);
         }
