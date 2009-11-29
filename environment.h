@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <map>
 
 #include "actor.h"
 #include "object.h"
@@ -44,7 +45,7 @@ namespace da_game {
              * drop(Object) - någon lägger ner ett föremål på platsen
              */
             virtual void drop(Object &) = 0;
-        private:
+        protected:
             std::vector<Object *> * objects;
             std::map<std::string, Environment *> neighbors;
     };
