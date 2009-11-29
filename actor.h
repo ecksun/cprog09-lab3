@@ -2,6 +2,7 @@
 #define DA_GAME_ACTOR_H
 
 #include <string>
+#include <vector>
 
 namespace da_game {
     
@@ -10,6 +11,7 @@ namespace da_game {
 
     class Actor {
         public:
+            Actor();
             virtual void run() = 0;
             virtual std::string get_type() const = 0;
             virtual std::string get_name() const = 0;
@@ -22,6 +24,7 @@ namespace da_game {
             int hp;
             int strength;
             Environment * current_room;
+            std::vector<Object *> * objects;
     };
 }
 #endif // DA_GAME_ACTOR_H

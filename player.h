@@ -7,6 +7,7 @@
 namespace da_game {
     class Player: public Actor {
         public:
+            Player();
             virtual void run();
             virtual std::string get_type() const;
             virtual std::string get_name() const;
