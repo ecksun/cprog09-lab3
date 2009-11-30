@@ -15,6 +15,13 @@ namespace da_game {
         neighbors.insert(s);
     }
 
+    bool Room::add_neighbor(std::string direction, Environment * neighbor) {
+        std::pair<std::string, Environment *> pair(direction, neighbor);
+        std::pair<std::map<std::string, Environment *>::iterator, bool> result = neighbors.insert(pair);
+        return result.second;
+
+    }
+
     /*
      * If we give the objects an id directly from this vector there might be a 
      * problem when we try to pick up something that has already been picked up

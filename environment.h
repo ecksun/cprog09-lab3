@@ -45,6 +45,8 @@ namespace da_game {
              * drop(Object) - någon lägger ner ett föremål på platsen
              */
             virtual void drop(Object &) = 0;
+
+            virtual bool add_neighbor(std::string, Environment *) = 0;
         protected:
             std::vector<Object *> * objects;
             std::map<std::string, Environment *> neighbors;

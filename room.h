@@ -14,6 +14,7 @@ namespace da_game {
             virtual void leave(Actor &);
             virtual bool pick_up(Object &);
             virtual void drop(Object &);
+            virtual bool add_neighbor(std::string, Environment *);
         private:
     };
 }

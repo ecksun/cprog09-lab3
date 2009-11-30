@@ -34,9 +34,12 @@ namespace da_game {
         Troll * t = new Troll(1000, 88);
         actors.push_back(t);
         
-        Environment * env = new Room(0, 0, 0, 0);
+        Environment * r1 = new Room(0, 0, 0, 0);
+        Environment * r2 = new Room(r1, 0, 0, 0);
+        r1->add_neighbor("west", r2);
 
-        envs.push_back(env);
+        envs.push_back(r1);
+        envs.push_back(r2);
 
 //        Wizard * w = new Wizard(true, 100, 10);
 //        actors.push_back(w);
