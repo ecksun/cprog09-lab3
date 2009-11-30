@@ -44,13 +44,15 @@ namespace da_game {
             /*
              * pick_up(Object) - nån tar upp ett föremål som  finns pålatsen
              */
-            virtual bool pick_up(Object &) = 0;
+            virtual bool pick_up(Object *);
             /*
              * drop(Object) - någon lägger ner ett föremål på platsen
              */
             virtual void drop(Object &) = 0;
 
             virtual bool add_neighbor(std::string, Environment *) = 0;
+
+            virtual Object * get_object(int id);
         protected:
             std::vector<Object *> * objects;
             std::vector<Actor *> * actors;

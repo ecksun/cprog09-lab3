@@ -4,4 +4,8 @@ namespace da_game {
     Object::Object() : id(instances) {
         instances++;
     }
+
+    bool Object::operator==(Object & obj) const {
+        return obj.id == this->id;
+    }
 }

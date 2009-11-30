@@ -24,6 +24,10 @@ namespace da_game {
         objects = new std::vector<Object *>;
     }
 
+    Room::~Room() {
+        delete objects;
+    }
+
     bool Room::add_neighbor(std::string direction, Environment * neighbor) {
         std::pair<std::string, Environment *> pair(direction, neighbor);
         std::pair<std::map<std::string, Environment *>::iterator, bool> result = neighbors.insert(pair);
@@ -77,9 +81,6 @@ namespace da_game {
 
     }
 
-    bool Room::pick_up(Object &) {
-        return false;
-    }
     void Room::drop(Object & object) {
         objects->push_back(&object);
     }

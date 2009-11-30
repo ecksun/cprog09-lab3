@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 #include <string>
 
 #include "game_commands.h"
@@ -35,6 +36,18 @@ namespace da_game {
      * TODO: need a way to get a object from a string
      */
     int GameCommands::pick_up(std::string object) {
+        try {
+            Object * obj = player->in_room->get_object(stringToInt(object));
+            if (obj != 0) {
+                if (player->in_room->pick_up(obj)) {
+                    player->pick_up(obj);
+                    return 0;
+                }
+            }
+        }
+        catch (...) {
+        }
+        std::cout << "No such item" << std::endl;
         return 0;
     }
     /*
@@ -61,6 +74,16 @@ namespace da_game {
         }
 
         return 0;
+    }
+
+    int GameCommands::stringToInt(std::string string) {
+        int num = -4711;
+        std::istringstream stream(string);
+        if (!(stream >> num)) {
+            // TODO: fixa ett riktigt exception
+            throw -4711;
+        }
+        return num;
     }
 
 }

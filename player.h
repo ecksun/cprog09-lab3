@@ -14,10 +14,9 @@ namespace da_game {
             virtual std::string get_name() const;
             virtual void go(std::string);
             virtual void fight(Actor &);
-            virtual void pick_up(Object &);
+            virtual void pick_up(Object *);
             virtual void drop(Object &);
             virtual void talk_to(Actor &);
-        private:
             Environment * in_room;
     };
 }

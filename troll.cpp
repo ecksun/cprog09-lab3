@@ -37,7 +37,7 @@ namespace da_game {
         return;
     }
 
-    void Troll::pick_up(Object &) {
+    void Troll::pick_up(Object *) {
         std::cout << "Im a troll ffs, i dont have any pockets" << std::endl;
     }
 

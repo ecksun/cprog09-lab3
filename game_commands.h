@@ -16,6 +16,7 @@ namespace da_game {
             static int help(std::string);
         private:
             static Player * player;
+            static int stringToInt(std::string);
     };
 }
 #endif

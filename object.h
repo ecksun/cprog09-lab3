@@ -15,6 +15,9 @@ namespace da_game {
             virtual int volume() const = 0;
             virtual int price() const = 0;
             virtual std::string type() const = 0;
+
+            virtual bool operator==(Object &) const;
+
         protected:
             static int instances;
 

@@ -29,9 +29,9 @@ namespace da_game {
     }
 
     void Player::fight(Actor &){}
-    void Player::pick_up(Object & object){
-        objects->push_back(&object);
-        std::cout << "picked up " << std::endl;
+    void Player::pick_up(Object * object){
+        objects->push_back(object);
+        std::cout << "picked up " << object->type() << std::endl;
     }
     void Player::drop(Object &){}
     void Player::talk_to(Actor &){}
