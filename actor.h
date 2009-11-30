@@ -11,6 +11,9 @@ namespace da_game {
 
     class Actor {
         public:
+            const int id;
+            Actor();
+
             virtual void run() = 0;
             virtual std::string get_type() const = 0;
             virtual std::string get_name() const = 0;
@@ -20,6 +23,8 @@ namespace da_game {
             virtual void drop(Object &) = 0;
             virtual void talk_to(Actor &) = 0;
         protected:
+            static int instances;
+
             int hp;
             int strength;
             Environment * current_room;
