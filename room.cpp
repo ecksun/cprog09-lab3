@@ -4,10 +4,15 @@
 namespace da_game {
 
     Room::Room(Environment * east, Environment * west, Environment * north, Environment * south) {
-        this->east = east;
-        this->west = west;
-        this->south = south;
-        this->north = north;
+        std::pair<std::string, Environment *> e("east", east);
+        std::pair<std::string, Environment *> w("west", west);
+        std::pair<std::string, Environment *> n("north", north);
+        std::pair<std::string, Environment *> s("south", south);
+
+        neighbors.insert(e);
+        neighbors.insert(w);
+        neighbors.insert(n);
+        neighbors.insert(s);
     }
 
     /*
