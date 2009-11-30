@@ -7,6 +7,7 @@
 
 namespace da_game {
     class Player: public Actor {
+        friend class GameCommands;
         public:
             Player(Environment *);
             virtual void run();

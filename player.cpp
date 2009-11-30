@@ -16,7 +16,6 @@ namespace da_game {
     }
 
     void Player::go(std::string direction) { 
-        std::cout << "Im going " << direction << std::endl;
         Environment * new_room = in_room->neighbor(direction);
         if (new_room == 0) {
             std::cout << "No such room" << std::endl;

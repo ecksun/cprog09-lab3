@@ -16,6 +16,7 @@ namespace da_game {
         Terminal::add_function(std::string("drop"), &GameCommands::drop);
         Terminal::add_function(std::string("talk_to"), &GameCommands::talk_to);
         Terminal::add_function(std::string("help"), &GameCommands::help);
+        Terminal::add_function(std::string("inventory"), &GameCommands::inventory);
     }
     int GameCommands::exit(std::string) {
         return 1;
@@ -75,6 +76,16 @@ namespace da_game {
 
         return 0;
     }
+    
+
+    int GameCommands::inventory(std::string) {
+        std::vector<Object *>::iterator it = player->objects->begin();
+        for (; it != player->objects->end(); ++it) {
+            std::cout << (*it)->id << "\t" << (*it)->type() << std::endl;
+        }
+        return 0;
+    }
+
 
     int GameCommands::stringToInt(std::string string) {
         int num = -4711;

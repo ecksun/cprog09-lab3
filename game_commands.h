@@ -14,6 +14,7 @@ namespace da_game {
             static int drop(std::string);
             static int talk_to(std::string);
             static int help(std::string);
+            static int inventory(std::string);
         private:
             static Player * player;
             static int stringToInt(std::string);

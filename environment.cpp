@@ -5,9 +5,7 @@ namespace da_game {
     Object * Environment::get_object(int id) {
         std::vector<Object *>::const_iterator it = objects->begin();
         for (; it != objects->end(); ++it) {
-            std::cout << "comparing " << (*it)->id << " to " << id << std::endl;
             if ((*it)->id == id) {
-                std::cout << "Found it!" << std::endl;
                 return *it;
             }
         }
