@@ -2,6 +2,11 @@
 #include <iostream>
 
 namespace da_game {
+    /*
+     * If we give the objects an id directly from this vector there might be a 
+     * problem when we try to pick up something that has already been picked up
+     * by someone else.
+     */
     std::string Room::description() const {
         for (size_t i = 0; i < objects->size(); ++i) {
             std::cout << i << "\t" << objects->at(i)->type() << std::endl;
