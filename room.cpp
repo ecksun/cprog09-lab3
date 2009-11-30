@@ -2,6 +2,14 @@
 #include <iostream>
 
 namespace da_game {
+
+    Room::Room(Environment * east, Environment * west, Environment * north, Environment * south) {
+        this->east = east;
+        this->west = west;
+        this->south = south;
+        this->north = north;
+    }
+
     /*
      * If we give the objects an id directly from this vector there might be a 
      * problem when we try to pick up something that has already been picked up

@@ -6,6 +6,7 @@
 namespace da_game {
     class Room : public Inside {
         public:
+            Room(Environment *, Environment *, Environment *, Environment *);
             virtual std::string description() const;
             virtual std::vector<std::string> directions() const;
             virtual Environment & neighbor(std::string) const;
@@ -14,6 +15,10 @@ namespace da_game {
             virtual bool pick_up(Object &);
             virtual void drop(Object &);
         private:
+            Environment * east;
+            Environment * west;
+            Environment * north;
+            Environment * south;
     };
 }
 

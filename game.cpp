@@ -34,7 +34,7 @@ namespace da_game {
         Troll * t = new Troll(1000, 88);
         actors.push_back(t);
         
-        Environment * env = new Room();
+        Environment * env = new Room(0, 0, 0, 0);
 
         envs.push_back(env);
 
