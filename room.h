@@ -15,10 +15,6 @@ namespace da_game {
             virtual bool pick_up(Object &);
             virtual void drop(Object &);
         private:
-            Environment * east;
-            Environment * west;
-            Environment * north;
-            Environment * south;
     };
 }
 
