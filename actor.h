@@ -2,6 +2,7 @@
 #define DA_GAME_ACTOR_H
 
 #include <string>
+#include <vector>
 
 namespace da_game {
     
@@ -22,6 +23,7 @@ namespace da_game {
             int hp;
             int strength;
             Environment * current_room;
+            std::vector<Object *> * objects;
     };
 }
 #endif // DA_GAME_ACTOR_H

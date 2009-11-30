@@ -1,10 +1,12 @@
 #include <iostream>
+#include <string>
 
 #include "game_commands.h"
 
 namespace da_game {
-    Player GameCommands::player;
-    GameCommands::GameCommands() {
+    Player * GameCommands::player;
+    GameCommands::GameCommands(Player * pl) {
+        GameCommands::player = pl;
         Terminal::add_function(std::string("exit"), &GameCommands::exit);
         Terminal::add_function(std::string("quit"), &GameCommands::exit);
         Terminal::add_function(std::string("go"), &GameCommands::go);
@@ -19,7 +21,7 @@ namespace da_game {
     }
 
     int GameCommands::go(std::string direction) {
-        player.go(direction);
+        player->go(direction);
         return 0;
     }
 

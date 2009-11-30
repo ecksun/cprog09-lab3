@@ -10,6 +10,9 @@ namespace da_game {
         std::cout << "> ";
 
         getline(std::cin, row);
+        if (std::cin.eof()) {
+            return 1;
+        }
 
         // std::cin >> row;
         std::string command = row.substr(0, row.find_first_of(' '));

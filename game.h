@@ -6,6 +6,7 @@
 #include "actor.h"
 #include "terminal.h"
 #include "game_commands.h"
+#include "environment.h"
 
 namespace da_game {
     class Game {
@@ -16,9 +17,11 @@ namespace da_game {
 
         private:
             std::vector<Actor *> actors;
+            std::vector<Environment *> envs;
             void run();
             Terminal terminal;
-            GameCommands commands;
+            GameCommands * commands;
+            Player * player;
     };
 }
 
