@@ -41,9 +41,12 @@ namespace da_game {
         Object * b1 = new Bag();
         Object * b2 = new Bag();
         Object * b3 = new Bag();
+        Object * b4 = new Food(47);
         r1->drop(*b1);
         r1->drop(*b2);
         r1->drop(*b3);
+
+        r2->drop(*b4);
 
         envs.push_back(r1);
         envs.push_back(r2);

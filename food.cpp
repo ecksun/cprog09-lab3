@@ -12,4 +12,20 @@ namespace da_game {
         return tmp;
     }
 
+    int Food::weight() const {
+        return food_left/10+1;
+    }
+
+    int Food::volume() const {
+        return food_left/3+1;
+    }
+
+    int Food::price() const {
+        return food_left*2;
+    }
+
+    std::string Food::type() const {
+        return "Mat";
+    }
+
 }

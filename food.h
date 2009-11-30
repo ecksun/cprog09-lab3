@@ -9,9 +9,13 @@ namespace da_game {
 
         public:
             Food(int);
-            int health_increase();
+            virtual int health_increase();
+            virtual int weight() const;
+            virtual int volume() const;
+            virtual int price() const;
+            virtual std::string type() const;
 
-        private:
+        protected:
             int food_left;
     };
 
