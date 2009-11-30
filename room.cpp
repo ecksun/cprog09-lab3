@@ -38,7 +38,7 @@ namespace da_game {
      */
     std::string Room::description() const {
         for (size_t i = 0; i < objects->size(); ++i) {
-            std::cout << i << "\t" << objects->at(i)->type() << std::endl;
+            std::cout << objects->at(i)->id << "\t" << objects->at(i)->type() << std::endl;
         }
 
         std::vector<std::string> rooms = directions();
@@ -80,7 +80,7 @@ namespace da_game {
     bool Room::pick_up(Object &) {
         return false;
     }
-    void Room::drop(Object &) {
-
+    void Room::drop(Object & object) {
+        objects->push_back(&object);
     }
 }

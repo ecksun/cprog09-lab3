@@ -38,6 +38,13 @@ namespace da_game {
         Environment * r2 = new Room(r1, 0, 0, 0);
         r1->add_neighbor("west", r2);
 
+        Object * b1 = new Bag();
+        Object * b2 = new Bag();
+        Object * b3 = new Bag();
+        r1->drop(*b1);
+        r1->drop(*b2);
+        r1->drop(*b3);
+
         envs.push_back(r1);
         envs.push_back(r2);
 

@@ -8,12 +8,16 @@ namespace da_game {
     class Object {
 
         public:
+            const int id;
+
+            Object();
             virtual int weight() const = 0;
             virtual int volume() const = 0;
             virtual int price() const = 0;
             virtual std::string type() const = 0;
+        protected:
+            static int instances;
 
     };
-
 }
 #endif // DA_GAME_OBJECT_H
