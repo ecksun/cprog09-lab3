@@ -6,6 +6,7 @@ polymorfi och standardklasserna (STL).
 ## TODO
 
 * Alla .o filer borde hamna i en egen mapp så det inte blir så stökigt
+* Använd medlemspekare istället för statiska funktionspekare
 
 
 
