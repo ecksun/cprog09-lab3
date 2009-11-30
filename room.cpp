@@ -3,6 +3,9 @@
 
 namespace da_game {
     std::string Room::description() const {
+        for (size_t i = 0; i < objects->size(); ++i) {
+            std::cout << i << "\t" << objects->at(i)->type() << std::endl;
+        }
         return "This is a room";
     }
     std::vector<std::string> Room::directions() const {
