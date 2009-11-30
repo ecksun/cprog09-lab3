@@ -20,7 +20,8 @@ namespace da_game {
             std::vector<Environment *> envs;
             void run();
             Terminal terminal;
-            GameCommands commands;
+            GameCommands * commands;
+            Player * player;
     };
 }
 

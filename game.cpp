@@ -41,6 +41,10 @@ namespace da_game {
         envs.push_back(r1);
         envs.push_back(r2);
 
+        player = new Player(r1);
+        commands = new GameCommands(player);
+
+
 //        Wizard * w = new Wizard(true, 100, 10);
 //        actors.push_back(w);
 

@@ -4,15 +4,24 @@
 namespace da_game {
 
     Room::Room(Environment * east, Environment * west, Environment * north, Environment * south) {
-        std::pair<std::string, Environment *> e("east", east);
-        std::pair<std::string, Environment *> w("west", west);
-        std::pair<std::string, Environment *> n("north", north);
-        std::pair<std::string, Environment *> s("south", south);
+        if (east != 0) {
+            std::pair<std::string, Environment *> e("east", east);
+            neighbors.insert(e);
+        }
+        if (west != 0) {
+            std::pair<std::string, Environment *> w("west", west);
+            neighbors.insert(w);
+        }
+        if (north != 0) {
+            std::pair<std::string, Environment *> n("north", north);
+            neighbors.insert(n);
+        }
+        if (south != 0) {
+            std::pair<std::string, Environment *> s("south", south);
+            neighbors.insert(s);
+        }
 
-        neighbors.insert(e);
-        neighbors.insert(w);
-        neighbors.insert(n);
-        neighbors.insert(s);
+        objects = new std::vector<Object *>;
     }
 
     bool Room::add_neighbor(std::string direction, Environment * neighbor) {
@@ -28,9 +37,17 @@ namespace da_game {
      * by someone else.
      */
     std::string Room::description() const {
+        std::cerr << "Room::description()" << std::endl;
         for (size_t i = 0; i < objects->size(); ++i) {
             std::cout << i << "\t" << objects->at(i)->type() << std::endl;
         }
+
+        std::vector<std::string> rooms = directions();
+
+        for (size_t i = 0; i < rooms.size(); ++i) {
+            std::cout << rooms[i] << std::endl;
+        }
+
         return "This is a room";
     }
     std::vector<std::string> Room::directions() const {
@@ -41,15 +58,15 @@ namespace da_game {
         }
         return return_directions;
     }
-    Environment & Room::neighbor(std::string direction) const {
+    Environment * Room::neighbor(std::string direction) const {
         std::map<std::string, Environment *>::const_iterator it = neighbors.find(direction);
 
         if (it != neighbors.end()) {
-            return (*it->second);
+            return it->second;
         }
         else {
             std::cout << "No such direction" << std::endl;
-            throw;
+            return 0;
             // Throw exception or something, needs a return
         }
     }

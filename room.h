@@ -9,7 +9,7 @@ namespace da_game {
             Room(Environment *, Environment *, Environment *, Environment *);
             virtual std::string description() const;
             virtual std::vector<std::string> directions() const;
-            virtual Environment & neighbor(std::string) const;
+            virtual Environment * neighbor(std::string) const;
             virtual void enter(Actor &);
             virtual void leave(Actor &);
             virtual bool pick_up(Object &);

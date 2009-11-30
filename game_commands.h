@@ -6,7 +6,7 @@
 namespace da_game {
     class GameCommands {
         public:
-            GameCommands();
+            GameCommands(Player *);
             static int exit(std::string);
             static int go(std::string);
             static int fight(std::string);
@@ -15,7 +15,7 @@ namespace da_game {
             static int talk_to(std::string);
             static int help(std::string);
         private:
-            static Player player;
+            static Player * player;
     };
 }
 #endif

@@ -18,6 +18,7 @@ namespace da_game {
             /*
              * returnera beskrivning av vad miljön innehåller, vilka
              * föremål man kan ta och vilka aktörer som befinner sig på platsen.
+             * TODO: fixa så det här printas vid operator<<
              */
             virtual std::string description() const = 0;
             /*
@@ -28,7 +29,7 @@ namespace da_game {
              * returnera granne (t.ex. referens till objekt) i gi-
              * ven riktning
              */
-            virtual Environment & neighbor(std::string) const = 0;
+            virtual Environment * neighbor(std::string) const = 0;
             /*
              * enter(Character) - actor enters the place
              */
@@ -49,6 +50,7 @@ namespace da_game {
             virtual bool add_neighbor(std::string, Environment *) = 0;
         protected:
             std::vector<Object *> * objects;
+            std::vector<Actor *> * actors;
             std::map<std::string, Environment *> neighbors;
     };
 }
