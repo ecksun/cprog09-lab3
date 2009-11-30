@@ -28,6 +28,9 @@ namespace da_game {
             /*
              * returnera granne (t.ex. referens till objekt) i gi-
              * ven riktning
+             *
+             * NOTE: Jag ändrade från referens till pekare för att kunna
+             * returnera 0 om det inte finns en granne åt det hållet
              */
             virtual Environment * neighbor(std::string) const = 0;
             /*

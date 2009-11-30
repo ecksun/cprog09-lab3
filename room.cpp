@@ -37,7 +37,6 @@ namespace da_game {
      * by someone else.
      */
     std::string Room::description() const {
-        std::cerr << "Room::description()" << std::endl;
         for (size_t i = 0; i < objects->size(); ++i) {
             std::cout << i << "\t" << objects->at(i)->type() << std::endl;
         }

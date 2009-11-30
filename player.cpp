@@ -4,6 +4,7 @@
 namespace da_game {
     Player::Player(Environment * room) {
         this->in_room = room;
+        std::cout << in_room->description() << std::endl;
         objects = new std::vector<Object *>;
     }
     void Player::run(){}
@@ -16,7 +17,7 @@ namespace da_game {
 
     void Player::go(std::string direction) { 
         std::cout << "Im going " << direction << std::endl;
-        Environment * new_room = &in_room->neighbor(direction);
+        Environment * new_room = in_room->neighbor(direction);
         if (new_room == 0) {
             std::cout << "No such room" << std::endl;
 
