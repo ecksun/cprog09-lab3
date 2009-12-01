@@ -1,3 +1,4 @@
+SHELL=/bin/sh
 CC=g++
 CDFLAGS=-c -Wall -Wextra
 LDFLAGS=
