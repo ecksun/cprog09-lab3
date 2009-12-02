@@ -1,6 +1,5 @@
 # cprog09: Laboration 3 
 
-=======
 Uppgiften går ut på att skriva ett lite större program med hjälp av arv,
 polymorfi och standardklasserna (STL).
 
@@ -18,11 +17,8 @@ polymorfi och standardklasserna (STL).
   instansiering av Environments; för att skapa en miljö med utgångar måste
   man först ha skapat en annan miljö. Det kan dock lösas genom att först
   skapa miljöerna och sedan lägga till utgångar genom add_exit eller dylikt.
-
-<ul>
-<li>Alla .o filer borde hamna i en egen mapp så det inte blir så stökigt</li>
-<li>Stoppa in player i environmenten han är i </li>
-</ul>
+* Funkar det med private på instances i Object och Actor?
+* Stoppa in player i environmenten han är i 
 
 
 

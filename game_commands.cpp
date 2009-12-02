@@ -30,7 +30,7 @@ namespace da_game {
     /*
      * TODO: need a way to get a opponent from a string
      */
-    int GameCommands::fight(std::string oponent) {
+    int GameCommands::fight(std::string opponent) {
         return 0;
     }
     /*

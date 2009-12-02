@@ -4,10 +4,11 @@
 #include <string>
 #include <vector>
 
+#include "object.h"
+
 namespace da_game {
     
     class Environment;
-    class Object;
 
     class Actor {
         public:
