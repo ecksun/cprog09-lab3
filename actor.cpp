@@ -14,8 +14,14 @@ namespace da_game {
     }
 
     bool Actor::drop(Object * object) {
-        std::vector<Object *>::iterator it = objects->begin();
-        for (; it != objects->end(); ++it) {
+        std::vector<Object *>::iterator it;
+        for (it = objects->begin(); it != objects->end(); ++it) {
+            // TODO här får vi ett problem som måste lösas:
+            // finns det någon som håller i objektet efter att 
+            // det tagits bort ur vår inventory?
+            // annars borde det delete:as
+            // Det vore eventuellt rätt najs med auto_ptr här så
+            // att objekt bara kan ägas av precis en sak. Eller?
             if (**it == *object) {
                 objects->erase(it);
                 return true;
