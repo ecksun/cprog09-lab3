@@ -13,7 +13,6 @@ namespace da_game {
             virtual Environment * neighbor(std::string) const;
             virtual void enter(Actor &);
             virtual void leave(Actor &);
-            virtual void drop(Object &);
             virtual bool add_neighbor(std::string, Environment *);
         private:
     };

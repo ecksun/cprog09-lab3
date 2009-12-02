@@ -81,7 +81,4 @@ namespace da_game {
 
     }
 
-    void Room::drop(Object & object) {
-        objects->push_back(&object);
-    }
 }

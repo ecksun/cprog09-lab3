@@ -14,6 +14,7 @@ namespace da_game {
     class Object;
 
     class Environment {
+        friend class GameCommands;
         public:
             /*
              * returnera beskrivning av vad miljön innehåller, vilka
@@ -48,11 +49,9 @@ namespace da_game {
             /*
              * drop(Object) - någon lägger ner ett föremål på platsen
              */
-            virtual void drop(Object &) = 0;
+            virtual void drop(Object *);
 
             virtual bool add_neighbor(std::string, Environment *) = 0;
-
-            virtual Object * get_object(int id);
         protected:
             std::vector<Object *> * objects;
             std::vector<Actor *> * actors;

@@ -18,6 +18,7 @@ namespace da_game {
         private:
             static Player * player;
             static int stringToInt(std::string);
+            static Object * get_object(std::vector<Object *> * , int);
     };
 }
 #endif

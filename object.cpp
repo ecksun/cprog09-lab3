@@ -7,5 +7,5 @@ namespace da_game {
 
     bool Object::operator==(Object & obj) const {
         return obj.id == this->id;
-    }
+   }
 }

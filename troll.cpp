@@ -41,8 +41,9 @@ namespace da_game {
         std::cout << "Im a troll ffs, i dont have any pockets" << std::endl;
     }
 
-    void Troll::drop(Object &) {
+    bool Troll::drop(Object *) {
         std::cout << "Watch out or I will drop YOU" << std::endl;
+        return false;
     }
 
     void Troll::talk_to(Actor & actor) {

@@ -38,7 +38,7 @@ namespace da_game {
      */
     int GameCommands::pick_up(std::string object) {
         try {
-            Object * obj = player->in_room->get_object(stringToInt(object));
+            Object * obj = get_object(player->in_room->objects, stringToInt(object));
             if (obj != 0) {
                 if (player->in_room->pick_up(obj)) {
                     player->pick_up(obj);
@@ -55,6 +55,17 @@ namespace da_game {
      * TODO: need a way to get a object from a string
      */
     int GameCommands::drop(std::string object) {
+        try {
+            Object * obj = get_object(player->objects, stringToInt(object));
+            if (obj != 0) {
+                if (player->drop(obj)) {
+                    player->in_room->drop(obj);
+                    return 1;
+                }
+            }
+        }
+        catch (...) {}
+        std::cout << "No such item" << std::endl;
         return 0;
     }
     /*
@@ -66,7 +77,7 @@ namespace da_game {
     /*
      * TODO: need a way to get a actor from a string
      */
-    int GameCommands::help(std::string string) {
+    int GameCommands::help(std::string) {
         const std::map<std::string, int (*)(std::string)> & functions = Terminal::get_functions();
         std::map<std::string, int (*)(std::string)>::const_iterator it;
 
@@ -97,4 +108,13 @@ namespace da_game {
         return num;
     }
 
+    Object * GameCommands::get_object(std::vector<Object *> * objects, int id) {
+        std::vector<Object *>::const_iterator it = objects->begin();
+        for (; it != objects->end(); ++it) {
+            if ((*it)->id == id) {
+                return *it;
+            }
+        }
+        return 0;
+    }
 }
