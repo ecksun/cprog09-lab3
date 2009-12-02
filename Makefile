@@ -1,3 +1,4 @@
+SHELL=/bin/sh
 CC=g++
 CDFLAGS=-c -Wall -Wextra
 LDFLAGS=
@@ -8,7 +9,7 @@ EXECUTABLE=da_game
 
 all: $(SOURCES) $(EXECUTABLE)
 
-# $@ expands to prerequisities
+# $@ expands to the file name of the target
 $(EXECUTABLE): $(OBJECTS)
 	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
 
