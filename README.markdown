@@ -1,9 +1,9 @@
-# cprog09: Laboration 3 
+# cprog09: Laboration 3 #
 
 Uppgiften går ut på att skriva ett lite större program med hjälp av arv,
 polymorfi och standardklasserna (STL).
 
-## TODO
+## TODO ##
 
 * Alla .o filer borde hamna i en egen mapp så det inte blir så stökigt
 * Använd medlemspekare istället för statiska funktionspekare
@@ -21,8 +21,24 @@ polymorfi och standardklasserna (STL).
 * Stoppa in player i environmenten han är i 
 
 
+## Rules to conform to ##
+
+### Objects ###
+
+Objects should always be owned by exactly one of the following.
+
+* An Environment 
+* A Container
+* An Actor
+
+In that way it is easier to make sure no objects are causing memory leaks or
+unexpected null references. We are thereby implementing the ownership semantics
+from auto_ptr; there is always exactly one object owning another object. If an
+object is to be deleted, only the owning object is allowed to do that and is
+also responsible for removing the pointer to that object.
 
 
-## Markdown syntax
+
+# Markdown syntax
 
 http://daringfireball.net/projects/markdown/syntax
