@@ -60,7 +60,7 @@ namespace da_game {
             if (obj != 0) {
                 if (player->drop(obj)) {
                     player->in_room->drop(obj);
-                    return 1;
+                    return 0;
                 }
             }
         }
