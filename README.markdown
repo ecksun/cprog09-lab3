@@ -16,9 +16,10 @@ polymorfi och standardklasserna (STL).
   innehålla ett par av utgångar. Moment 22-problemet kvarstår dock med 
   instansiering av Environments; för att skapa en miljö med utgångar måste
   man först ha skapat en annan miljö. Det kan dock lösas genom att först
-  skapa miljöerna och sedan lägga till utgångar genom add_exit eller dylikt.
+  skapa miljöerna och sedan lägga till utgångar genom add_exit eller dylikt. 
+      Låter finfint :)
 * Funkar det med private på instances i Object och Actor?
-* Stoppa in player i environmenten han är i 
+* <strike>Stoppa in player i environmenten han är i </strike> DONE
 
 
 ## Rules to conform to ##

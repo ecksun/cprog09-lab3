@@ -51,6 +51,7 @@ namespace da_game {
         envs.push_back(r2);
 
         player = new Player(r1);
+        r1->enter(*player);
         commands = new GameCommands(player);
 
         // Initialize actors

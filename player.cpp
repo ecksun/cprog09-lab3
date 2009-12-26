@@ -22,7 +22,9 @@ namespace da_game {
 
         }
         else {
+            in_room->leave(*this);
             in_room = new_room;
+            in_room->enter(*this);
         }
         std::cout << in_room->description() << std::endl;
     }
