@@ -8,7 +8,7 @@ namespace da_game {
     
     class Troll : public Actor {
         public:
-            Troll(int, int);
+            Troll(Environment *, int, int);
             void eat(Actor &);
             void eat(Food &);
             virtual void run();

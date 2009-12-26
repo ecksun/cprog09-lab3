@@ -20,8 +20,6 @@ namespace da_game {
             std::pair<std::string, Environment *> s("south", south);
             neighbors.insert(s);
         }
-
-        objects = new std::vector<Object *>;
     }
 
     Room::~Room() {
@@ -41,10 +39,17 @@ namespace da_game {
      * by someone else.
      */
     std::string Room::description() const {
+        std::cout << "Objects:" << std::endl;
         for (size_t i = 0; i < objects->size(); ++i) {
             std::cout << objects->at(i)->id << "\t" << objects->at(i)->type() << std::endl;
         }
+        
+        std::cout << "Persons:" << std::endl;
+        for (size_t i = 0; i < actors->size(); ++i) {
+            std::cout << actors->at(i)->id << "\t" << actors->at(i)->get_type() << std::endl;
+        }
 
+        std::cout << "Directions:" << std::endl;
         std::vector<std::string> rooms = directions();
 
         for (size_t i = 0; i < rooms.size(); ++i) {
@@ -73,12 +78,4 @@ namespace da_game {
             // Throw exception or something, needs a return
         }
     }
-    void Room::enter(Actor &) {
-
-    }
-
-    void Room::leave(Actor &) {
-
-    }
-
 }

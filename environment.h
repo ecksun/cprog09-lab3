@@ -16,6 +16,8 @@ namespace da_game {
     class Environment {
         friend class GameCommands;
         public:
+            Environment();
+
             /*
              * returnera beskrivning av vad miljön innehåller, vilka
              * föremål man kan ta och vilka aktörer som befinner sig på platsen.
@@ -37,11 +39,11 @@ namespace da_game {
             /*
              * enter(Character) - actor enters the place
              */
-            virtual void enter(Actor &) = 0;
+            virtual void enter(Actor &);
             /*
              * leave(Character) - actor leaves this environment
              */
-            virtual void leave(Actor &) = 0;
+            virtual void leave(Actor &);
             /*
              * pick_up(Object) - nån tar upp ett föremål som  finns pålatsen
              */

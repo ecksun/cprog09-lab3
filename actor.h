@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "object.h"
+#include "environment.h"
 
 namespace da_game {
     

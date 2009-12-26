@@ -1,10 +1,14 @@
 #include "troll.h"
 #include <iostream>
+#include <cstdlib>
 
 namespace da_game {
-    Troll::Troll(int hp, int strength) { 
+    Troll::Troll(Environment * current_room, int hp, int strength) { 
         this->hp = hp;
         this->strength = strength;
+        // TODO: Perhaps we should move this up the inheretance tree?
+        // might fit better in actor or something 
+        this->current_room = current_room;
     }
     void Troll::eat(Actor &) {
         std::cout << "I dont like white meat" << std::endl;
@@ -15,7 +19,14 @@ namespace da_game {
     }
 
     void Troll::run() {
-        std::cout << "Im just sTrolling arround" << std::endl;
+        std::vector<std::string> rooms = current_room->directions();
+        switch (std::rand()%5) {
+            case 1: 
+                go(rooms[std::rand()%rooms.size()]);
+                break;
+            default:
+                break;
+        }
     }
 
     std::string Troll::get_type() const {
@@ -27,7 +38,16 @@ namespace da_game {
     }
 
     void Troll::go(std::string s) {
-        std::cout << "AHAHA, Im not going " << s << std::endl;
+        Environment * new_room = current_room->neighbor(s);
+        if (new_room == 0) {
+            std::cerr << "Couldnt go to room " << s  << std::endl;
+        }
+        else {
+            current_room->leave(*this);
+            current_room = new_room;
+            current_room->enter(*this);
+            std::cerr << get_name() << " entered " << s << std::endl;
+        }
     }
 
     /*

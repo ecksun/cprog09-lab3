@@ -2,6 +2,11 @@
 #include <iostream>
 
 namespace da_game {
+    Environment::Environment() {
+        objects = new std::vector<Object *>;
+        actors = new std::vector<Actor *>;
+    }
+
     bool Environment::pick_up(Object * object) {
         std::vector<Object *>::iterator it = objects->begin();
         for (; it != objects->end(); ++it) {
@@ -18,5 +23,20 @@ namespace da_game {
             objects->push_back(object);
         else 
             throw;
+    }
+
+    void Environment::enter(Actor & actor) {
+        actors->push_back(&actor);
+    }
+
+    void Environment::leave(Actor & actor) {
+        std::vector<Actor *>::iterator it = actors->begin();
+        for (; it != actors->end(); ++it) {
+            if (&(**it) == &actor) {
+                actors->erase(it);
+                return;
+            }
+        }
+        // std::cerr << actor << " was not in this room" << std::endl;
     }
 }

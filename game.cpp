@@ -1,3 +1,5 @@
+#include <cstdlib>
+#include <ctime>
 #include "bag.h"
 #include "game.h"
 #include "troll.h"
@@ -31,9 +33,6 @@ namespace da_game {
      * Create the map and all objects
      */
     void Game::initialize() {
-        Troll * t = new Troll(1000, 88);
-        actors.push_back(t);
-        
         Environment * r1 = new Room(0, 0, 0, 0);
         Environment * r2 = new Room(r1, 0, 0, 0);
         r1->add_neighbor("west", r2);
@@ -54,7 +53,12 @@ namespace da_game {
         player = new Player(r1);
         commands = new GameCommands(player);
 
+        // Initialize actors
 
+        Troll * t = new Troll(r2, 1000, 88);
+        r2->enter(*t);
+        actors.push_back(t);
+        
 //        Wizard * w = new Wizard(true, 100, 10);
 //        actors.push_back(w);
 
@@ -72,6 +76,7 @@ namespace da_game {
 }
 
 int main() {
+    std::srand(std::time(0));
     da_game::Game game;
 
 }
