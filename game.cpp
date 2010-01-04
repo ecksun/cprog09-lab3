@@ -45,6 +45,7 @@ namespace da_game {
         Environment * evil = new EvilLair(r2, r1, 0, 0);
         VampireFactory * vamp_fac = new VampireFactory(evil, 2);
         evil->enter(*vamp_fac);
+        actors.push_back(vamp_fac);
         
         r2->add_neighbor("west", evil);
         r1->add_neighbor("east", evil);
