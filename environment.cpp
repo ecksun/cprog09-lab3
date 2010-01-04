@@ -7,6 +7,11 @@ namespace da_game {
         actors = new std::vector<Actor *>;
     }
 
+    Environment::~Environment() {
+        delete objects;
+        delete actors;
+    }
+
     bool Environment::pick_up(Object * object) {
         std::vector<Object *>::iterator it = objects->begin();
         for (; it != objects->end(); ++it) {

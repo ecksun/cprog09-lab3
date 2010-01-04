@@ -1,13 +1,16 @@
-#include "room.h"
+#include "evil_lair.h"
 #include <iostream>
 
 namespace da_game {
 
-    Room::Room(Environment * east, Environment * west, Environment * north, Environment * south) 
-        : Inside(east, west, north, south){
+    EvilLair::EvilLair(Environment * east, Environment * west, Environment * north, Environment * south)
+        : Inside(east, west, north, south) {
     }
 
-    bool Room::add_neighbor(std::string direction, Environment * neighbor) {
+    EvilLair::~EvilLair() {
+    }
+
+    bool EvilLair::add_neighbor(std::string direction, Environment * neighbor) {
         std::pair<std::string, Environment *> pair(direction, neighbor);
         std::pair<std::map<std::string, Environment *>::iterator, bool> result = neighbors.insert(pair);
         return result.second;
@@ -19,7 +22,8 @@ namespace da_game {
      * problem when we try to pick up something that has already been picked up
      * by someone else.
      */
-    std::string Room::description() const {
+    // TODO Perhaps we should move theese to inside?
+    std::string EvilLair::description() const {
         std::cout << "Objects:" << std::endl;
         for (size_t i = 0; i < objects->size(); ++i) {
             std::cout << objects->at(i)->id << "\t" << objects->at(i)->type() << std::endl;
@@ -37,9 +41,10 @@ namespace da_game {
             std::cout << rooms[i] << std::endl;
         }
 
-        return "This is a room";
+        return "Evil Lair!";
     }
-    std::vector<std::string> Room::directions() const {
+    // TODO Perhaps we should move theese to inside?
+    std::vector<std::string> EvilLair::directions() const {
         std::map<std::string, Environment *>::const_iterator it = neighbors.begin();
         std::vector<std::string> return_directions;
         for (; it != neighbors.end(); ++it) {
@@ -47,7 +52,9 @@ namespace da_game {
         }
         return return_directions;
     }
-    Environment * Room::neighbor(std::string direction) const {
+
+    // TODO Perhaps we should move theese to inside?
+    Environment * EvilLair::neighbor(std::string direction) const {
         std::map<std::string, Environment *>::const_iterator it = neighbors.find(direction);
 
         if (it != neighbors.end()) {

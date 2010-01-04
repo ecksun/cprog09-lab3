@@ -19,7 +19,7 @@ polymorfi och standardklasserna (STL).
   skapa miljöerna och sedan lägga till utgångar genom add_exit eller dylikt. 
       Låter finfint :)
 * Funkar det med private på instances i Object och Actor?
-* <del>Stoppa in player i environmenten han är i </del> DONE
+* <del>Stoppa in player i environmenten han är i</del> DONE
 
 
 ## Rules to conform to ##

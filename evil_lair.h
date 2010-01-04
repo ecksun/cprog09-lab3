@@ -1,12 +1,13 @@
-#ifndef DA_GAME_ROOM_H
-#define DA_GAME_ROOM_H
+#ifndef DA_GAME_EVIL_LAIR_H
+#define DA_GAME_EVIL_LAIR_H
 
 #include "inside.h"
 
 namespace da_game {
-    class Room : public Inside {
+    class EvilLair : public Inside {
         public:
-            Room(Environment *, Environment *, Environment *, Environment *);
+            EvilLair(Environment *, Environment *, Environment *, Environment *);
+            ~EvilLair();
             virtual std::string description() const;
             virtual std::vector<std::string> directions() const;
             virtual Environment * neighbor(std::string) const;
@@ -15,5 +16,5 @@ namespace da_game {
     };
 }
 
-#endif // DA_GAME_ROOM_H
+#endif // DA_GAME_EVIL_LAIR_H
 
