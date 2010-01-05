@@ -23,6 +23,8 @@ polymorfi och standardklasserna (STL).
 * Storyn kan vara som starwars, man är anakin osv
   * Så målet med spelet är att bara slakta alla som finns, som anakin gör i jedi-templet i Episode III
 * Ett förslag är att när det händer saker i ett rum så är det någon "global" metod som hanterar vad som händer, så man kan dissa det om det händer saker i ett rum som man inte är i
+* Diskutera format på sparfiler samt kartor (3.2 och 3.3)
+* En fight  kan instansiera en speciell miljö utan exits, så registrerar man samtidigt ett nytt kommando till terminalen som kan vara typ "fight" (så man kan välja vapen osv)
 
 
 ## Rules to conform to ##
