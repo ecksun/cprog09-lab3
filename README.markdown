@@ -20,6 +20,8 @@ polymorfi och standardklasserna (STL).
       Låter finfint :)
 * Funkar det med private på instances i Object och Actor?
 * <del>Stoppa in player i environmenten han är i</del> DONE
+* Storyn kan vara som starwars, man är anakin osv
+  * Så målet med spelet är att bara slakta alla som finns, som anakin gör i jedi-templet i Episode III
 
 
 ## Rules to conform to ##
