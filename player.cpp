@@ -31,5 +31,7 @@ namespace da_game {
 
     void Player::fight(Actor &){}
 
-    void Player::talk_to(Actor &){}
+    void Player::talk_to(Actor & actor){
+        std::cout << "Hello dear " << actor.get_name() << std::endl;
+    }
 }

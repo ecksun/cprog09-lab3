@@ -19,6 +19,7 @@ namespace da_game {
             static Player * player;
             static int stringToInt(std::string);
             static Object * get_object(std::vector<Object *> * , int);
+            static Actor * get_actor(std::vector<Actor *> * , int);
     };
 }
 #endif

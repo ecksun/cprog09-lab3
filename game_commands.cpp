@@ -30,7 +30,7 @@ namespace da_game {
     /*
      * TODO: need a way to get a opponent from a string
      */
-    int GameCommands::fight(std::string opponent) {
+    int GameCommands::fight(std::string ) {
         return 0;
     }
     /*
@@ -70,13 +70,19 @@ namespace da_game {
     }
     /*
      * TODO: need a way to get a actor from a string
+     * No problem, each actor has a unique ID
      */
     int GameCommands::talk_to(std::string actor) {
+        Actor * act = get_actor(player->in_room->actors, stringToInt(actor));
+        if (act != 0) {
+            player->talk_to(*act);
+        }
+        else {
+            std::cout << "Ingen sådan person här inne" << std::endl;
+        }
         return 0;
     }
-    /*
-     * TODO: need a way to get a actor from a string
-     */
+
     int GameCommands::help(std::string) {
         const std::map<std::string, int (*)(std::string)> & functions = Terminal::get_functions();
         std::map<std::string, int (*)(std::string)>::const_iterator it;
@@ -111,6 +117,16 @@ namespace da_game {
     Object * GameCommands::get_object(std::vector<Object *> * objects, int id) {
         std::vector<Object *>::const_iterator it = objects->begin();
         for (; it != objects->end(); ++it) {
+            if ((*it)->id == id) {
+                return *it;
+            }
+        }
+        return 0;
+    }
+
+    Actor * GameCommands::get_actor(std::vector<Actor *> * actors, int id) {
+        std::vector<Actor *>::const_iterator it = actors->begin();
+        for (; it != actors->end(); ++it) {
             if ((*it)->id == id) {
                 return *it;
             }
