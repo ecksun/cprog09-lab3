@@ -14,6 +14,7 @@ $(EXECUTABLE): $(OBJECTS)
 	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
 
 # Implicit rule (http://www.gnu.org/software/make/manual/make.html#Implicit-Rules)
+# Double-suffix rule (old-fashioned way of implicit rules)
 .cpp.o:
 	$(CC) $(CDFLAGS) $< -o $@
 
