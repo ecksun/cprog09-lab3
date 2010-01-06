@@ -7,11 +7,9 @@ namespace da_game {
         this->hp = 100;
         this->strength = 2;
         objects = new std::vector<Object *>;
-        std::cout << in_room->description() << std::endl;
     }
     void Player::run(){
         std::cout << "-----------------" << std::endl;;
-        std::cout << in_room->description() << std::endl;
         std::cout << "HP:\t" << hp << std::endl;
     }
     std::string Player::get_type() const{
