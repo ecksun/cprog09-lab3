@@ -9,10 +9,22 @@ namespace da_game {
     Actor::Actor() : id(instances) {
         instances++;
         current_weapon = new DefaultWeapon(); // So everyone can try to fight
+        objects = new std::vector<Object *>;
     }
 
     Actor::~Actor() {
-        delete current_weapon;
+        if (current_weapon->weight() == 0 && current_weapon->volume() == 0) {
+            // In case its the default weapon
+            delete current_weapon;
+        }
+
+        // science the actor exists no more we drop everything in the current room
+        std::vector<Object *>::iterator it;
+        for (it = objects->begin(); it != objects->end(); ++it) {
+            current_room->drop(*it);
+        }
+
+        delete objects;
     }
 
     void Actor::pick_up(Object * object){
