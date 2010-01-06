@@ -73,6 +73,8 @@ namespace da_game {
         r1->enter(*player);
         commands = new GameCommands(player);
 
+        actors.push_back(player);
+
         // Initialize actors
 
         Troll * t = new Troll(r2, 1000, 88);

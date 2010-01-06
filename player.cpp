@@ -4,10 +4,16 @@
 namespace da_game {
     Player::Player(Environment * room) {
         this->in_room = room;
-        std::cout << in_room->description() << std::endl;
+        this->hp = 100;
+        this->strength = 2;
         objects = new std::vector<Object *>;
+        std::cout << in_room->description() << std::endl;
     }
-    void Player::run(){}
+    void Player::run(){
+        std::cout << "-----------------" << std::endl;;
+        std::cout << in_room->description() << std::endl;
+        std::cout << "HP:\t" << hp << std::endl;
+    }
     std::string Player::get_type() const{
         return "DEMAN";
     }
@@ -26,7 +32,7 @@ namespace da_game {
             in_room = new_room;
             in_room->enter(*this);
         }
-        std::cout << in_room->description() << std::endl;
+        // std::cout << in_room->description() << std::endl;
     }
 
     void Player::fight(Actor &){}

@@ -1,4 +1,5 @@
 #include "actor.h"
+#include "default_weapon.h"
 #include <iostream>
 
 namespace da_game {
@@ -6,6 +7,11 @@ namespace da_game {
 
     Actor::Actor() : id(instances) {
         instances++;
+        current_weapon = new DefaultWeapon(); // So everyone can try to fight
+    }
+
+    Actor::~Actor() {
+        delete current_weapon;
     }
 
     void Actor::pick_up(Object * object){
@@ -28,5 +34,12 @@ namespace da_game {
             }
         }
         return false;
+    }
+
+    Weapon * Actor::weapon() {
+        if (current_weapon == 0) {
+            std::cerr << "FEEEL HÄR. Actor::weapon() in actor.cpp" << std::endl;
+        }
+        return current_weapon;
     }
 }

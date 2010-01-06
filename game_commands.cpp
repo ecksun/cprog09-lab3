@@ -1,6 +1,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <cstdlib>
 
 #include "game_commands.h"
 
@@ -28,13 +29,58 @@ namespace da_game {
     }
 
     /*
-     * TODO: need a way to get a opponent from a string
      */
-    int GameCommands::fight(std::string ) {
+    int GameCommands::fight(std::string actor) {
+        Actor * opponent = get_actor(player->in_room->actors, stringToInt(actor));
+        if (opponent != 0) {
+            // Player begins to fight
+            fight(*player, *opponent);
+        }
+        else {
+            std::cout << "Ingen sådan person här inne" << std::endl;
+        }
         return 0;
     }
+
+    void GameCommands::fight(Actor & attacker, Actor & defender) {
+        std::cout << "Fight:\t" << attacker.get_name() << " vs " << defender.get_name() << std::endl;
+        for (unsigned int round = 0; attacker.hp > 0 && defender.hp > 0; round++) {
+            if ((round & 1) == 0) {
+                // Even, attackers turn
+
+                if (std::rand()/RAND_MAX <= attacker.weapon()->hit_ratio()) {
+                    int hit = attacker.weapon()->attack_strength()*attacker.strength;
+                    defender.hp -= hit;
+                    std::cout << attacker.get_name() << " hit " << defender.get_name() << " and he lost " << hit << "hp" << std::endl;
+                }
+                else {
+                    std::cout << "You missed!" << std::endl;
+                }
+            }
+            else {
+                // Defenders turn
+                if (std::rand()/RAND_MAX <= defender.weapon()->hit_ratio()) {
+                    int hit = defender.weapon()->attack_strength()*defender.strength;
+                    attacker.hp -= hit;
+                    std::cout << defender.get_name() << " hit " << attacker.get_name() << " and he lost " << hit << "hp" << std::endl;
+                }
+                else {
+                    std::cout << "Defender missed!" << std::endl;
+                }
+
+            }
+        }
+        if (defender.hp <= 0) {
+            std::cout << "Attacker won!" << std::endl;
+        }
+        else {
+            std::cout << "You lost and died!" << std::endl;
+        }
+        // destruct loosing actor and let that actors destructor drop all items in the current room
+        // TODO
+    }
+
     /*
-     * TODO: need a way to get a object from a string
      */
     int GameCommands::pick_up(std::string object) {
         try {
@@ -52,7 +98,6 @@ namespace da_game {
         return 0;
     }
     /*
-     * TODO: need a way to get a object from a string
      */
     int GameCommands::drop(std::string object) {
         try {
@@ -69,8 +114,6 @@ namespace da_game {
         return 0;
     }
     /*
-     * TODO: need a way to get a actor from a string
-     * No problem, each actor has a unique ID
      */
     int GameCommands::talk_to(std::string actor) {
         Actor * act = get_actor(player->in_room->actors, stringToInt(actor));
@@ -126,11 +169,13 @@ namespace da_game {
 
     Actor * GameCommands::get_actor(std::vector<Actor *> * actors, int id) {
         std::vector<Actor *>::const_iterator it = actors->begin();
+        std::cerr << "get_actor" << std::endl;
         for (; it != actors->end(); ++it) {
             if ((*it)->id == id) {
                 return *it;
             }
         }
+        std::cerr << "get_actor" << std::endl;
         return 0;
     }
 }
