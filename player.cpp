@@ -8,6 +8,13 @@ namespace da_game {
         this->strength = 2;
         objects = new std::vector<Object *>;
     }
+
+    Player::~Player() {
+        // Player has lost :(
+        std::cerr << "Destrukting player" << std::endl;
+
+    }
+
     void Player::run(){
         std::cout << "-----------------" << std::endl;;
         std::cout << "HP:\t" << hp << std::endl;
