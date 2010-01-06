@@ -1,5 +1,6 @@
 #include "actor.h"
 #include "default_weapon.h"
+#include "game_commands.h"
 #include <iostream>
 
 namespace da_game {
@@ -34,6 +35,10 @@ namespace da_game {
             }
         }
         return false;
+    }
+
+    void Actor::fight(Actor & opponent) {
+        GameCommands::fight(*this, opponent);
     }
 
     Weapon * Actor::weapon() {

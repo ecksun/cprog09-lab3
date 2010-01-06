@@ -23,7 +23,7 @@ namespace da_game {
             virtual std::string get_type() const = 0;
             virtual std::string get_name() const = 0;
             virtual void go(std::string) = 0;
-            virtual void fight(Actor &) = 0;
+            virtual void fight(Actor &);
             virtual void pick_up(Object *);
             virtual bool drop(Object *);
             virtual void talk_to(Actor &) = 0;
