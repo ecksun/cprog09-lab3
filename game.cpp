@@ -17,7 +17,7 @@ namespace da_game {
         bool running = true;
         initialize();
         while (running) {
-            std::cout << player->current_room->description() << std::endl;
+            std::cout << player->getRoom()->description() << std::endl;
             switch (terminal.run()) {
                 case 1:
                     running = false;

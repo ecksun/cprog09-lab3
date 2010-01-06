@@ -11,6 +11,7 @@ namespace da_game {
 
     Player::~Player() {
         // Player has lost :(
+        // Varför körs inte den här dekonstruktorn när man dör?
         std::cerr << "Destrukting player" << std::endl;
 
     }
@@ -49,5 +50,9 @@ namespace da_game {
         }
         std::cout << "Hello dear " << actor.get_name() << std::endl;
         actor.talk_to(*this);
+    }
+
+    Environment * Player::getRoom() const {
+        return current_room;
     }
 }

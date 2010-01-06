@@ -35,7 +35,6 @@ namespace da_game {
     }
 
     void Environment::leave(Actor & actor) {
-        std::cerr << "someone is trying to leave" << std::endl;
         std::vector<Actor *>::iterator it = actors->begin();
         for (; it != actors->end(); ++it) {
             if (&(**it) == &actor) {

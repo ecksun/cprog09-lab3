@@ -36,7 +36,6 @@ namespace da_game {
             // Player begins to fight
             if (!fight(*player, *opponent)) {
                 // Player died, shut down
-                std::cerr << "DOG" << std::endl;
                 return 1;
             }
         }
