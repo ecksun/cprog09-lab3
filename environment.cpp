@@ -38,6 +38,7 @@ namespace da_game {
         std::vector<Actor *>::iterator it = actors->begin();
         for (; it != actors->end(); ++it) {
             if (&(**it) == &actor) {
+                std::cerr << actor.get_name() << " has left the building" << std::endl;
                 actors->erase(it);
                 return;
             }

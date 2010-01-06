@@ -31,5 +31,12 @@ namespace da_game {
 
     void Player::fight(Actor &){}
 
-    void Player::talk_to(Actor &){}
+    void Player::talk_to(Actor & actor){
+        if (&actor == this) {
+            std::cout << "Hej på mig O_o" << std::endl;
+            return;
+        }
+        std::cout << "Hello dear " << actor.get_name() << std::endl;
+        actor.talk_to(*this);
+    }
 }
