@@ -3,7 +3,7 @@
 
 namespace da_game {
     Player::Player(Environment * room) {
-        this->in_room = room;
+        this->current_room = room;
         this->hp = 100;
         this->strength = 2;
         objects = new std::vector<Object *>;
@@ -27,15 +27,15 @@ namespace da_game {
     }
 
     void Player::go(std::string direction) { 
-        Environment * new_room = in_room->neighbor(direction);
+        Environment * new_room = current_room->neighbor(direction);
         if (new_room == 0) {
             std::cout << "No such room" << std::endl;
 
         }
         else {
-            in_room->leave(*this);
-            in_room = new_room;
-            in_room->enter(*this);
+            current_room->leave(*this);
+            current_room = new_room;
+            current_room->enter(*this);
         }
         // std::cout << in_room->description() << std::endl;
     }
