@@ -13,13 +13,12 @@ namespace da_game {
         protected:
             bool has_heart;
             int max_health;
-            std::string name;
 
         public:
             Human(bool, int);
 
             virtual void run();
-            virtual std::string get_name() const;
+            virtual std::string get_type() const;
 
             void eat(Food &);
     };

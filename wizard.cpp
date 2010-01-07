@@ -8,7 +8,6 @@ namespace da_game {
         : Human(has_heart, max_health), magic(max_magic), max_magic(max_magic) {
             hp = 150;
             strength = 3;
-            name = "Darth Sidious";
             this->current_room = env;
             // this->default_weapon = current_weapon; // instansiated in actor
 
@@ -38,6 +37,10 @@ namespace da_game {
 
     std::string Wizard::get_type() const {
         return "Wizard";
+    }
+
+    std::string Wizard::get_name() const {
+        return "Darth Sidious";
     }
 
     void Wizard::talk_to(Actor &)  {

@@ -17,8 +17,8 @@ namespace da_game {
         std::cout << "Ruuunning!" << std::endl;
     }
 
-    std::string Human::get_name() const {
-        return name;
+    std::string Human::get_type() const {
+        return "Human";
     }
 
     void Human::eat(Food & food) {

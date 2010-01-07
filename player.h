@@ -1,12 +1,12 @@
 #ifndef DA_GAME_PLAYER_H
 #define DA_GAME_PLAYER_H
 
-#include "actor.h"
+#include "human.h"
 #include "environment.h"
 #include <string>
 
 namespace da_game {
-    class Player: public Actor {
+    class Player: public Human {
         friend class GameCommands;
         public:
             Player(Environment *);

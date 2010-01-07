@@ -1,4 +1,5 @@
 #include "troll.h"
+#include "human.h"
 #include <iostream>
 #include <cstdlib>
 
@@ -24,9 +25,24 @@ namespace da_game {
             case 1: 
                 go(rooms[std::rand()%rooms.size()]);
                 break;
+            case 2:
+                {
+                    std::vector<Actor *> actors = current_room->get_actors();
+                    std::vector<Actor *>::iterator it = actors.begin();
+
+                    for (; it != actors.end(); ++it) {
+                        Human * human = dynamic_cast<Human *>(*it);
+                        if (human != NULL) {
+                            fight(**it);
+                            break;
+                        }
+                    }
+                }
+                break;
             default:
                 break;
         }
+
     }
 
     std::string Troll::get_type() const {
@@ -35,13 +51,6 @@ namespace da_game {
 
     std::string Troll::get_name() const {
         return "nisse";
-    }
-
-    /*
-     * I have no idea how we should implement this
-     */
-    void Troll::fight(Actor &) {
-        return;
     }
 
     void Troll::pick_up(Object *) {

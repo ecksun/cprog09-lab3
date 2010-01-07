@@ -2,7 +2,7 @@
 #include <iostream>
 
 namespace da_game {
-    Player::Player(Environment * room) {
+    Player::Player(Environment * room) : Human(false, 500){
         this->current_room = room;
         this->hp = 100;
         this->strength = 2;

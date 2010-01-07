@@ -56,6 +56,10 @@ namespace da_game {
             virtual void drop(Object *);
 
             virtual bool add_neighbor(std::string, Environment *) = 0;
+
+            virtual std::vector<Object *> get_objects();
+
+            virtual std::vector<Actor *> get_actors();
         protected:
             std::vector<Object *> * objects;
             std::vector<Actor *> * actors;

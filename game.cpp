@@ -15,13 +15,14 @@
 namespace da_game {
     std::vector<Actor *> * Game::actors;
     std::vector<Environment *> * Game::envs;
+    Player * Game::player;
 
     Game::Game() {
         actors = new std::vector<Actor *>;
         envs = new std::vector<Environment *>;
         bool running = true;
         initialize();
-        while (running) {
+        while (running && playerIsAlive()) {
             std::cout << player->getRoom()->description() << std::endl;
             switch (terminal.run()) {
                 case 1:
@@ -32,10 +33,30 @@ namespace da_game {
                     break;
             }
         }
+        if (!playerIsAlive()) {
+            std::cout << "Sry, you died! :(" << std::endl;
+        }
     }
 
     Game::~Game() {
         actors->clear();
+    }
+
+    bool Game::playerIsAlive() {
+        return player != NULL;
+        // std::cout << "Game::playerIsAlive()";
+        // Player * pl = dynamic_cast<Player *>(player);
+        // std::cout << (pl != NULL) << std::endl;
+        // return (pl != NULL);
+        // std::vector<Actor *>::iterator it = actors->begin();
+        // 
+        // for (; it != actors->end(); ++it) {
+        // Player * pl = dynamic_cast<Player *>(*it);
+        // if (pl != NULL) {
+        // return true;
+        // }
+        // }
+        // return false;
     }
 
     /*
@@ -53,7 +74,7 @@ namespace da_game {
         VampireFactory * vamp_fac = new VampireFactory(evil, 2);
         evil->enter(*vamp_fac);
         actors->push_back(vamp_fac);
-        
+
         r2->add_neighbor("west", evil);
         r1->add_neighbor("east", evil);
 
@@ -91,7 +112,7 @@ namespace da_game {
         Troll * t = new Troll(r2, 1000, 88);
         r2->enter(*t);
         actors->push_back(t);
-        
+
         Wizard * w = new Wizard(evil, true, 100, 100);
         evil->enter(*w);
         actors->push_back(w);
@@ -103,11 +124,14 @@ namespace da_game {
         std::vector<Actor *>::iterator it;
 
         for (it = actors->begin(); it != actors->end(); ++it) {
-            (*it)->run();
+                (*it)->run();
         }
     }
 
     void Game::removeActor(Actor & actor) {
+        if (&actor == player) {
+            player = 0;
+        }
         std::vector<Actor *>::iterator it = actors->begin();
         for (; it != actors->end(); ++it) {
             if (&(**it) == &actor) {

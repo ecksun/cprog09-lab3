@@ -78,4 +78,12 @@ namespace da_game {
         }
         return current_weapon;
     }
+
+    std::vector<Object *> Environment::get_objects() {
+        return *objects;
+    }
+
+    std::vector<Actor *> Environment::get_actors() {
+        return *actors;
+    }
 }
