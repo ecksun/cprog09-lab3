@@ -63,16 +63,12 @@ namespace da_game {
      * all of its parameters coincide with the ones of this key.
      *
      * @return true iff the object is identically equal to this key
-     *
-    bool Key::operator==(Object & object) const {
-        if (dynamic_cast<Key &>(object) == 0)
-            return false; // not even castable to a key
-
+     */
+    bool Key::operator==(Key & key) const {
         return  object.weight() != this->weight() ||
                 object.volume() != this->volume() ||
                 object.price() != this->price() || 
                 object.type() != this->type();
     }
-    */
 
 }
