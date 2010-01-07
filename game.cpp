@@ -10,10 +10,15 @@
 #include "room.h"
 #include "evil_lair.h"
 #include "vampire_factory.h"
+#include "light_saber.h"
 
 namespace da_game {
+    std::vector<Actor *> * Game::actors;
+    std::vector<Environment *> * Game::envs;
 
     Game::Game() {
+        actors = new std::vector<Actor *>;
+        envs = new std::vector<Environment *>;
         bool running = true;
         initialize();
         while (running) {
@@ -30,7 +35,7 @@ namespace da_game {
     }
 
     Game::~Game() {
-        actors.clear();
+        actors->clear();
     }
 
     /*
@@ -45,7 +50,7 @@ namespace da_game {
         Environment * evil = new EvilLair();
         VampireFactory * vamp_fac = new VampireFactory(evil, 2);
         evil->enter(*vamp_fac);
-        actors.push_back(vamp_fac);
+        actors->push_back(vamp_fac);
         
         // exits
         Exit * e1 = new Exit(r1);
@@ -59,6 +64,9 @@ namespace da_game {
         evil->add_exit("east", e2);
         evil->add_exit("west", e1);
 
+        envs->push_back(r1);
+        envs->push_back(r2);
+
 
         // Create objects
         Object * b1 = new Bag();
@@ -71,8 +79,9 @@ namespace da_game {
 
         r2->drop(b4);
 
-        envs.push_back(r1);
-        envs.push_back(r2);
+
+        Object * light_saber = new LightSaber(1000,0.95);
+        evil->drop(light_saber);
 
 
 
@@ -82,16 +91,17 @@ namespace da_game {
         r1->enter(*player);
         commands = new GameCommands(player);
 
-        actors.push_back(player);
+        actors->push_back(player);
 
         // Initialize actors
 
         Troll * t = new Troll(r2, 1000, 88);
         r2->enter(*t);
-        actors.push_back(t);
+        actors->push_back(t);
         
-//        Wizard * w = new Wizard(true, 100, 10);
-//        actors.push_back(w);
+        Wizard * w = new Wizard(evil, true, 100, 100);
+        evil->enter(*w);
+        actors->push_back(w);
 
         Bag bag;
     }
@@ -99,11 +109,20 @@ namespace da_game {
     void Game::run() {
         std::vector<Actor *>::iterator it;
 
-        for (it = actors.begin(); it != actors.end(); ++it) {
+        for (it = actors->begin(); it != actors->end(); ++it) {
             (*it)->run();
         }
     }
 
+    void Game::removeActor(Actor & actor) {
+        std::vector<Actor *>::iterator it = actors->begin();
+        for (; it != actors->end(); ++it) {
+            if (&(**it) == &actor) {
+                actors->erase(it);
+                return;
+            }
+        }
+    }
 }
 
 int main() {

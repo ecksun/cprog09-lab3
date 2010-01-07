@@ -1,5 +1,5 @@
 #ifndef DA_GAME_GAME_H
-#define  DA_GAME_GAME_H
+#define DA_GAME_GAME_H
 
 #include <vector>
 
@@ -14,15 +14,17 @@ namespace da_game {
             Game();        
             ~Game();        
             void initialize();
+            static void removeActor(Actor &);
 
         private:
-            std::vector<Actor *> actors;
-            std::vector<Environment *> envs;
+            static std::vector<Actor *> * actors;
+            static std::vector<Environment *> * envs;
             void run();
             Terminal terminal;
             GameCommands * commands;
             Player * player;
     };
+
 }
 
 #endif // DA_GAME_GAME_H

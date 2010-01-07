@@ -2,6 +2,8 @@
 #define DA_GAME_WIZARD_H
 
 #include "human.h"
+#include "wand.h"
+#include "default_weapon.h"
 
 namespace da_game {
 
@@ -10,9 +12,15 @@ namespace da_game {
         private:
             int magic;
             int max_magic;
+            Wand * wand;
 
         public: 
-            Wizard(bool, int, int);
+            Wizard(Environment *, bool, int, int);
+            virtual Weapon * weapon();
+            virtual void run();
+            virtual std::string get_type() const;
+            virtual void talk_to(Actor &);
+
 
     };
 

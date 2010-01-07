@@ -2,7 +2,7 @@ SHELL=/bin/sh
 CC=g++
 CDFLAGS=-c -Wall -Wextra
 LDFLAGS=
-SOURCES=actor.cpp bag.cpp default_weapon.cpp environment.cpp evil_lair.cpp exit.cpp food.cpp game.cpp game_commands.cpp inside.cpp key.cpp light_saber.cpp object.cpp player.cpp room.cpp terminal.cpp troll.cpp vampire.cpp vampire_factory.cpp weapon.cpp
+SOURCES=actor.cpp bag.cpp default_weapon.cpp environment.cpp evil_lair.cpp exit.cpp food.cpp game.cpp game_commands.cpp human.cpp inside.cpp key.cpp light_saber.cpp object.cpp player.cpp room.cpp terminal.cpp troll.cpp vampire.cpp vampire_factory.cpp wand.cpp weapon.cpp
 OBJECTS=$(SOURCES:.cpp=.o) # Substitution variable that turns a list of *.cpp to *.o
 EXECUTABLE=da_game
 
