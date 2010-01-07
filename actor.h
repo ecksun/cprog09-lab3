@@ -9,9 +9,9 @@
 #include "weapon.h"
 
 namespace da_game {
-    
-    class Environment;
 
+    class Environment;
+    
     class Actor {
         friend class GameCommands;
         public:
