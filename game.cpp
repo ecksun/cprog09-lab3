@@ -22,6 +22,7 @@ namespace da_game {
         envs = new std::vector<Environment *>;
         bool running = true;
         initialize();
+        printStory();
         while (running && playerIsAlive()) {
             std::cout << player->getRoom()->description() << std::endl;
             switch (terminal.run()) {
@@ -146,6 +147,10 @@ namespace da_game {
                 return;
             }
         }
+    }
+
+    void Game::printStory() {
+        std::cout << "When Anakin entered the Jedi-Tempel after beeing order to destroy the Jedi-order by Darth Sidious he suddenly saw a bright light surround him. When it dissapeared he had been transported to the most peculiar place, he heard sounds of vampires and smellt the smell of trolls, he must have been transported to dev random. As Anakin recently had been turned to the dark side he pushed his confusion from his mind and as the anger overtook him he realised he would not be satisfied until EVERYTHING was DEAD." << std::endl;
     }
 }
 
