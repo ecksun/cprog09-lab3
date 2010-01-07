@@ -2,9 +2,8 @@ SHELL=/bin/sh
 CC=g++
 CDFLAGS=-c -Wall -Wextra
 LDFLAGS=
-SOURCES=bag.cpp food.cpp game.cpp game_commands.cpp player.cpp room.cpp terminal.cpp troll.cpp object.cpp actor.cpp environment.cpp inside.cpp evil_lair.cpp vampire_factory.cpp vampire.cpp weapon.cpp default_weapon.cpp light_saber.cpp
-# Substitution variable that turns a list of *.cpp to *.o
-OBJECTS=$(SOURCES:.cpp=.o)
+SOURCES=actor.cpp bag.cpp default_weapon.cpp environment.cpp evil_lair.cpp food.cpp game.cpp game_commands.cpp inside.cpp light_saber.cpp object.cpp player.cpp room.cpp terminal.cpp troll.cpp vampire.cpp vampire_factory.cpp weapon.cpp
+OBJECTS=$(SOURCES:.cpp=.o) # Substitution variable that turns a list of *.cpp to *.o
 EXECUTABLE=da_game
 
 all: $(SOURCES) $(EXECUTABLE)
@@ -14,6 +13,7 @@ $(EXECUTABLE): $(OBJECTS)
 	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
 
 # Implicit rule (http://www.gnu.org/software/make/manual/make.html#Implicit-Rules)
+# Double-suffix rule (old-fashioned way of implicit rules)
 .cpp.o:
 	$(CC) $(CDFLAGS) $< -o $@
 

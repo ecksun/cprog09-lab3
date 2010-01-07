@@ -31,12 +31,11 @@ namespace da_game {
     /*
      */
     int GameCommands::fight(std::string actor) {
-        Actor * opponent = get_actor(player->in_room->actors, stringToInt(actor));
+        Actor * opponent = get_actor(player->current_room->actors, stringToInt(actor));
         if (opponent != 0) {
             // Player begins to fight
             if (!fight(*player, *opponent)) {
                 // Player died, shut down
-                std::cerr << "DOG" << std::endl;
                 return 1;
             }
         }
@@ -95,9 +94,9 @@ namespace da_game {
      */
     int GameCommands::pick_up(std::string object) {
         try {
-            Object * obj = get_object(player->in_room->objects, stringToInt(object));
+            Object * obj = get_object(player->current_room->objects, stringToInt(object));
             if (obj != 0) {
-                if (player->in_room->pick_up(obj)) {
+                if (player->current_room->pick_up(obj)) {
                     player->pick_up(obj);
                     return 0;
                 }
@@ -115,7 +114,7 @@ namespace da_game {
             Object * obj = get_object(player->objects, stringToInt(object));
             if (obj != 0) {
                 if (player->drop(obj)) {
-                    player->in_room->drop(obj);
+                    player->current_room->drop(obj);
                     return 0;
                 }
             }
@@ -127,7 +126,7 @@ namespace da_game {
     /*
      */
     int GameCommands::talk_to(std::string actor) {
-        Actor * act = get_actor(player->in_room->actors, stringToInt(actor));
+        Actor * act = get_actor(player->current_room->actors, stringToInt(actor));
         if (act != 0) {
             player->talk_to(*act);
         }
