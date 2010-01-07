@@ -1,3 +1,4 @@
+#include <iostream>
 #include <cstdlib>
 #include <ctime>
 #include "bag.h"
@@ -16,6 +17,7 @@ namespace da_game {
         bool running = true;
         initialize();
         while (running) {
+            std::cout << player->getRoom()->description() << std::endl;
             switch (terminal.run()) {
                 case 1:
                     running = false;
@@ -72,6 +74,8 @@ namespace da_game {
         player = new Player(r1);
         r1->enter(*player);
         commands = new GameCommands(player);
+
+        actors.push_back(player);
 
         // Initialize actors
 

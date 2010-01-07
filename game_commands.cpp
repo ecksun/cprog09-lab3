@@ -1,6 +1,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <cstdlib>
 
 #include "game_commands.h"
 
@@ -28,19 +29,74 @@ namespace da_game {
     }
 
     /*
-     * TODO: need a way to get a opponent from a string
      */
-    int GameCommands::fight(std::string ) {
+    int GameCommands::fight(std::string actor) {
+        Actor * opponent = get_actor(player->current_room->actors, stringToInt(actor));
+        if (opponent != 0) {
+            // Player begins to fight
+            if (!fight(*player, *opponent)) {
+                // Player died, shut down
+                return 1;
+            }
+        }
+        else {
+            std::cout << "Ingen sådan person här inne" << std::endl;
+        }
         return 0;
     }
+
     /*
-     * TODO: need a way to get a object from a string
+     * The return type only tells us who died, nothing more
+     * true if attacker won (defender died)
+     * false if defender won (attacker died)
+     */
+    bool GameCommands::fight(Actor & attacker, Actor & defender) {
+        std::cout << "Fight:\t" << attacker.get_name() << " vs " << defender.get_name() << std::endl;
+        for (unsigned int round = 0; attacker.hp > 0 && defender.hp > 0; round++) {
+            if ((round & 1) == 0) {
+                // Even, attackers turn
+
+                if (std::rand()/RAND_MAX <= attacker.weapon()->hit_ratio()) {
+                    int hit = attacker.weapon()->attack_strength()*attacker.strength;
+                    defender.hp -= hit;
+                    std::cout << attacker.get_name() << " hit " << defender.get_name() << " and he lost " << hit << "hp" << std::endl;
+                }
+                else {
+                    std::cout << "You missed!" << std::endl;
+                }
+            }
+            else {
+                // Defenders turn
+                if (std::rand()/RAND_MAX <= defender.weapon()->hit_ratio()) {
+                    int hit = defender.weapon()->attack_strength()*defender.strength;
+                    attacker.hp -= hit;
+                    std::cout << defender.get_name() << " hit " << attacker.get_name() << " and he lost " << hit << "hp" << std::endl;
+                }
+                else {
+                    std::cout << "Defender missed!" << std::endl;
+                }
+
+            }
+        }
+        if (defender.hp <= 0) {
+            std::cout << "Attacker won!" << std::endl;
+            delete &defender;
+            return true;
+        }
+        else {
+            std::cout << "You lost and died!" << std::endl;
+            delete &attacker;
+            return false;
+        }
+    }
+
+    /*
      */
     int GameCommands::pick_up(std::string object) {
         try {
-            Object * obj = get_object(player->in_room->objects, stringToInt(object));
+            Object * obj = get_object(player->current_room->objects, stringToInt(object));
             if (obj != 0) {
-                if (player->in_room->pick_up(obj)) {
+                if (player->current_room->pick_up(obj)) {
                     player->pick_up(obj);
                     return 0;
                 }
@@ -52,14 +108,13 @@ namespace da_game {
         return 0;
     }
     /*
-     * TODO: need a way to get a object from a string
      */
     int GameCommands::drop(std::string object) {
         try {
             Object * obj = get_object(player->objects, stringToInt(object));
             if (obj != 0) {
                 if (player->drop(obj)) {
-                    player->in_room->drop(obj);
+                    player->current_room->drop(obj);
                     return 0;
                 }
             }
@@ -69,11 +124,9 @@ namespace da_game {
         return 0;
     }
     /*
-     * TODO: need a way to get a actor from a string
-     * No problem, each actor has a unique ID
      */
     int GameCommands::talk_to(std::string actor) {
-        Actor * act = get_actor(player->in_room->actors, stringToInt(actor));
+        Actor * act = get_actor(player->current_room->actors, stringToInt(actor));
         if (act != 0) {
             player->talk_to(*act);
         }
@@ -126,11 +179,13 @@ namespace da_game {
 
     Actor * GameCommands::get_actor(std::vector<Actor *> * actors, int id) {
         std::vector<Actor *>::const_iterator it = actors->begin();
+        std::cerr << "get_actor" << std::endl;
         for (; it != actors->end(); ++it) {
             if ((*it)->id == id) {
                 return *it;
             }
         }
+        std::cerr << "get_actor" << std::endl;
         return 0;
     }
 }

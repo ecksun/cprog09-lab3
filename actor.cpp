@@ -1,4 +1,6 @@
 #include "actor.h"
+#include "default_weapon.h"
+#include "game_commands.h"
 #include <iostream>
 
 namespace da_game {
@@ -6,6 +8,25 @@ namespace da_game {
 
     Actor::Actor() : id(instances) {
         instances++;
+        current_weapon = new DefaultWeapon(); // So everyone can try to fight
+        objects = new std::vector<Object *>;
+        current_room = 0;
+    }
+
+    Actor::~Actor() {
+        if (current_weapon->weight() == 0 && current_weapon->volume() == 0) {
+            // In case its the default weapon
+            delete current_weapon;
+        }
+
+        // science the actor exists no more we drop everything in the current room
+        std::vector<Object *>::iterator it;
+        for (it = objects->begin(); it != objects->end(); ++it) {
+            current_room->drop(*it);
+        }
+
+        delete objects;
+        current_room->leave(*this);
     }
 
     void Actor::pick_up(Object * object){
@@ -28,5 +49,16 @@ namespace da_game {
             }
         }
         return false;
+    }
+
+    void Actor::fight(Actor & opponent) {
+        GameCommands::fight(*this, opponent);
+    }
+
+    Weapon * Actor::weapon() {
+        if (current_weapon == 0) {
+            std::cerr << "FEEEL HÄR. Actor::weapon() in actor.cpp" << std::endl;
+        }
+        return current_weapon;
     }
 }

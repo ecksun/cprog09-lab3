@@ -10,13 +10,14 @@ namespace da_game {
         friend class GameCommands;
         public:
             Player(Environment *);
+            ~Player();
             virtual void run();
             virtual std::string get_type() const;
             virtual std::string get_name() const;
             virtual void go(std::string);
             virtual void fight(Actor &);
             virtual void talk_to(Actor &);
-            Environment * in_room;
+            virtual Environment * getRoom() const;
     };
 }
 
