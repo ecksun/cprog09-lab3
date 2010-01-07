@@ -38,22 +38,29 @@ namespace da_game {
      */
     void Game::initialize() {
 
-        // initialize environment
-        //
-        Environment * r1 = new Room(0, 0, 0, 0);
-        Environment * r2 = new Room(r1, 0, 0, 0);
-        r1->add_neighbor("west", r2);
+        // Environments
+        Environment * r1 = new Room();
+        Environment * r2 = new Room();
 
-        Environment * evil = new EvilLair(r2, r1, 0, 0);
+        Environment * evil = new EvilLair();
         VampireFactory * vamp_fac = new VampireFactory(evil, 2);
         evil->enter(*vamp_fac);
         actors.push_back(vamp_fac);
         
-        r2->add_neighbor("west", evil);
-        r1->add_neighbor("east", evil);
+        // exits
+        Exit * e1 = new Exit(r1);
+        Exit * e2 = new Exit(r2);
+        Exit * eevil = new Exit(evil);
+
+        r1->add_exit("recurse", e1);
+        r1->add_exit("west", e2);
+        r1->add_exit("east", eevil);
+        r2->add_exit("west", eevil);
+        evil->add_exit("east", e2);
+        evil->add_exit("west", e1);
+
 
         // Create objects
-
         Object * b1 = new Bag();
         Object * b2 = new Bag();
         Object * b3 = new Bag();

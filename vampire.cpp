@@ -19,10 +19,10 @@ namespace da_game {
     }
 
     void Vampire::run() {
-        std::vector<std::string> rooms = current_room->directions();
+        std::vector<std::string> exit_names = current_room->get_exit_names();
         switch (std::rand()%3) {
             case 1: 
-                go(rooms[std::rand()%rooms.size()]);
+                go(exit_names[std::rand()%exit_names.size()]);
                 break;
             default:
                 break;

@@ -6,7 +6,8 @@
 namespace da_game {
     class Inside : public Environment  {
         public:
-            Inside(Environment *, Environment *, Environment *, Environment *); 
+            Inside();
+            Inside(Exit *, Exit *, Exit *, Exit *); 
     };
 }
 

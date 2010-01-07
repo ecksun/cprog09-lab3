@@ -19,10 +19,11 @@ namespace da_game {
     }
 
     void Troll::run() {
-        std::vector<std::string> rooms = current_room->directions();
+        std::vector<std::string> exit_names = current_room->get_exit_names();
+
         switch (std::rand()%5) {
             case 1: 
-                go(rooms[std::rand()%rooms.size()]);
+                go(exit_names[std::rand()%exit_names.size()]);
                 break;
             default:
                 break;
@@ -40,7 +41,7 @@ namespace da_game {
     void Troll::go(std::string s) {
         Environment * new_room = current_room->neighbor(s);
         if (new_room == 0) {
-            std::cerr << "Couldnt go to room " << s  << std::endl;
+            std::cerr << "Could not go to room " << s << std::endl;
         }
         else {
             current_room->leave(*this);
@@ -58,7 +59,7 @@ namespace da_game {
     }
 
     void Troll::pick_up(Object *) {
-        std::cout << "Im a troll ffs, i dont have any pockets" << std::endl;
+        std::cout << "I'm a troll ffs, I dont have any pockets" << std::endl;
     }
 
     bool Troll::drop(Object *) {

@@ -16,6 +16,8 @@ namespace da_game {
     class Exit {
         public:
             Exit();
+            explicit Exit(Environment *, std::string="", bool=false, std::string="", bool=false);
+            Environment * get_outfall() const;
             bool is_locked();
             void set_outfall(Environment *);
             void set_description(std::string);
@@ -27,9 +29,9 @@ namespace da_game {
         private:
             Environment * outfall;
             std::string description;
+            bool has_lock;
             std::string key_code;
             bool locked;
-            bool lockable;
     };
 
 }

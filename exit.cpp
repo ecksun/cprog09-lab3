@@ -1,11 +1,41 @@
 #include "exit.h"
 
+#include <iostream>
+
 namespace da_game {
 
     /**
-     * Creates a new exit with some default parameters.
+     * Creates a new exit with some default parameters, but without
+     * any outfall. This is probably useless unless an outfall is
+     * later set.
      */
-    Exit::Exit() : description(""), key_code(""), locked(false), lockable(false) {
+    Exit::Exit() : description(""), has_lock(false), key_code(""), locked(false) {
+    }
+
+    /**
+     * Constructs a new exit with the given outfall and description.
+     *
+     * Notice: All parameters except outfall are given default values
+     * if not specified.
+     *
+     * @param outfall Where this exit leads to
+     * @param description A short description of this exit
+     * @param has_lock Whether or not this exit has a lock
+     * @param key_code The key code for this exit
+     * @param locked The locked state of this exit
+     */
+    Exit::Exit(Environment * outfall, std::string description, 
+            bool has_lock, std::string key_code, bool locked) 
+        : outfall(outfall), description(description), has_lock(has_lock), key_code(key_code), locked(locked) {
+    }
+
+    /**
+     * Returns the outfall of this exit, that is, where it leads to.
+     *
+     * @return The outfall
+     */
+    Environment * Exit::get_outfall() const {
+        return outfall;
     }
 
     /**
@@ -55,14 +85,14 @@ namespace da_game {
     }
 
     /**
-     * Locks this exit iff it is lockable and the key code from the 
+     * Locks this exit iff it has a lock and the key code from the 
      * specified key agrees to the one of this exit.
      *
      * @param key The key to lock with
      * @return The new locked state of this exit
      */
     bool Exit::lock(Key * key) {
-        if (!this->lockable) {
+        if (!this->has_lock) {
             return this->locked;
         }
 
@@ -74,14 +104,14 @@ namespace da_game {
     }
 
     /**
-     * Unlocks this exit iff this exit is lockable and the key code 
+     * Unlocks this exit iff this exit has a lock and the key code 
      * of the specified key equals the one of this exit.
      *
      * @param key The key to unlock with
      * @return The new locked state of this exit
      */
     bool Exit::unlock(Key * key) {
-        if (!this->lockable) {
+        if (!this->has_lock) {
             return this->locked;
         }
 
