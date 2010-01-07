@@ -34,23 +34,14 @@ namespace da_game {
         Actor * opponent = get_actor(player->current_room->actors, stringToInt(actor));
         if (opponent != 0) {
             // Player begins to fight
-            if (!fight(*player, *opponent)) {
-                // Player died, shut down
-                return 1;
-            }
+            fight(*player, *opponent);
         }
         else {
             std::cout << "Ingen sådan person här inne" << std::endl;
         }
         return 0;
     }
-
-    /*
-     * The return type only tells us who died, nothing more
-     * true if attacker won (defender died)
-     * false if defender won (attacker died)
-     */
-    bool GameCommands::fight(Actor & attacker, Actor & defender) {
+    void GameCommands::fight(Actor & attacker, Actor & defender) {
         std::cout << "Fight:\t" << attacker.get_name() << " vs " << defender.get_name() << std::endl;
         for (unsigned int round = 0; attacker.hp > 0 && defender.hp > 0; round++) {
             if ((round & 1) == 0) {
@@ -81,12 +72,10 @@ namespace da_game {
         if (defender.hp <= 0) {
             std::cout << "Attacker won!" << std::endl;
             delete &defender;
-            return true;
         }
         else {
             std::cout << "You lost and died!" << std::endl;
             delete &attacker;
-            return false;
         }
     }
 
