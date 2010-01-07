@@ -20,6 +20,7 @@ namespace da_game {
             static std::vector<Actor *> * actors;
             static std::vector<Environment *> * envs;
             void run();
+            void printStory();
             bool playerIsAlive();
             Terminal terminal;
             GameCommands * commands;
