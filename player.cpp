@@ -6,7 +6,6 @@ namespace da_game {
         this->current_room = room;
         this->hp = 100;
         this->strength = 2;
-        objects = new std::vector<Object *>;
     }
 
     Player::~Player() {

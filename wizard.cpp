@@ -25,7 +25,6 @@ namespace da_game {
 
     Weapon * Wizard::weapon() {
         if (magic >= wand->magic_cost()) {
-            std::cout << "Wand" << std::endl;
             magic -= wand->magic_cost();
             return wand;
         }
