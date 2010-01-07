@@ -40,6 +40,7 @@ namespace da_game {
 
     Game::~Game() {
         actors->clear();
+        delete commands;
     }
 
     bool Game::playerIsAlive() {
