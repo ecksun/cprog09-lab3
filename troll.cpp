@@ -37,19 +37,6 @@ namespace da_game {
         return "nisse";
     }
 
-    void Troll::go(std::string s) {
-        Environment * new_room = current_room->neighbor(s);
-        if (new_room == 0) {
-            std::cerr << "Couldnt go to room " << s  << std::endl;
-        }
-        else {
-            current_room->leave(*this);
-            current_room = new_room;
-            current_room->enter(*this);
-            std::cerr << get_name() << " entered " << s << std::endl;
-        }
-    }
-
     /*
      * I have no idea how we should implement this
      */

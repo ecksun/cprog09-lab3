@@ -1,3 +1,4 @@
+#include "game.h"
 #include "actor.h"
 #include "default_weapon.h"
 #include "game_commands.h"
@@ -8,14 +9,16 @@ namespace da_game {
 
     Actor::Actor() : id(instances) {
         instances++;
-        current_weapon = new DefaultWeapon(); // So everyone can try to fight
+        current_weapon = new DefaultWeapon();   // So everyone can try to fight,
+                                                // Rember to delete this in inherited classes constructors
         objects = new std::vector<Object *>;
         current_room = 0;
     }
 
     Actor::~Actor() {
         if (current_weapon->weight() == 0 && current_weapon->volume() == 0) {
-            // In case its the default weapon
+            // In case its the default weapon, we dont want them laying around
+            // TODO fix this with a cast perhaps?
             delete current_weapon;
         }
 
@@ -27,6 +30,7 @@ namespace da_game {
 
         delete objects;
         current_room->leave(*this);
+        Game::removeActor(*this);
     }
 
     void Actor::pick_up(Object * object){
@@ -49,6 +53,19 @@ namespace da_game {
             }
         }
         return false;
+    }
+
+    void Actor::go(std::string s) {
+        Environment * new_room = current_room->neighbor(s);
+        if (new_room == 0) {
+            std::cerr << "Couldnt go to room " << s  << std::endl;
+        }
+        else {
+            current_room->leave(*this);
+            current_room = new_room;
+            current_room->enter(*this);
+            std::cerr << get_name() << " entered " << s << std::endl;
+        }
     }
 
     void Actor::fight(Actor & opponent) {

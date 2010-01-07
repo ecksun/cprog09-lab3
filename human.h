@@ -20,7 +20,6 @@ namespace da_game {
 
             virtual void run();
             virtual std::string get_name() const;
-            virtual void go(std::string);
 
             void eat(Food &);
     };

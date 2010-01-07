@@ -10,6 +10,10 @@ namespace da_game {
     }
 
     void Human::run() {
+        if (!has_heart) {
+            // Undead, fast regen
+            hp *= 2;
+        }
         std::cout << "Ruuunning!" << std::endl;
     }
 
@@ -19,6 +23,9 @@ namespace da_game {
 
     void Human::eat(Food & food) {
         std::cout << "Yum! Food is great! Give me more " << std::endl;
+        hp += food.health_increase();
+        if (hp > max_health)
+            hp = max_health;
     }
 
 }
