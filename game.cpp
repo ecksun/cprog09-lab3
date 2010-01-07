@@ -10,6 +10,7 @@
 #include "room.h"
 #include "evil_lair.h"
 #include "vampire_factory.h"
+#include "light_saber.h"
 
 namespace da_game {
     std::vector<Actor *> * Game::actors;
@@ -56,6 +57,9 @@ namespace da_game {
         r2->add_neighbor("west", evil);
         r1->add_neighbor("east", evil);
 
+        envs->push_back(r1);
+        envs->push_back(r2);
+
         // Create objects
 
         Object * b1 = new Bag();
@@ -68,8 +72,9 @@ namespace da_game {
 
         r2->drop(b4);
 
-        envs->push_back(r1);
-        envs->push_back(r2);
+
+        Object * light_saber = new LightSaber(1000,0.95);
+        evil->drop(light_saber);
 
 
 
@@ -87,7 +92,7 @@ namespace da_game {
         r2->enter(*t);
         actors->push_back(t);
         
-        Wizard * w = new Wizard(evil, true, 100, 10);
+        Wizard * w = new Wizard(evil, true, 100, 100);
         evil->enter(*w);
         actors->push_back(w);
 

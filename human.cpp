@@ -6,7 +6,7 @@
 namespace da_game {
 
     Human::Human(bool has_heart, int max_health) : has_heart(has_heart), max_health(max_health) {
-
+        hp = 100;
     }
 
     void Human::run() {
