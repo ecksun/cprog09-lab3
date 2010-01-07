@@ -6,11 +6,9 @@
 namespace da_game {
     class Room : public Inside {
         public:
-            Room(Environment *, Environment *, Environment *, Environment *);
+            Room();
+            Room(Exit *, Exit *, Exit *, Exit *);
             virtual std::string description() const;
-            virtual std::vector<std::string> directions() const;
-            virtual Environment * neighbor(std::string) const;
-            virtual bool add_neighbor(std::string, Environment *);
         private:
     };
 }

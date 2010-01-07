@@ -19,7 +19,7 @@ namespace da_game {
             virtual int volume() const;
             virtual int price() const;
             virtual std::string type() const;
-            virtual bool operator==(Object &) const;
+            virtual bool operator==(Key &) const;
 
             std::string get_key_code() const;
 

@@ -65,10 +65,10 @@ namespace da_game {
      * @return true iff the object is identically equal to this key
      */
     bool Key::operator==(Key & key) const {
-        return  object.weight() != this->weight() ||
-                object.volume() != this->volume() ||
-                object.price() != this->price() || 
-                object.type() != this->type();
+        return  key.weight() != this->weight() ||
+                key.volume() != this->volume() ||
+                key.price() != this->price() || 
+                key.type() != this->type();
     }
 
 }

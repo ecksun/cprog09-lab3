@@ -20,10 +20,11 @@ namespace da_game {
     }
 
     void Troll::run() {
-        std::vector<std::string> rooms = current_room->directions();
+        std::vector<std::string> exit_names = current_room->get_exit_names();
+
         switch (std::rand()%5) {
             case 1: 
-                go(rooms[std::rand()%rooms.size()]);
+                go(exit_names[std::rand()%exit_names.size()]);
                 break;
             case 2:
                 {
@@ -54,7 +55,7 @@ namespace da_game {
     }
 
     void Troll::pick_up(Object *) {
-        std::cout << "Im a troll ffs, i dont have any pockets" << std::endl;
+        std::cout << "I'm a troll ffs, I dont have any pockets" << std::endl;
     }
 
     bool Troll::drop(Object *) {

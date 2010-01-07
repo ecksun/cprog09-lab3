@@ -25,6 +25,9 @@ polymorfi och standardklasserna (STL).
 * Ett förslag är att när det händer saker i ett rum så är det någon "global" metod som hanterar vad som händer, så man kan dissa det om det händer saker i ett rum som man inte är i
 * Diskutera format på sparfiler samt kartor (3.2 och 3.3)
 * <del>En fight  kan instansiera en speciell miljö utan exits, så registrerar man samtidigt ett nytt kommando till terminalen som kan vara typ "fight" (så man kan välja vapen osv)</del>
+* Låta Inside ta emot Environments-pekare som tidigare och automatiskt skapa standard-exits till dessa.
+* Se över Environment::description(). Skriva till stdout eller returnera sträng?
+* Fixa låsmekanismen på Exits.
 
 
 ## Rules to conform to ##
