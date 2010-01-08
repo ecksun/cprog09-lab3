@@ -12,7 +12,7 @@ namespace da_game {
             // this->default_weapon = current_weapon; // instansiated in actor
 
             wand = new Wand(50, 0.9);
-            objects->push_back(wand);
+            container->get_objects()->push_back(wand);
             std::cout << "A magician has been born, with full magic power.. Kazaaam!" << std::endl;
 
     }

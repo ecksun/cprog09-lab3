@@ -95,8 +95,25 @@ namespace da_game {
             Object * obj = get_object(player->current_room->objects, stringToInt(object));
             if (obj != 0) {
                 if (player->current_room->pick_up(obj)) {
-                    player->pick_up(obj);
-                    return 0;
+                    if (player->pick_up(obj)) {
+                        std::cout << "picked up " << obj->type() << std::endl;
+                        return 0;
+                    }
+                    else {
+                        std::stringstream string;
+                        string << "Couldnt fit " << obj->type() << " into bag" << std::endl;
+                        string << "Bag stats: " << player->container->type() << std::endl;
+                        string << "    Volume Left: " << player->container->get_volume_left() << std::endl;
+                        string << "    Weight Left: " << player->container->get_weight_left() << std::endl;
+                        string << std::endl;
+                        string << "Object: " << obj->type() << std::endl;
+                        string << "    Volume: " << obj->volume() << std::endl;
+                        string << "    Weight: " << obj->weight() << std::endl;
+                        Terminal::print(string.str());
+
+                        player->current_room->drop(obj);
+                        return 0;
+                    }
                 }
             }
         }
@@ -109,7 +126,7 @@ namespace da_game {
     */
     int GameCommands::drop(std::string object) {
         try {
-            Object * obj = get_object(player->objects, stringToInt(object));
+            Object * obj = get_object(player->container->get_objects(), stringToInt(object));
             if (obj != 0) {
                 if (player->drop(obj)) {
                     player->current_room->drop(obj);
@@ -146,8 +163,8 @@ namespace da_game {
     }
 
     int GameCommands::inventory(std::string) {
-        std::vector<Object *>::iterator it = player->objects->begin();
-        for (; it != player->objects->end(); ++it) {
+        std::vector<Object *>::iterator it = player->container->get_objects()->begin();
+        for (; it != player->container->get_objects()->end(); ++it) {
             std::cout << (*it)->id << "\t" << (*it)->type() << std::endl;
         }
         return 0;
@@ -179,7 +196,7 @@ namespace da_game {
         for (std::vector<std::string>::iterator it = words.begin(); it != words.end(); ++it) {
             std::istringstream stream(*it);
             if (stream >> id) {
-                objs.push_back(get_object(player->objects, id));
+                objs.push_back(get_object(player->container->get_objects(), id));
                 // please notice that indices might get out of sync here
             }
         }
@@ -199,6 +216,40 @@ namespace da_game {
                     Food * food = dynamic_cast<Food *>(objs[0]);
                     if (food != 0) {
                         player->eat(*food);
+                    }
+
+                    Container * bag = dynamic_cast<Container *>(objs[0]);
+                    if (bag != 0) {
+                        int held_volume = 0;
+                        int held_weight = 0;
+                        for (std::vector<Object *>::const_iterator it = player->container->get_objects()->begin(); 
+                                it != player->container->get_objects()->end(); ++it) {
+                            held_volume += (*it)->volume();
+                            held_weight += (*it)->weight();
+                        }
+
+                        if (held_weight <= bag->get_hold_weight() && held_volume <= bag->get_hold_volume()) {
+                            std::cout << "Changing bag" << std::endl;
+                            while (player->container->get_objects()->size() > 0) {
+                                Object * o = player->container->get_objects()->at(player->container->get_objects()->size()); // Get the item
+                                bag->add(*o); // add it to the new bag
+                                player->container->remove(*o); // remove it from the old
+                            }
+                            player->current_room->drop(player->container);
+                            player->container = bag;
+                        }
+                        else {
+                            std::stringstream string;
+                            string << "You cant fit everything in this bag" << std::endl;
+                            string << "Old bag: " << player->container->type() << std::endl;
+                            string << "    Volume: " << player->container->get_hold_volume() << std::endl;
+                            string << "    Weight: " << player->container->get_hold_weight() << std::endl;
+                            string << std::endl;
+                            string << "New bag: " << bag->type() << std::endl;
+                            string << "    Volume: " << bag->get_hold_volume() << std::endl;
+                            string << "    Weight: " << bag->get_hold_weight() << std::endl;
+                            Terminal::print(string.str());
+                        }
                     }
                     break;
                 }

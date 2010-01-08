@@ -14,7 +14,7 @@ namespace da_game {
             virtual void run();
             virtual std::string get_type() const;
             virtual std::string get_name() const;
-            virtual void pick_up(Object *);
+            virtual bool pick_up(Object *);
             virtual bool drop(Object *);
             virtual void talk_to(Actor &);
     };

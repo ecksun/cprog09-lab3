@@ -2,6 +2,7 @@
 #include "actor.h"
 #include "default_weapon.h"
 #include "game_commands.h"
+#include "bag.h"
 #include <iostream>
 
 namespace da_game {
@@ -11,7 +12,7 @@ namespace da_game {
         instances++;
         current_weapon = new DefaultWeapon();   // So everyone can try to fight,
                                                 // Rember to delete this in inherited classes constructors
-        objects = new std::vector<Object *>;
+        container = new Bag(); // FIXME
         current_room = 0;
         Game::add_actor(*this);
     }
@@ -25,35 +26,22 @@ namespace da_game {
 
         // science the actor exists no more we drop everything in the current room
         std::vector<Object *>::iterator it;
-        for (it = objects->begin(); it != objects->end(); ++it) {
+        for (it = container->get_objects()->begin(); it != container->get_objects()->end(); ++it) {
             current_room->drop(*it);
         }
 
-        delete objects;
+        current_room->drop(container);
+        
         current_room->leave(*this);
         Game::remove_actor(*this);
     }
 
-    void Actor::pick_up(Object * object){
-        objects->push_back(object);
-        std::cout << "picked up " << object->type() << std::endl;
+    bool Actor::pick_up(Object * object){
+        return container->add(*object);
     }
 
     bool Actor::drop(Object * object) {
-        std::vector<Object *>::iterator it;
-        for (it = objects->begin(); it != objects->end(); ++it) {
-            // TODO här får vi ett problem som måste lösas:
-            // finns det någon som håller i objektet efter att 
-            // det tagits bort ur vår inventory?
-            // annars borde det delete:as
-            // Det vore eventuellt rätt najs med auto_ptr här så
-            // att objekt bara kan ägas av precis en sak. Eller?
-            if (**it == *object) {
-                objects->erase(it);
-                return true;
-            }
-        }
-        return false;
+        return container->remove(*object);
     }
 
     /**

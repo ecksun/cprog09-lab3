@@ -1,9 +1,13 @@
 #include "bag.h"
+#include <iostream>
+#include <cstdlib>
 
 namespace da_game {
 
     Bag::Bag() {
         objects = new std::vector<Object *>();
+        hold_weight = std::rand()%150;
+        hold_volume = std::rand()%50;
     }
 
     Bag::~Bag() {

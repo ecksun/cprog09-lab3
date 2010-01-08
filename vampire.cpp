@@ -45,8 +45,9 @@ namespace da_game {
         return;
     }
 
-    void Vampire::pick_up(Object *) {
+    bool Vampire::pick_up(Object *) {
         std::cout << "IIIHH" << std::endl;
+        return false;
     }
 
     bool Vampire::drop(Object *) {

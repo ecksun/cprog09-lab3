@@ -23,6 +23,9 @@ namespace da_game {
              * Volume capacity of container
              */
             virtual int get_hold_volume() const = 0;
+
+            virtual int get_weight_left() const;
+            virtual int get_volume_left() const;
             /*
              * Add an object to this container
              */
@@ -31,6 +34,8 @@ namespace da_game {
              * Remove an object from this container
              */
             virtual bool remove(Object &) = 0;
+
+            virtual std::vector<Object *> * get_objects();
 
     };
 
