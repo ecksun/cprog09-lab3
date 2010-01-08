@@ -4,6 +4,7 @@
 
 namespace da_game {
     Vampire::Vampire(Environment * current_room, int hp, int strength) { 
+        std::cout << "SHREE! a new vampire is born!" << std::endl;
         this->hp = hp;
         this->strength = strength;
         // TODO: Perhaps we should move this up the inheretance tree?

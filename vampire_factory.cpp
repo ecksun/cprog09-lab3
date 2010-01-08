@@ -2,6 +2,7 @@
 
 #include "vampire_factory.h"
 #include "vampire.h"
+#include "game.h"
 
 
 namespace da_game {
@@ -15,7 +16,6 @@ namespace da_game {
     void VampireFactory::run() {
         age++;
         if (age%frequency == 0) {
-            std::cerr << "Spawning a new vampire" << std::endl; 
             Vampire * vamp = new Vampire(current_room,3*age, 2*age);
             current_room->enter(*vamp);
         }

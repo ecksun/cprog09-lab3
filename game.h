@@ -14,7 +14,8 @@ namespace da_game {
             Game();        
             ~Game();        
             void initialize();
-            static void removeActor(Actor &);
+            static void remove_actor(Actor &);
+            static void add_actor(Actor &);
 
         private:
             static std::vector<Actor *> * actors;

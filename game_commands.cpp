@@ -81,6 +81,7 @@ namespace da_game {
         else {
             std::cout << "You lost and died!" << std::endl;
             delete &attacker;
+            std::cerr << "GameCommands::fight() &attacker deleted" << std::endl;
         }
     }
 
@@ -190,6 +191,11 @@ namespace da_game {
                     if (weapon != 0) {
                         std::cout << "Changing weapon to :" << weapon->type() << std::endl;
                         player->current_weapon = weapon;
+                    }
+
+                    Food * food = dynamic_cast<Food *>(objs[0]);
+                    if (food != 0) {
+                        player->eat(*food);
                     }
                     break;
                 }

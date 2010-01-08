@@ -13,6 +13,7 @@ namespace da_game {
                                                 // Rember to delete this in inherited classes constructors
         objects = new std::vector<Object *>;
         current_room = 0;
+        Game::add_actor(*this);
     }
 
     Actor::~Actor() {
@@ -30,7 +31,7 @@ namespace da_game {
 
         delete objects;
         current_room->leave(*this);
-        Game::removeActor(*this);
+        Game::remove_actor(*this);
     }
 
     void Actor::pick_up(Object * object){
