@@ -23,7 +23,7 @@ namespace da_game {
         bool running = true;
         initialize();
         printStory();
-        while (running && playerIsAlive()) {
+        while (running && playerIsAlive() && !playerIsAlone()) {
             std::cout << player->getRoom()->description() << std::endl;
             switch (terminal.run()) {
                 case 1:
@@ -36,6 +36,9 @@ namespace da_game {
         }
         if (!playerIsAlive()) {
             std::cout << "Sry, you died! :(" << std::endl;
+        }
+        if (playerIsAlone()) {
+            std::cout << "Congratz! you won!" << std::endl;
         }
     }
 
@@ -148,6 +151,11 @@ namespace da_game {
             }
         }
     }
+
+    bool Game::playerIsAlone() {
+        return (playerIsAlive() && (actors->size() == 1));
+    }
+
 
     void Game::printStory() {
         std::cout << "When Anakin entered the Jedi-Tempel after beeing order to destroy the Jedi-order by Darth Sidious he suddenly saw a bright light surround him. When it dissapeared he had been transported to the most peculiar place, he heard sounds of vampires and smellt the smell of trolls, he must have been transported to dev random. As Anakin recently had been turned to the dark side he pushed his confusion from his mind and as the anger overtook him he realised he would not be satisfied until EVERYTHING was DEAD." << std::endl;
