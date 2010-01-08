@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" href="$classda__game_1_1DefaultWeapon.html" title="da_game::DefaultWeapon" alt="" coords="5,160,173,189"/>
+<area shape="rect" href="$classda__game_1_1LightSaber.html" title="da_game::LightSaber" alt="" coords="197,160,341,189"/>
+<area shape="rect" href="$classda__game_1_1Wand.html" title="da_game::Wand" alt="" coords="365,160,480,189"/>
+<area shape="rect" href="$classda__game_1_1Object.html" title="da_game::Object" alt="" coords="209,5,329,35"/>
+</map>

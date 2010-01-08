@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" href="$classda__game_1_1Player.html" title="da_game::Player" alt="" coords="5,160,125,189"/>
+<area shape="rect" href="$classda__game_1_1Wizard.html" title="da_game::Wizard" alt="" coords="149,160,272,189"/>
+<area shape="rect" href="$classda__game_1_1Actor.html" title="da_game::Actor" alt="" coords="81,5,193,35"/>
+</map>
