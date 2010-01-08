@@ -36,9 +36,21 @@ namespace da_game {
     }
 
     bool Bag::add(Object & object) {
-        // TODO check that it fits in this bag
-        this->objects->push_back(&object);
-        return true;
+        int held_volume = 0;
+        int held_weight = 0;
+
+        for (std::vector<Object *>::const_iterator it = objects->begin(); it != objects->end(); ++it) {
+            held_volume += (*it)->volume();
+            held_weight += (*it)->weight();
+        }
+
+        if (held_volume + object.volume() > get_hold_volume() ||
+                held_weight + object.weight() > get_hold_weight()) {
+            return false;
+        } else {
+            this->objects->push_back(&object);
+            return true;
+        }
     }
 
     bool Bag::remove(Object & object) {

@@ -1,0 +1,159 @@
+\hypertarget{classda__game_1_1Environment}{
+\section{da\_\-game::Environment Class Reference}
+\label{classda__game_1_1Environment}\index{da\_\-game::Environment@{da\_\-game::Environment}}
+}
+Inheritance diagram for da\_\-game::Environment::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3cm]{classda__game_1_1Environment}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classda__game_1_1Environment_a412ec5b8713e11bbee66dde20076ed2f}{
+virtual std::string {\bfseries description} () const }
+\label{classda__game_1_1Environment_a412ec5b8713e11bbee66dde20076ed2f}
+
+\item 
+virtual bool \hyperlink{classda__game_1_1Environment_a7b8062cb2c63bb225225a9749da4e8cf}{add\_\-exit} (std::string, \hyperlink{classda__game_1_1Exit}{Exit} $\ast$)
+\item 
+virtual \hyperlink{classda__game_1_1Exit}{Exit} $\ast$ \hyperlink{classda__game_1_1Environment_ad0b26526cf4a76fa7827ab6cb539d98b}{get\_\-exit} (std::string) const 
+\item 
+virtual std::vector$<$ std::string $>$ \hyperlink{classda__game_1_1Environment_a1702d13f246e537540f1073a138a706d}{get\_\-exit\_\-names} () const 
+\item 
+virtual void \hyperlink{classda__game_1_1Environment_a194d9cfcdf2c86431d83dd5bc686c489}{enter} (\hyperlink{classda__game_1_1Actor}{Actor} \&)
+\item 
+virtual void \hyperlink{classda__game_1_1Environment_aed5b6d00da5afb0dae96bedcb9ee9642}{leave} (\hyperlink{classda__game_1_1Actor}{Actor} \&)
+\item 
+virtual bool \hyperlink{classda__game_1_1Environment_a1160cb0cffc0f37e058f58457c76d12b}{pick\_\-up} (\hyperlink{classda__game_1_1Object}{Object} $\ast$)
+\item 
+virtual void \hyperlink{classda__game_1_1Environment_a4d1fb3198721b013f77b79cea398bd35}{drop} (\hyperlink{classda__game_1_1Object}{Object} $\ast$)
+\item 
+\hypertarget{classda__game_1_1Environment_aa961ca9cba24dd62107ddcb5c5b5ab29}{
+virtual std::vector$<$ \hyperlink{classda__game_1_1Object}{Object} $\ast$ $>$ {\bfseries get\_\-objects} ()}
+\label{classda__game_1_1Environment_aa961ca9cba24dd62107ddcb5c5b5ab29}
+
+\item 
+\hypertarget{classda__game_1_1Environment_ad5248ea56c5bf7038ae48d7326d361f4}{
+virtual std::vector$<$ \hyperlink{classda__game_1_1Actor}{Actor} $\ast$ $>$ {\bfseries get\_\-actors} ()}
+\label{classda__game_1_1Environment_ad5248ea56c5bf7038ae48d7326d361f4}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classda__game_1_1Environment_afd10beaae82f22e4ea970b9a85b1f57c}{
+std::vector$<$ \hyperlink{classda__game_1_1Object}{Object} $\ast$ $>$ $\ast$ {\bfseries objects}}
+\label{classda__game_1_1Environment_afd10beaae82f22e4ea970b9a85b1f57c}
+
+\item 
+\hypertarget{classda__game_1_1Environment_a2d4baf7e9c6a619ef692edb0287f5df7}{
+std::vector$<$ \hyperlink{classda__game_1_1Actor}{Actor} $\ast$ $>$ $\ast$ {\bfseries actors}}
+\label{classda__game_1_1Environment_a2d4baf7e9c6a619ef692edb0287f5df7}
+
+\item 
+\hypertarget{classda__game_1_1Environment_a40544e6d69042fc864b1c8057ad0bc16}{
+std::map$<$ std::string, \hyperlink{classda__game_1_1Environment}{Environment} $\ast$ $>$ {\bfseries neighbors}}
+\label{classda__game_1_1Environment_a40544e6d69042fc864b1c8057ad0bc16}
+
+\item 
+\hypertarget{classda__game_1_1Environment_a332747dd172e39880f0703283e5fcf23}{
+std::map$<$ std::string, \hyperlink{classda__game_1_1Exit}{Exit} $\ast$ $>$ {\bfseries exits}}
+\label{classda__game_1_1Environment_a332747dd172e39880f0703283e5fcf23}
+
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classda__game_1_1Environment_ad58162d418e52e78ef2d13bea08472d4}{
+class {\bfseries GameCommands}}
+\label{classda__game_1_1Environment_ad58162d418e52e78ef2d13bea08472d4}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classda__game_1_1Environment_a7b8062cb2c63bb225225a9749da4e8cf}{
+\index{da\_\-game::Environment@{da\_\-game::Environment}!add\_\-exit@{add\_\-exit}}
+\index{add\_\-exit@{add\_\-exit}!da_game::Environment@{da\_\-game::Environment}}
+\subsubsection[{add\_\-exit}]{\setlength{\rightskip}{0pt plus 5cm}bool da\_\-game::Environment::add\_\-exit (std::string {\em name}, \/  {\bf Exit} $\ast$ {\em exit})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{classda__game_1_1Environment_a7b8062cb2c63bb225225a9749da4e8cf}
+Adds the specified exit with the given name (preferably a point of the compass) to this environment.
+
+\begin{DoxyReturn}{Returns}
+True if the exit was added or false if an exit with the same value already existed 
+\end{DoxyReturn}
+\hypertarget{classda__game_1_1Environment_a4d1fb3198721b013f77b79cea398bd35}{
+\index{da\_\-game::Environment@{da\_\-game::Environment}!drop@{drop}}
+\index{drop@{drop}!da_game::Environment@{da\_\-game::Environment}}
+\subsubsection[{drop}]{\setlength{\rightskip}{0pt plus 5cm}void da\_\-game::Environment::drop ({\bf Object} $\ast$ {\em object})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{classda__game_1_1Environment_a4d1fb3198721b013f77b79cea398bd35}
+Someone drops an object in this environment. That means this environment must take care of it.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em object}]The object that is being dropped \end{DoxyParams}
+\hypertarget{classda__game_1_1Environment_a194d9cfcdf2c86431d83dd5bc686c489}{
+\index{da\_\-game::Environment@{da\_\-game::Environment}!enter@{enter}}
+\index{enter@{enter}!da_game::Environment@{da\_\-game::Environment}}
+\subsubsection[{enter}]{\setlength{\rightskip}{0pt plus 5cm}void da\_\-game::Environment::enter ({\bf Actor} \& {\em actor})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{classda__game_1_1Environment_a194d9cfcdf2c86431d83dd5bc686c489}
+Lets the specified actor enter this environment.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em actor}]The actor to enter \end{DoxyParams}
+\hypertarget{classda__game_1_1Environment_ad0b26526cf4a76fa7827ab6cb539d98b}{
+\index{da\_\-game::Environment@{da\_\-game::Environment}!get\_\-exit@{get\_\-exit}}
+\index{get\_\-exit@{get\_\-exit}!da_game::Environment@{da\_\-game::Environment}}
+\subsubsection[{get\_\-exit}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Exit} $\ast$ da\_\-game::Environment::get\_\-exit (std::string {\em name}) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{classda__game_1_1Environment_ad0b26526cf4a76fa7827ab6cb539d98b}
+Returns the exit with the given name, if there is a such.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em name}]The name of the exit \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The exit with the given name 
+\end{DoxyReturn}
+\hypertarget{classda__game_1_1Environment_a1702d13f246e537540f1073a138a706d}{
+\index{da\_\-game::Environment@{da\_\-game::Environment}!get\_\-exit\_\-names@{get\_\-exit\_\-names}}
+\index{get\_\-exit\_\-names@{get\_\-exit\_\-names}!da_game::Environment@{da\_\-game::Environment}}
+\subsubsection[{get\_\-exit\_\-names}]{\setlength{\rightskip}{0pt plus 5cm}std::vector$<$ std::string $>$ da\_\-game::Environment::get\_\-exit\_\-names () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{classda__game_1_1Environment_a1702d13f246e537540f1073a138a706d}
+Returns a list of all available exits in this environment.
+
+\begin{DoxyReturn}{Returns}
+List of exits 
+\end{DoxyReturn}
+\hypertarget{classda__game_1_1Environment_aed5b6d00da5afb0dae96bedcb9ee9642}{
+\index{da\_\-game::Environment@{da\_\-game::Environment}!leave@{leave}}
+\index{leave@{leave}!da_game::Environment@{da\_\-game::Environment}}
+\subsubsection[{leave}]{\setlength{\rightskip}{0pt plus 5cm}void da\_\-game::Environment::leave ({\bf Actor} \& {\em actor})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{classda__game_1_1Environment_aed5b6d00da5afb0dae96bedcb9ee9642}
+Lets an actor leave this environment.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em actor}]The actor to leave \end{DoxyParams}
+\hypertarget{classda__game_1_1Environment_a1160cb0cffc0f37e058f58457c76d12b}{
+\index{da\_\-game::Environment@{da\_\-game::Environment}!pick\_\-up@{pick\_\-up}}
+\index{pick\_\-up@{pick\_\-up}!da_game::Environment@{da\_\-game::Environment}}
+\subsubsection[{pick\_\-up}]{\setlength{\rightskip}{0pt plus 5cm}bool da\_\-game::Environment::pick\_\-up ({\bf Object} $\ast$ {\em object})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{classda__game_1_1Environment_a1160cb0cffc0f37e058f58457c76d12b}
+Someone picks up an object that is owned by this environment. That means this environment must hand over the object in question.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em object}]The object that is being picked up \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the object really was held by this environment, otherwise false. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+environment.h\item 
+actor.cpp\item 
+environment.cpp\end{DoxyCompactItemize}

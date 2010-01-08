@@ -29,6 +29,7 @@ polymorfi och standardklasserna (STL).
 * Se över Environment::description(). Skriva till stdout eller returnera sträng?
 * <del>Fixa låsmekanismen på Exits.</del>
 * Skapa PairExit som returnerar olika get_outfall beroende på vilket av de två rummen man står i, o.s.v.
+* Se över Segmentation Fault när man dör.
 
 
 ## Rules to conform to ##

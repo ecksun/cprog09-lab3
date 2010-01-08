@@ -1,0 +1,66 @@
+\hypertarget{classda__game_1_1VampireFactory}{
+\section{da\_\-game::VampireFactory Class Reference}
+\label{classda__game_1_1VampireFactory}\index{da\_\-game::VampireFactory@{da\_\-game::VampireFactory}}
+}
+Inheritance diagram for da\_\-game::VampireFactory::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classda__game_1_1VampireFactory}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classda__game_1_1VampireFactory_a9a3e0ab44708348be1caf55d7de920d5}{
+{\bfseries VampireFactory} (\hyperlink{classda__game_1_1Environment}{Environment} $\ast$, int)}
+\label{classda__game_1_1VampireFactory_a9a3e0ab44708348be1caf55d7de920d5}
+
+\item 
+\hypertarget{classda__game_1_1VampireFactory_a5981dc60b9f6fae2ce999e4555106d79}{
+virtual void {\bfseries run} ()}
+\label{classda__game_1_1VampireFactory_a5981dc60b9f6fae2ce999e4555106d79}
+
+\item 
+\hypertarget{classda__game_1_1VampireFactory_a9e156f9b668e710fb81cc4c0028cde17}{
+virtual std::string {\bfseries get\_\-name} () const }
+\label{classda__game_1_1VampireFactory_a9e156f9b668e710fb81cc4c0028cde17}
+
+\item 
+\hypertarget{classda__game_1_1VampireFactory_a4f48868efb55fb3b85c89738a0ab7c7d}{
+virtual std::string {\bfseries get\_\-type} () const }
+\label{classda__game_1_1VampireFactory_a4f48868efb55fb3b85c89738a0ab7c7d}
+
+\item 
+virtual void \hyperlink{classda__game_1_1VampireFactory_ab8f8fffebef4af1a90d00a0f011b245b}{go} (std::string)
+\item 
+\hypertarget{classda__game_1_1VampireFactory_a45b83b5acb2b73c475b9833119b9763b}{
+virtual void {\bfseries fight} (\hyperlink{classda__game_1_1Actor}{Actor} \&)}
+\label{classda__game_1_1VampireFactory_a45b83b5acb2b73c475b9833119b9763b}
+
+\item 
+\hypertarget{classda__game_1_1VampireFactory_a6cc92702b9e963c5e62340ec4036cd39}{
+virtual void {\bfseries talk\_\-to} (\hyperlink{classda__game_1_1Actor}{Actor} \&)}
+\label{classda__game_1_1VampireFactory_a6cc92702b9e963c5e62340ec4036cd39}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classda__game_1_1VampireFactory_ab8f8fffebef4af1a90d00a0f011b245b}{
+\index{da\_\-game::VampireFactory@{da\_\-game::VampireFactory}!go@{go}}
+\index{go@{go}!da_game::VampireFactory@{da\_\-game::VampireFactory}}
+\subsubsection[{go}]{\setlength{\rightskip}{0pt plus 5cm}void da\_\-game::VampireFactory::go (std::string {\em exit\_\-name})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{classda__game_1_1VampireFactory_ab8f8fffebef4af1a90d00a0f011b245b}
+Takes this actor to the environment that the given exit leads to. However the exit must not be locked.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em exit\_\-name}]The name of the exit to go through \end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classda__game_1_1Actor_a6be7923ecbacabf779eda60f1f78bb72}{da\_\-game::Actor}.
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+vampire\_\-factory.h\item 
+vampire\_\-factory.cpp\end{DoxyCompactItemize}
