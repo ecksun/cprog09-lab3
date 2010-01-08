@@ -22,6 +22,7 @@ namespace da_game {
             void run();
             void printStory();
             bool playerIsAlive();
+            bool playerIsAlone();
             Terminal terminal;
             GameCommands * commands;
             static Player * player;

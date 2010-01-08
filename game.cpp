@@ -23,8 +23,8 @@ namespace da_game {
         bool running = true;
         initialize();
         printStory();
-        while (running && playerIsAlive()) {
-            std::cout << player->get_room()->description() << std::endl;
+        while (running && playerIsAlive() && !playerIsAlone()) {
+            Terminal::print(player->get_room()->description());
             switch (terminal.run()) {
                 case 1:
                     running = false;
@@ -37,6 +37,9 @@ namespace da_game {
         if (!playerIsAlive()) {
             std::cout << "Sry, you died! :(" << std::endl;
         }
+        if (playerIsAlone()) {
+            std::cout << "Congratz! you won!" << std::endl;
+        }
     }
 
     Game::~Game() {
@@ -46,19 +49,6 @@ namespace da_game {
 
     bool Game::playerIsAlive() {
         return player != NULL;
-        // std::cout << "Game::playerIsAlive()";
-        // Player * pl = dynamic_cast<Player *>(player);
-        // std::cout << (pl != NULL) << std::endl;
-        // return (pl != NULL);
-        // std::vector<Actor *>::iterator it = actors->begin();
-        // 
-        // for (; it != actors->end(); ++it) {
-        // Player * pl = dynamic_cast<Player *>(*it);
-        // if (pl != NULL) {
-        // return true;
-        // }
-        // }
-        // return false;
     }
 
     /*
@@ -153,8 +143,13 @@ namespace da_game {
         }
     }
 
+    bool Game::playerIsAlone() {
+        return (playerIsAlive() && (actors->size() == 1));
+    }
+
+
     void Game::printStory() {
-        std::cout << "When Anakin entered the Jedi-Tempel after beeing order to destroy the Jedi-order by Darth Sidious he suddenly saw a bright light surround him. When it dissapeared he had been transported to the most peculiar place, he heard sounds of vampires and smellt the smell of trolls, he must have been transported to dev random. As Anakin recently had been turned to the dark side he pushed his confusion from his mind and as the anger overtook him he realised he would not be satisfied until EVERYTHING was DEAD." << std::endl;
+        Terminal::print("When Anakin entered the Jedi-Tempel after beeing order to destroy the Jedi-order by Darth Sidious he suddenly saw a bright light surround him. When it dissapeared he had been transported to the most peculiar place, he heard sounds of vampires and smellt the smell of trolls, he must have been transported to dev random. As Anakin recently had been turned to the dark side he pushed his confusion from his mind and as the anger overtook him he realised he would not be satisfied until EVERYTHING was DEAD.");
     }
 }
 
