@@ -58,7 +58,7 @@ Collaboration diagram for da_game::Actor:</div>
 <div class="dynsection">
 <div class="center"><img src="classda__game_1_1Actor__coll__graph.png" border="0" usemap="#da__game_1_1Actor_coll__map" alt="Collaboration graph"/></div>
 <map name="da__game_1_1Actor_coll__map" id="da__game_1_1Actor_coll__map">
-<area shape="rect" href="classda__game_1_1Weapon.html" title="da_game::Weapon" alt="" coords="5,85,133,115"/><area shape="rect" href="classda__game_1_1Object.html" title="da_game::Object" alt="" coords="9,5,129,35"/><area shape="rect" href="classda__game_1_1Environment.html" title="da_game::Environment" alt="" coords="157,85,312,115"/></map>
+<area shape="rect" href="classda__game_1_1Container.html" title="da_game::Container" alt="" coords="5,85,141,115"/><area shape="rect" href="classda__game_1_1Object.html" title="da_game::Object" alt="" coords="107,5,227,35"/><area shape="rect" href="classda__game_1_1Weapon.html" title="da_game::Weapon" alt="" coords="165,85,293,115"/><area shape="rect" href="classda__game_1_1Environment.html" title="da_game::Environment" alt="" coords="317,85,472,115"/></map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 
 <p><a href="classda__game_1_1Actor-members.html">List of all members.</a></p>
@@ -71,8 +71,8 @@ virtual std::string&nbsp;</td><td class="memItemRight" valign="bottom"><b>get_ty
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a53656847acff24bc249e507d31909b86"></a><!-- doxytag: member="da_game::Actor::get_name" ref="a53656847acff24bc249e507d31909b86" args="() const =0" -->
 virtual std::string&nbsp;</td><td class="memItemRight" valign="bottom"><b>get_name</b> () const =0</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classda__game_1_1Actor.html#a6be7923ecbacabf779eda60f1f78bb72">go</a> (std::string)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac00094ad57edec1218e2c40008e8177a"></a><!-- doxytag: member="da_game::Actor::pick_up" ref="ac00094ad57edec1218e2c40008e8177a" args="(Object *)" -->
-virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>pick_up</b> (<a class="el" href="classda__game_1_1Object.html">Object</a> *)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae960301665570de24c8e20915228f61f"></a><!-- doxytag: member="da_game::Actor::pick_up" ref="ae960301665570de24c8e20915228f61f" args="(Object *)" -->
+virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>pick_up</b> (<a class="el" href="classda__game_1_1Object.html">Object</a> *)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a412f9a1ef89acffa948e92434179143d"></a><!-- doxytag: member="da_game::Actor::drop" ref="a412f9a1ef89acffa948e92434179143d" args="(Object *)" -->
 virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>drop</b> (<a class="el" href="classda__game_1_1Object.html">Object</a> *)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4106856b26e95ba76708da5b0e497cc7"></a><!-- doxytag: member="da_game::Actor::talk_to" ref="a4106856b26e95ba76708da5b0e497cc7" args="(Actor &amp;)=0" -->
@@ -93,8 +93,8 @@ int&nbsp;</td><td class="memItemRight" valign="bottom"><b>strength</b></td></tr>
 <a class="el" href="classda__game_1_1Weapon.html">Weapon</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>current_weapon</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0c71533d0498330db5c211bc60147266"></a><!-- doxytag: member="da_game::Actor::current_room" ref="a0c71533d0498330db5c211bc60147266" args="" -->
 <a class="el" href="classda__game_1_1Environment.html">Environment</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>current_room</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac01a6a22cde1b2e088cbddb81415e0b4"></a><!-- doxytag: member="da_game::Actor::objects" ref="ac01a6a22cde1b2e088cbddb81415e0b4" args="" -->
-std::vector&lt; <a class="el" href="classda__game_1_1Object.html">Object</a> * &gt; *&nbsp;</td><td class="memItemRight" valign="bottom"><b>objects</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a05f20995be69cd1d818936f539cee7f7"></a><!-- doxytag: member="da_game::Actor::container" ref="a05f20995be69cd1d818936f539cee7f7" args="" -->
+<a class="el" href="classda__game_1_1Container.html">Container</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>container</b></td></tr>
 <tr><td colspan="2"><h2>Static Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a667364acb9cf6d06df598eeee2675212"></a><!-- doxytag: member="da_game::Actor::instances" ref="a667364acb9cf6d06df598eeee2675212" args="" -->
 static int&nbsp;</td><td class="memItemRight" valign="bottom"><b>instances</b></td></tr>
@@ -149,7 +149,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>GameCommands</b></td
 </iframe>
 </div>
 
-<hr size="1"/><address style="text-align: right;"><small>Generated on Fri Jan 8 03:23:15 2010 for xj-cprog09-lab3 by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Fri Jan 8 11:30:20 2010 for xj-cprog09-lab3 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>
