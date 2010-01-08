@@ -63,7 +63,6 @@ namespace da_game {
         Environment * evil = new EvilLair();
         VampireFactory * vamp_fac = new VampireFactory(evil, 2);
         evil->enter(*vamp_fac);
-        actors->push_back(vamp_fac);
         
         // exits
         Exit * e1 = new Exit(r1, true, "e1", true);
@@ -107,17 +106,14 @@ namespace da_game {
         r1->enter(*player);
         commands = new GameCommands(player);
 
-        actors->push_back(player);
 
         // Initialize actors
 
         Troll * t = new Troll(r2, 1000, 88);
         r2->enter(*t);
-        actors->push_back(t);
 
         Wizard * w = new Wizard(evil, true, 100, 100);
         evil->enter(*w);
-        actors->push_back(w);
 
         Bag bag;
     }
@@ -125,12 +121,20 @@ namespace da_game {
     void Game::run() {
         std::vector<Actor *>::iterator it;
 
+        int i = 0;
         for (it = actors->begin(); it != actors->end(); ++it) {
-                (*it)->run();
+            std::cout << "Running" << std::endl;
+            std::cout << ++i << "\t" << (*it)->get_name() << " (" << (*it)->get_type() << ")" << std::endl;
+            (*it)->run();
+            std::cout << "Done running" << std::endl;
         }
     }
 
-    void Game::removeActor(Actor & actor) {
+    void Game::add_actor(Actor & actor) {
+        actors->push_back(&actor);
+    }
+
+    void Game::remove_actor(Actor & actor) {
         if (&actor == player) {
             player = 0;
         }

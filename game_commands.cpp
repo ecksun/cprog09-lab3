@@ -33,7 +33,7 @@ namespace da_game {
     }
 
     /*
-     */
+    */
     int GameCommands::fight(std::string actor) {
         Actor * opponent = get_actor(player->current_room->actors, stringToInt(actor));
         if (opponent != 0) {
@@ -81,11 +81,12 @@ namespace da_game {
         else {
             std::cout << "You lost and died!" << std::endl;
             delete &attacker;
+            std::cerr << "GameCommands::fight() &attacker deleted" << std::endl;
         }
     }
 
     /*
-     */
+    */
     int GameCommands::pick_up(std::string object) {
         try {
             Object * obj = get_object(player->current_room->objects, stringToInt(object));
@@ -102,7 +103,7 @@ namespace da_game {
         return 0;
     }
     /*
-     */
+    */
     int GameCommands::drop(std::string object) {
         try {
             Object * obj = get_object(player->objects, stringToInt(object));
@@ -118,7 +119,7 @@ namespace da_game {
         return 0;
     }
     /*
-     */
+    */
     int GameCommands::talk_to(std::string actor) {
         Actor * act = get_actor(player->current_room->actors, stringToInt(actor));
         if (act != 0) {
@@ -181,28 +182,40 @@ namespace da_game {
         }
 
         switch (words.size()) {
-        case 0:
-            std::cerr << "What do you want to use?" << std::endl;
-            return -1;
-        case 1:
-            break;
-        case 2: 
-        {
-            // Keys
-            Key * key = dynamic_cast<Key *>(objs[0]);
-            if (key != 0) {
-                Exit * exit = dynamic_cast<Exit *>(player->get_room()->get_exit(words[1]));
-                if (exit != 0) {
-                    exit->toggle_lock(key);
-                }
-            }
+            case 0:
+                std::cerr << "What do you want to use?" << std::endl;
+                return -1;
+            case 1:
+                {
+                    Weapon * weapon = dynamic_cast<Weapon *>(objs[0]);
+                    if (weapon != 0) {
+                        std::cout << "Changing weapon to :" << weapon->type() << std::endl;
+                        player->current_weapon = weapon;
+                    }
 
-            // Do the same for other type of objects here
-            // ...
-            break;
-        }
-        default:
-            return -1;
+                    Food * food = dynamic_cast<Food *>(objs[0]);
+                    if (food != 0) {
+                        player->eat(*food);
+                    }
+                    break;
+                }
+            case 2: 
+                {
+                    // Keys
+                    Key * key = dynamic_cast<Key *>(objs[0]);
+                    if (key != 0) {
+                        Exit * exit = dynamic_cast<Exit *>(player->get_room()->get_exit(words[1]));
+                        if (exit != 0) {
+                            exit->toggle_lock(key);
+                        }
+                    }
+
+                    // Do the same for other type of objects here
+                    // ...
+                    break;
+                }
+            default:
+                return -1;
         }
 
         return 0;
