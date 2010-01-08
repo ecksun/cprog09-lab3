@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" href="$classda__game_1_1Inside.html" title="da_game::Inside" alt="" coords="79,83,196,112"/>
+<area shape="rect" href="$classda__game_1_1Outside.html" title="da_game::Outside" alt="" coords="220,83,348,112"/>
+<area shape="rect" href="$classda__game_1_1EvilLair.html" title="da_game::EvilLair" alt="" coords="5,160,128,189"/>
+<area shape="rect" href="$classda__game_1_1Room.html" title="da_game::Room" alt="" coords="152,160,267,189"/>
+</map>

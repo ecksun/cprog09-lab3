@@ -1,0 +1,9 @@
+<map id="G" name="G">
+<area shape="rect" href="$classda__game_1_1Actor.html" title="da_game::Actor" alt="" coords="7,112,119,141"/>
+<area shape="rect" href="$classda__game_1_1Human.html" title="da_game::Human" alt="" coords="193,32,316,61"/>
+<area shape="rect" href="$classda__game_1_1Troll.html" title="da_game::Troll" alt="" coords="201,85,308,115"/>
+<area shape="rect" href="$classda__game_1_1Vampire.html" title="da_game::Vampire" alt="" coords="191,139,319,168"/>
+<area shape="rect" href="$classda__game_1_1VampireFactory.html" title="da_game::VampireFactory" alt="" coords="168,192,341,221"/>
+<area shape="rect" href="$classda__game_1_1Player.html" title="da_game::Player" alt="" coords="391,5,511,35"/>
+<area shape="rect" href="$classda__game_1_1Wizard.html" title="da_game::Wizard" alt="" coords="389,59,512,88"/>
+</map>
