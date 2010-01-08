@@ -1,5 +1,7 @@
 #include "player.h"
+#include "terminal.h"
 #include <iostream>
+#include <sstream>
 
 namespace da_game {
     Player::Player(Environment * room) : Human(false, 500){
@@ -16,8 +18,9 @@ namespace da_game {
     }
 
     void Player::run(){
-        std::cout << "-----------------" << std::endl;;
-        std::cout << "HP:\t" << hp << std::endl;
+        std::stringstream s;
+        s << "HP    " << hp;
+        Terminal::print(s.str()); 
     }
     std::string Player::get_type() const{
         return "DEMAN";

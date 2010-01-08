@@ -1,5 +1,6 @@
 #include "environment.h"
 #include <iostream>
+#include <sstream>
 
 namespace da_game {
 
@@ -14,24 +15,25 @@ namespace da_game {
     }
 
     std::string Environment::description() const {
-        std::cout << "Objects:" << std::endl;
+        std::stringstream s;
+        s << "Objects:" << std::endl;
         for (size_t i = 0; i < objects->size(); ++i) {
-            std::cout << objects->at(i)->id << "\t" << objects->at(i)->type() << std::endl;
+            s << objects->at(i)->id << "  " << objects->at(i)->type() << std::endl;
         }
         
-        std::cout << "Actors:" << std::endl;
+        s << "Actors:" << std::endl;
         for (size_t i = 0; i < actors->size(); ++i) {
-            std::cout << actors->at(i)->id << "\t" << actors->at(i)->get_type() << std::endl;
+            s << actors->at(i)->id << "  " << actors->at(i)->get_type() << std::endl;
         }
  
-        std::cout << "Exits:" << std::endl;
+        s << "Exits:" << std::endl;
         std::vector<std::string> exit_names = get_exit_names();
  
         for (size_t i = 0; i < exit_names.size(); ++i) {
-            std::cout << exit_names[i] << std::endl;
+            s << exit_names[i] << std::endl;
         }
  
-        return "";
+        return s.str();
     }
 
     /**

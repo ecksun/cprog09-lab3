@@ -24,7 +24,7 @@ namespace da_game {
         initialize();
         printStory();
         while (running && playerIsAlive() && !playerIsAlone()) {
-            std::cout << player->getRoom()->description() << std::endl;
+            Terminal::print(player->getRoom()->description());
             switch (terminal.run()) {
                 case 1:
                     running = false;
@@ -159,7 +159,7 @@ namespace da_game {
 
 
     void Game::printStory() {
-        std::cout << "When Anakin entered the Jedi-Tempel after beeing order to destroy the Jedi-order by Darth Sidious he suddenly saw a bright light surround him. When it dissapeared he had been transported to the most peculiar place, he heard sounds of vampires and smellt the smell of trolls, he must have been transported to dev random. As Anakin recently had been turned to the dark side he pushed his confusion from his mind and as the anger overtook him he realised he would not be satisfied until EVERYTHING was DEAD." << std::endl;
+        Terminal::print("When Anakin entered the Jedi-Tempel after beeing order to destroy the Jedi-order by Darth Sidious he suddenly saw a bright light surround him. When it dissapeared he had been transported to the most peculiar place, he heard sounds of vampires and smellt the smell of trolls, he must have been transported to dev random. As Anakin recently had been turned to the dark side he pushed his confusion from his mind and as the anger overtook him he realised he would not be satisfied until EVERYTHING was DEAD.");
     }
 }
 
