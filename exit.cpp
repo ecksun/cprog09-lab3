@@ -97,6 +97,7 @@ namespace da_game {
 
         if (key->get_key_code() == this->key_code) {
             this->locked = true;
+            std::cerr << "Locked exit" << std::endl;
         }
 
         return this->locked;
@@ -116,6 +117,7 @@ namespace da_game {
 
         if (key->get_key_code() == this->key_code) {
             this->locked = false;
+            std::cerr << "Unlocked exit" << std::endl;
         }
 
         return this->locked;
