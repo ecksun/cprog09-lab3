@@ -1,0 +1,128 @@
+\hypertarget{classda__game_1_1Actor}{
+\section{da\_\-game::Actor Class Reference}
+\label{classda__game_1_1Actor}\index{da\_\-game::Actor@{da\_\-game::Actor}}
+}
+Inheritance diagram for da\_\-game::Actor::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classda__game_1_1Actor}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classda__game_1_1Actor_a4e1570c1f5ee72efaf2f17309e491d7e}{
+virtual void {\bfseries run} ()=0}
+\label{classda__game_1_1Actor_a4e1570c1f5ee72efaf2f17309e491d7e}
+
+\item 
+\hypertarget{classda__game_1_1Actor_adecbdf29f9cb31095b6b32fdf99dc72a}{
+virtual std::string {\bfseries get\_\-type} () const =0}
+\label{classda__game_1_1Actor_adecbdf29f9cb31095b6b32fdf99dc72a}
+
+\item 
+\hypertarget{classda__game_1_1Actor_a53656847acff24bc249e507d31909b86}{
+virtual std::string {\bfseries get\_\-name} () const =0}
+\label{classda__game_1_1Actor_a53656847acff24bc249e507d31909b86}
+
+\item 
+virtual void \hyperlink{classda__game_1_1Actor_a6be7923ecbacabf779eda60f1f78bb72}{go} (std::string)
+\item 
+\hypertarget{classda__game_1_1Actor_ac00094ad57edec1218e2c40008e8177a}{
+virtual void {\bfseries pick\_\-up} (\hyperlink{classda__game_1_1Object}{Object} $\ast$)}
+\label{classda__game_1_1Actor_ac00094ad57edec1218e2c40008e8177a}
+
+\item 
+\hypertarget{classda__game_1_1Actor_a412f9a1ef89acffa948e92434179143d}{
+virtual bool {\bfseries drop} (\hyperlink{classda__game_1_1Object}{Object} $\ast$)}
+\label{classda__game_1_1Actor_a412f9a1ef89acffa948e92434179143d}
+
+\item 
+\hypertarget{classda__game_1_1Actor_a4106856b26e95ba76708da5b0e497cc7}{
+virtual void {\bfseries talk\_\-to} (\hyperlink{classda__game_1_1Actor}{Actor} \&)=0}
+\label{classda__game_1_1Actor_a4106856b26e95ba76708da5b0e497cc7}
+
+\item 
+\hypertarget{classda__game_1_1Actor_ae7194d1dba4026c8333f9bc12041ce84}{
+virtual \hyperlink{classda__game_1_1Weapon}{Weapon} $\ast$ {\bfseries weapon} ()}
+\label{classda__game_1_1Actor_ae7194d1dba4026c8333f9bc12041ce84}
+
+\item 
+\hypertarget{classda__game_1_1Actor_a54f63c010e082f31dc3cbdbbfb7238e1}{
+virtual void {\bfseries fight} (\hyperlink{classda__game_1_1Actor}{Actor} \&)}
+\label{classda__game_1_1Actor_a54f63c010e082f31dc3cbdbbfb7238e1}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classda__game_1_1Actor_aa469aa0319da09f045ec836890fabf6a}{
+const int {\bfseries id}}
+\label{classda__game_1_1Actor_aa469aa0319da09f045ec836890fabf6a}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classda__game_1_1Actor_ab5a5b98560a294c0feb2ccf5efb622ea}{
+int {\bfseries hp}}
+\label{classda__game_1_1Actor_ab5a5b98560a294c0feb2ccf5efb622ea}
+
+\item 
+\hypertarget{classda__game_1_1Actor_a134949b1c3dfe71dcadba6d6f9f0d13a}{
+int {\bfseries strength}}
+\label{classda__game_1_1Actor_a134949b1c3dfe71dcadba6d6f9f0d13a}
+
+\item 
+\hypertarget{classda__game_1_1Actor_ac5cc7b2e4c41e85f4222750065be7d80}{
+\hyperlink{classda__game_1_1Weapon}{Weapon} $\ast$ {\bfseries current\_\-weapon}}
+\label{classda__game_1_1Actor_ac5cc7b2e4c41e85f4222750065be7d80}
+
+\item 
+\hypertarget{classda__game_1_1Actor_a0c71533d0498330db5c211bc60147266}{
+\hyperlink{classda__game_1_1Environment}{Environment} $\ast$ {\bfseries current\_\-room}}
+\label{classda__game_1_1Actor_a0c71533d0498330db5c211bc60147266}
+
+\item 
+\hypertarget{classda__game_1_1Actor_ac01a6a22cde1b2e088cbddb81415e0b4}{
+std::vector$<$ \hyperlink{classda__game_1_1Object}{Object} $\ast$ $>$ $\ast$ {\bfseries objects}}
+\label{classda__game_1_1Actor_ac01a6a22cde1b2e088cbddb81415e0b4}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classda__game_1_1Actor_a667364acb9cf6d06df598eeee2675212}{
+static int {\bfseries instances}}
+\label{classda__game_1_1Actor_a667364acb9cf6d06df598eeee2675212}
+
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classda__game_1_1Actor_ad58162d418e52e78ef2d13bea08472d4}{
+class {\bfseries GameCommands}}
+\label{classda__game_1_1Actor_ad58162d418e52e78ef2d13bea08472d4}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classda__game_1_1Actor_a6be7923ecbacabf779eda60f1f78bb72}{
+\index{da\_\-game::Actor@{da\_\-game::Actor}!go@{go}}
+\index{go@{go}!da_game::Actor@{da\_\-game::Actor}}
+\subsubsection[{go}]{\setlength{\rightskip}{0pt plus 5cm}void da\_\-game::Actor::go (std::string {\em exit\_\-name})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{classda__game_1_1Actor_a6be7923ecbacabf779eda60f1f78bb72}
+Takes this actor to the environment that the given exit leads to. However the exit must not be locked.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em exit\_\-name}]The name of the exit to go through \end{DoxyParams}
+
+
+Reimplemented in \hyperlink{classda__game_1_1VampireFactory_ab8f8fffebef4af1a90d00a0f011b245b}{da\_\-game::VampireFactory}.
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+actor.h\item 
+actor.cpp\end{DoxyCompactItemize}

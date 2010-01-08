@@ -1,0 +1,162 @@
+\hypertarget{classda__game_1_1Exit}{
+\section{da\_\-game::Exit Class Reference}
+\label{classda__game_1_1Exit}\index{da\_\-game::Exit@{da\_\-game::Exit}}
+}
+
+
+{\ttfamily \#include $<$exit.h$>$}\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classda__game_1_1Exit_aaacef438c545390f01c5bf1c6072d43e}{Exit} ()
+\item 
+\hyperlink{classda__game_1_1Exit_ae6a2d9ab456888b9c5aa7e23539b2827}{Exit} (\hyperlink{classda__game_1_1Environment}{Environment} $\ast$, bool has\_\-lock=false, std::string code=\char`\"{}\char`\"{}, bool locked=false, std::string desc=\char`\"{}\char`\"{})
+\item 
+\hyperlink{classda__game_1_1Environment}{Environment} $\ast$ \hyperlink{classda__game_1_1Exit_ad4f4951039d5d7ca57fce2120e8390f4}{get\_\-outfall} () const 
+\item 
+bool \hyperlink{classda__game_1_1Exit_a469187cf61ab5285b71ac4fb103f10b1}{is\_\-locked} ()
+\item 
+void \hyperlink{classda__game_1_1Exit_ae4f9caa0ac7bf7e09ae1b32fd3f10719}{set\_\-outfall} (\hyperlink{classda__game_1_1Environment}{Environment} $\ast$)
+\item 
+void \hyperlink{classda__game_1_1Exit_aef620aed29423172be98f0e2bc12db13}{set\_\-description} (std::string)
+\item 
+void \hyperlink{classda__game_1_1Exit_ad79677f119a5d06a6d4a9185c710ab73}{set\_\-key\_\-code} (std::string)
+\item 
+void \hyperlink{classda__game_1_1Exit_a48bfb84dc93e05cb9f43d9d87726b8f5}{set\_\-locked} (bool)
+\item 
+bool \hyperlink{classda__game_1_1Exit_a252eecd61a98bec46db93185745deff5}{lock} (\hyperlink{classda__game_1_1Key}{Key} $\ast$)
+\item 
+bool \hyperlink{classda__game_1_1Exit_a4e770f624717bb87b2ebd372eb71a09c}{unlock} (\hyperlink{classda__game_1_1Key}{Key} $\ast$)
+\item 
+bool \hyperlink{classda__game_1_1Exit_a36b7a9235fcb00bf2be0b3fbc5817310}{toggle\_\-lock} (\hyperlink{classda__game_1_1Key}{Key} $\ast$)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Exits are used in environments to allow actors travelling between different environments. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classda__game_1_1Exit_aaacef438c545390f01c5bf1c6072d43e}{
+\index{da\_\-game::Exit@{da\_\-game::Exit}!Exit@{Exit}}
+\index{Exit@{Exit}!da_game::Exit@{da\_\-game::Exit}}
+\subsubsection[{Exit}]{\setlength{\rightskip}{0pt plus 5cm}da\_\-game::Exit::Exit ()}}
+\label{classda__game_1_1Exit_aaacef438c545390f01c5bf1c6072d43e}
+Creates a new exit with some default parameters, but without any outfall. This is probably useless unless an outfall is later set. \hypertarget{classda__game_1_1Exit_ae6a2d9ab456888b9c5aa7e23539b2827}{
+\index{da\_\-game::Exit@{da\_\-game::Exit}!Exit@{Exit}}
+\index{Exit@{Exit}!da_game::Exit@{da\_\-game::Exit}}
+\subsubsection[{Exit}]{\setlength{\rightskip}{0pt plus 5cm}da\_\-game::Exit::Exit ({\bf Environment} $\ast$ {\em outfall}, \/  bool {\em has\_\-lock} = {\ttfamily false}, \/  std::string {\em key\_\-code} = {\ttfamily \char`\"{}\char`\"{}}, \/  bool {\em locked} = {\ttfamily false}, \/  std::string {\em description} = {\ttfamily \char`\"{}\char`\"{}})\hspace{0.3cm}{\ttfamily  \mbox{[}explicit\mbox{]}}}}
+\label{classda__game_1_1Exit_ae6a2d9ab456888b9c5aa7e23539b2827}
+Constructs a new exit with the given outfall and description.
+
+Notice: All parameters except outfall are given default values if not specified.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em outfall}]Where this exit leads to \item[{\em has\_\-lock}]Whether or not this exit has a lock \item[{\em key\_\-code}]The key code for this exit \item[{\em locked}]The locked state of this exit \item[{\em description}]A short description of this exit \end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classda__game_1_1Exit_ad4f4951039d5d7ca57fce2120e8390f4}{
+\index{da\_\-game::Exit@{da\_\-game::Exit}!get\_\-outfall@{get\_\-outfall}}
+\index{get\_\-outfall@{get\_\-outfall}!da_game::Exit@{da\_\-game::Exit}}
+\subsubsection[{get\_\-outfall}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Environment} $\ast$ da\_\-game::Exit::get\_\-outfall () const}}
+\label{classda__game_1_1Exit_ad4f4951039d5d7ca57fce2120e8390f4}
+Returns the outfall of this exit, that is, where it leads to.
+
+\begin{DoxyReturn}{Returns}
+The outfall 
+\end{DoxyReturn}
+\hypertarget{classda__game_1_1Exit_a469187cf61ab5285b71ac4fb103f10b1}{
+\index{da\_\-game::Exit@{da\_\-game::Exit}!is\_\-locked@{is\_\-locked}}
+\index{is\_\-locked@{is\_\-locked}!da_game::Exit@{da\_\-game::Exit}}
+\subsubsection[{is\_\-locked}]{\setlength{\rightskip}{0pt plus 5cm}bool da\_\-game::Exit::is\_\-locked ()}}
+\label{classda__game_1_1Exit_a469187cf61ab5285b71ac4fb103f10b1}
+Returns whether or not this exit is locked.
+
+\begin{DoxyReturn}{Returns}
+true if locked, false otherwise 
+\end{DoxyReturn}
+\hypertarget{classda__game_1_1Exit_a252eecd61a98bec46db93185745deff5}{
+\index{da\_\-game::Exit@{da\_\-game::Exit}!lock@{lock}}
+\index{lock@{lock}!da_game::Exit@{da\_\-game::Exit}}
+\subsubsection[{lock}]{\setlength{\rightskip}{0pt plus 5cm}bool da\_\-game::Exit::lock ({\bf Key} $\ast$ {\em key})}}
+\label{classda__game_1_1Exit_a252eecd61a98bec46db93185745deff5}
+Locks this exit iff it has a lock and the key code from the specified key agrees to the one of this exit.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em key}]The key to lock with \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The new locked state of this exit 
+\end{DoxyReturn}
+\hypertarget{classda__game_1_1Exit_aef620aed29423172be98f0e2bc12db13}{
+\index{da\_\-game::Exit@{da\_\-game::Exit}!set\_\-description@{set\_\-description}}
+\index{set\_\-description@{set\_\-description}!da_game::Exit@{da\_\-game::Exit}}
+\subsubsection[{set\_\-description}]{\setlength{\rightskip}{0pt plus 5cm}void da\_\-game::Exit::set\_\-description (std::string {\em description})}}
+\label{classda__game_1_1Exit_aef620aed29423172be98f0e2bc12db13}
+Sets the description of this exit to the one specified.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em description}]The new description \end{DoxyParams}
+\hypertarget{classda__game_1_1Exit_ad79677f119a5d06a6d4a9185c710ab73}{
+\index{da\_\-game::Exit@{da\_\-game::Exit}!set\_\-key\_\-code@{set\_\-key\_\-code}}
+\index{set\_\-key\_\-code@{set\_\-key\_\-code}!da_game::Exit@{da\_\-game::Exit}}
+\subsubsection[{set\_\-key\_\-code}]{\setlength{\rightskip}{0pt plus 5cm}void da\_\-game::Exit::set\_\-key\_\-code (std::string {\em key\_\-code})}}
+\label{classda__game_1_1Exit_ad79677f119a5d06a6d4a9185c710ab73}
+Sets this exit's key code that is required in order to unlock it.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em key\_\-code}]The new key code \end{DoxyParams}
+\hypertarget{classda__game_1_1Exit_a48bfb84dc93e05cb9f43d9d87726b8f5}{
+\index{da\_\-game::Exit@{da\_\-game::Exit}!set\_\-locked@{set\_\-locked}}
+\index{set\_\-locked@{set\_\-locked}!da_game::Exit@{da\_\-game::Exit}}
+\subsubsection[{set\_\-locked}]{\setlength{\rightskip}{0pt plus 5cm}void da\_\-game::Exit::set\_\-locked (bool {\em locked})}}
+\label{classda__game_1_1Exit_a48bfb84dc93e05cb9f43d9d87726b8f5}
+Sets the locked state of this exit.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em locked}]Whether or not this exit is locked \end{DoxyParams}
+\hypertarget{classda__game_1_1Exit_ae4f9caa0ac7bf7e09ae1b32fd3f10719}{
+\index{da\_\-game::Exit@{da\_\-game::Exit}!set\_\-outfall@{set\_\-outfall}}
+\index{set\_\-outfall@{set\_\-outfall}!da_game::Exit@{da\_\-game::Exit}}
+\subsubsection[{set\_\-outfall}]{\setlength{\rightskip}{0pt plus 5cm}void da\_\-game::Exit::set\_\-outfall ({\bf Environment} $\ast$ {\em outfall})}}
+\label{classda__game_1_1Exit_ae4f9caa0ac7bf7e09ae1b32fd3f10719}
+Sets what environment this exit leads to.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em outfall}]The new environment this exit should lead to \end{DoxyParams}
+\hypertarget{classda__game_1_1Exit_a36b7a9235fcb00bf2be0b3fbc5817310}{
+\index{da\_\-game::Exit@{da\_\-game::Exit}!toggle\_\-lock@{toggle\_\-lock}}
+\index{toggle\_\-lock@{toggle\_\-lock}!da_game::Exit@{da\_\-game::Exit}}
+\subsubsection[{toggle\_\-lock}]{\setlength{\rightskip}{0pt plus 5cm}bool da\_\-game::Exit::toggle\_\-lock ({\bf Key} $\ast$ {\em key})}}
+\label{classda__game_1_1Exit_a36b7a9235fcb00bf2be0b3fbc5817310}
+Toggles the status of this exit's lock; if it is locked it gets unlocked and vice versa. However, this does only work if the correct key is provided.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em key}]The key to lock/unlock with \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The new locked status of this exit 
+\end{DoxyReturn}
+\hypertarget{classda__game_1_1Exit_a4e770f624717bb87b2ebd372eb71a09c}{
+\index{da\_\-game::Exit@{da\_\-game::Exit}!unlock@{unlock}}
+\index{unlock@{unlock}!da_game::Exit@{da\_\-game::Exit}}
+\subsubsection[{unlock}]{\setlength{\rightskip}{0pt plus 5cm}bool da\_\-game::Exit::unlock ({\bf Key} $\ast$ {\em key})}}
+\label{classda__game_1_1Exit_a4e770f624717bb87b2ebd372eb71a09c}
+Unlocks this exit iff this exit has a lock and the key code of the specified key equals the one of this exit.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em key}]The key to unlock with \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The new locked state of this exit 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+exit.h\item 
+exit.cpp\end{DoxyCompactItemize}

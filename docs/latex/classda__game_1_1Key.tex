@@ -1,0 +1,124 @@
+\hypertarget{classda__game_1_1Key}{
+\section{da\_\-game::Key Class Reference}
+\label{classda__game_1_1Key}\index{da\_\-game::Key@{da\_\-game::Key}}
+}
+
+
+{\ttfamily \#include $<$key.h$>$}Inheritance diagram for da\_\-game::Key::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classda__game_1_1Key}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classda__game_1_1Key_a15fcc235eb6d5c76e574fd02ab9bad4b}{Key} (std::string)
+\item 
+virtual int \hyperlink{classda__game_1_1Key_a3a55f412166c6da8d3919978edb214e5}{weight} () const 
+\item 
+virtual int \hyperlink{classda__game_1_1Key_ac21b171678f19465b41796007896dc84}{volume} () const 
+\item 
+virtual int \hyperlink{classda__game_1_1Key_af9752b65636483258a50e7ae553d131a}{price} () const 
+\item 
+virtual std::string \hyperlink{classda__game_1_1Key_adaecf6030e14cd4da5142e8c760c5741}{type} () const 
+\item 
+virtual bool \hyperlink{classda__game_1_1Key_af3b5c0256dfcfc935e898d27dd47ffeb}{operator==} (\hyperlink{classda__game_1_1Key}{Key} \&) const 
+\item 
+std::string \hyperlink{classda__game_1_1Key_a1d96d265ce05db8566dfd62615de61c6}{get\_\-key\_\-code} () const 
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A key may be used for locking and unlocking doors. It utilises a special keycode which has to agree with the corresponding code for the door. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classda__game_1_1Key_a15fcc235eb6d5c76e574fd02ab9bad4b}{
+\index{da\_\-game::Key@{da\_\-game::Key}!Key@{Key}}
+\index{Key@{Key}!da_game::Key@{da\_\-game::Key}}
+\subsubsection[{Key}]{\setlength{\rightskip}{0pt plus 5cm}da\_\-game::Key::Key (std::string {\em key\_\-code})}}
+\label{classda__game_1_1Key_a15fcc235eb6d5c76e574fd02ab9bad4b}
+Creates a new key with the given key code.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em key\_\-code}]The key code for this key \end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classda__game_1_1Key_a1d96d265ce05db8566dfd62615de61c6}{
+\index{da\_\-game::Key@{da\_\-game::Key}!get\_\-key\_\-code@{get\_\-key\_\-code}}
+\index{get\_\-key\_\-code@{get\_\-key\_\-code}!da_game::Key@{da\_\-game::Key}}
+\subsubsection[{get\_\-key\_\-code}]{\setlength{\rightskip}{0pt plus 5cm}std::string da\_\-game::Key::get\_\-key\_\-code () const}}
+\label{classda__game_1_1Key_a1d96d265ce05db8566dfd62615de61c6}
+Returns the key code of this key.
+
+\begin{DoxyReturn}{Returns}
+the key code 
+\end{DoxyReturn}
+\hypertarget{classda__game_1_1Key_af3b5c0256dfcfc935e898d27dd47ffeb}{
+\index{da\_\-game::Key@{da\_\-game::Key}!operator==@{operator==}}
+\index{operator==@{operator==}!da_game::Key@{da\_\-game::Key}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool da\_\-game::Key::operator== ({\bf Key} \& {\em key}) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{classda__game_1_1Key_af3b5c0256dfcfc935e898d27dd47ffeb}
+Compares the specified object to this key and returns true if they are considered equal. In this case they are considered equal if and only if the specified object is also a key and all of its parameters coincide with the ones of this key.
+
+\begin{DoxyReturn}{Returns}
+true iff the object is identically equal to this key 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classda__game_1_1Object}{da\_\-game::Object}.\hypertarget{classda__game_1_1Key_af9752b65636483258a50e7ae553d131a}{
+\index{da\_\-game::Key@{da\_\-game::Key}!price@{price}}
+\index{price@{price}!da_game::Key@{da\_\-game::Key}}
+\subsubsection[{price}]{\setlength{\rightskip}{0pt plus 5cm}int da\_\-game::Key::price () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{classda__game_1_1Key_af9752b65636483258a50e7ae553d131a}
+Returns the price of this key.
+
+\begin{DoxyReturn}{Returns}
+the price 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classda__game_1_1Object}{da\_\-game::Object}.\hypertarget{classda__game_1_1Key_adaecf6030e14cd4da5142e8c760c5741}{
+\index{da\_\-game::Key@{da\_\-game::Key}!type@{type}}
+\index{type@{type}!da_game::Key@{da\_\-game::Key}}
+\subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}std::string da\_\-game::Key::type () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{classda__game_1_1Key_adaecf6030e14cd4da5142e8c760c5741}
+Returns the type of this key.
+
+\begin{DoxyReturn}{Returns}
+the type 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classda__game_1_1Object}{da\_\-game::Object}.\hypertarget{classda__game_1_1Key_ac21b171678f19465b41796007896dc84}{
+\index{da\_\-game::Key@{da\_\-game::Key}!volume@{volume}}
+\index{volume@{volume}!da_game::Key@{da\_\-game::Key}}
+\subsubsection[{volume}]{\setlength{\rightskip}{0pt plus 5cm}int da\_\-game::Key::volume () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{classda__game_1_1Key_ac21b171678f19465b41796007896dc84}
+Returns the volume of this key.
+
+\begin{DoxyReturn}{Returns}
+the volume 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classda__game_1_1Object}{da\_\-game::Object}.\hypertarget{classda__game_1_1Key_a3a55f412166c6da8d3919978edb214e5}{
+\index{da\_\-game::Key@{da\_\-game::Key}!weight@{weight}}
+\index{weight@{weight}!da_game::Key@{da\_\-game::Key}}
+\subsubsection[{weight}]{\setlength{\rightskip}{0pt plus 5cm}int da\_\-game::Key::weight () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{classda__game_1_1Key_a3a55f412166c6da8d3919978edb214e5}
+Returns the weight of this key.
+
+\begin{DoxyReturn}{Returns}
+the weight 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classda__game_1_1Object}{da\_\-game::Object}.
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+key.h\item 
+key.cpp\end{DoxyCompactItemize}
