@@ -44,6 +44,7 @@ namespace da_game {
 
     Game::~Game() {
         actors->clear();
+        delete commands;
     }
 
     bool Game::playerIsAlive() {
@@ -78,7 +79,7 @@ namespace da_game {
         actors->push_back(vamp_fac);
         
         // exits
-        Exit * e1 = new Exit(r1);
+        Exit * e1 = new Exit(r1, true, "e1", true);
         Exit * e2 = new Exit(r2);
         Exit * eevil = new Exit(evil);
 

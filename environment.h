@@ -39,8 +39,6 @@ namespace da_game {
 
             virtual std::vector<std::string> get_exit_names() const;
 
-            virtual Environment * neighbor(std::string) const;
-            
             virtual void enter(Actor &);
 
             virtual void leave(Actor &);

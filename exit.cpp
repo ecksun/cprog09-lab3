@@ -19,13 +19,12 @@ namespace da_game {
      * if not specified.
      *
      * @param outfall Where this exit leads to
-     * @param description A short description of this exit
      * @param has_lock Whether or not this exit has a lock
      * @param key_code The key code for this exit
      * @param locked The locked state of this exit
+     * @param description A short description of this exit
      */
-    Exit::Exit(Environment * outfall, std::string description, 
-            bool has_lock, std::string key_code, bool locked) 
+    Exit::Exit(Environment * outfall, bool has_lock, std::string key_code, bool locked, std::string description) 
         : outfall(outfall), description(description), has_lock(has_lock), key_code(key_code), locked(locked) {
     }
 

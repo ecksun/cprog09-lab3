@@ -26,20 +26,6 @@ namespace da_game {
         return "Klas-Göran";
     }
 
-    void Player::go(std::string direction) { 
-        Environment * new_room = current_room->neighbor(direction);
-        if (new_room == 0) {
-            std::cout << "No such room" << std::endl;
-
-        }
-        else {
-            current_room->leave(*this);
-            current_room = new_room;
-            current_room->enter(*this);
-        }
-        // std::cout << in_room->description() << std::endl;
-    }
-
     void Player::fight(Actor &){}
 
     void Player::talk_to(Actor & actor){

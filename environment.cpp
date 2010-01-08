@@ -84,35 +84,6 @@ namespace da_game {
     }
 
     /**
-     * Returns the environment that the specified exit name leads to.
-     *
-     * NOTE: Changed from a reference to a pointer, by xun, in order
-     * to be able to return 0 if there is no neighbor in the 
-     * specified direction.
-     *
-     * @param exit_name The name of the exit
-     * @return The environment on the other side of the given exit
-     */
-    Environment * Environment::neighbor(std::string exit_name) const {
-        std::map<std::string, Exit *>::const_iterator it = exits.find(exit_name);
- 
-        if (it != exits.end()) {
-            if (it->second != 0) {
-                return it->second->get_outfall();
-            }
-            else {
-                std::cout << "That exit leads nowhere" << std::endl;
-                return 0;
-            }
-        }
-        else {
-            std::cout << "No such exit" << std::endl;
-            return 0;
-            // Throw exception or something, needs a return
-        }
-    }
-
-    /**
      * Lets the specified actor enter this environment.
      *
      * @param actor The actor to enter

@@ -55,17 +55,37 @@ namespace da_game {
         return false;
     }
 
-    void Actor::go(std::string s) {
-        Environment * new_room = current_room->neighbor(s);
+    /**
+     * Takes this actor to the environment that the given exit leads
+     * to. However the exit must not be locked.
+     *
+     * @param exit_name The name of the exit to go through
+     */
+    void Actor::go(std::string exit_name) {
+        Exit * exit = current_room->get_exit(exit_name);
+
+        if (exit == 0) {
+            std::cerr << "No such exit: " << exit_name << std::endl;
+            return;
+        }
+
+        if (exit->is_locked()) {
+            std::cerr << "Exit is locked -- unlock it in order to get through" << std::endl;
+            return;
+        }
+
+        Environment * new_room = exit->get_outfall();
+
         if (new_room == 0) {
-            std::cerr << "Couldnt go to room " << s  << std::endl;
+            std::cerr << "That exit leads nowhere..." << std::endl;
+            return;
         }
-        else {
-            current_room->leave(*this);
-            current_room = new_room;
-            current_room->enter(*this);
-            std::cerr << get_name() << " entered " << s << std::endl;
-        }
+
+        // if everything is in order, let the actor follow the exit
+        current_room->leave(*this);
+        current_room = new_room;
+        current_room->enter(*this);
+        std::cerr << get_name() << " entered " << exit_name << std::endl;
     }
 
     void Actor::fight(Actor & opponent) {
