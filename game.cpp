@@ -119,15 +119,21 @@ namespace da_game {
     }
 
     void Game::run() {
-        std::vector<Actor *>::iterator it;
+        // std::vector<Actor *>::iterator it;
 
-        int i = 0;
-        for (it = actors->begin(); it != actors->end(); ++it) {
-            std::cout << "Running" << std::endl;
-            std::cout << ++i << "\t" << (*it)->get_name() << " (" << (*it)->get_type() << ")" << std::endl;
-            (*it)->run();
-            std::cout << "Done running" << std::endl;
+        for (unsigned int i = 0; i < actors->size(); ++i) {
+            actors->at(i)->run();
         }
+        // for (it = actors->begin(); it != actors->end(); ++it) {
+            // if (*it == NULL) {
+                // actors->erase(it);
+            // }
+            // std::cout << "Running" << std::endl;
+            // std::cout << "adress:" << *it << std::endl;
+            // std::cout << ++i << "\t" << (*it)->get_name() << " (" << (*it)->get_type() << ")" << std::endl;
+            // (*it)->run();
+            // std::cout << "Done running" << std::endl;
+        // }
     }
 
     void Game::add_actor(Actor & actor) {

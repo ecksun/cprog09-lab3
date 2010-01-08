@@ -48,6 +48,7 @@ namespace da_game {
 
     void GameCommands::fight(Actor & attacker, Actor & defender) {
         std::cout << "Fight:\t" << attacker.get_name() << " vs " << defender.get_name() << std::endl;
+        std::stringstream s;
         for (unsigned int round = 0; attacker.hp > 0 && defender.hp > 0; round++) {
             if ((round & 1) == 0) {
                 // Even, attackers turn
@@ -55,10 +56,10 @@ namespace da_game {
                 if (std::rand()/RAND_MAX <= attacker.weapon()->hit_ratio()) {
                     int hit = attacker.weapon()->attack_strength()*attacker.strength;
                     defender.hp -= hit;
-                    std::cout << attacker.get_name() << " hit " << defender.get_name() << " and he lost " << hit << "hp" << std::endl;
+                    s << attacker.get_name() << " hit " << defender.get_name() << " and he lost " << hit << "hp" << std::endl;
                 }
                 else {
-                    std::cout << "You missed!" << std::endl;
+                    s << "You missed!" << std::endl;
                 }
             }
             else {
@@ -66,23 +67,23 @@ namespace da_game {
                 if (std::rand()/RAND_MAX <= defender.weapon()->hit_ratio()) {
                     int hit = defender.weapon()->attack_strength()*defender.strength;
                     attacker.hp -= hit;
-                    std::cout << defender.get_name() << " hit " << attacker.get_name() << " and he lost " << hit << "hp" << std::endl;
+                    s << defender.get_name() << " hit " << attacker.get_name() << " and he lost " << hit << "hp" << std::endl;
                 }
                 else {
-                    std::cout << "Defender missed!" << std::endl;
+                    s << "Defender missed!" << std::endl;
                 }
 
             }
         }
         if (defender.hp <= 0) {
-            std::cout << "Attacker won!" << std::endl;
+            s << "Attacker won!" << std::endl;
             delete &defender;
         }
         else {
-            std::cout << "You lost and died!" << std::endl;
+            s << "You lost and died!" << std::endl;
             delete &attacker;
-            std::cerr << "GameCommands::fight() &attacker deleted" << std::endl;
         }
+        Terminal::print(s.str());
     }
 
     /*
