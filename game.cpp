@@ -67,7 +67,7 @@ namespace da_game {
         // exits
         Exit * e1 = new Exit(r1, true, "e1", true);
         Exit * e2 = new Exit(r2);
-        Exit * eevil = new Exit(evil);
+        Exit * eevil = new Exit(evil, true, "evil", true);
 
         r1->add_exit("recurse", e1);
         r1->add_exit("west", e2);
@@ -86,11 +86,12 @@ namespace da_game {
         Object * b3 = new Bag();
         Object * b4 = new Food(47);
         Object * k1 = new Key("e1");
-        Object * k2 = new Key("e2");
+        Object * k2 = new Key("evil");
 
         r1->drop(b1);
         r1->drop(b2);
         r1->drop(b3);
+        r1->drop(k2);
 
         r2->drop(b4);
 
