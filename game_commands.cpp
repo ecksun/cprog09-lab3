@@ -50,6 +50,8 @@ namespace da_game {
         std::cout << "Fight:\t" << attacker.get_name() << " vs " << defender.get_name() << std::endl;
         std::stringstream s;
         for (unsigned int round = 0; attacker.hp > 0 && defender.hp > 0; round++) {
+            s << "Attacker HP:   " << attacker.hp << std::endl;
+            s << "Defender HP:   " << defender.hp << std::endl;
             if ((round & 1) == 0) {
                 // Even, attackers turn
 
