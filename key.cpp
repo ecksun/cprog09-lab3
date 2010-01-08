@@ -44,7 +44,7 @@ namespace da_game {
      * @return the type
      */
     std::string Key::type() const {
-        return "Key";
+        return "Key (" + key_code + ")";
     }
 
     /**

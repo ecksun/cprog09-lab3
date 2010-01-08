@@ -40,7 +40,7 @@ namespace da_game {
         actor.talk_to(*this);
     }
 
-    Environment * Player::getRoom() const {
+    Environment * Player::get_room() const {
         return current_room;
     }
 }

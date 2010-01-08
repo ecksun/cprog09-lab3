@@ -16,7 +16,7 @@ namespace da_game {
             virtual std::string get_name() const;
             virtual void fight(Actor &);
             virtual void talk_to(Actor &);
-            virtual Environment * getRoom() const;
+            virtual Environment * get_room() const;
     };
 }
 

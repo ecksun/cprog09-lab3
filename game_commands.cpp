@@ -1,7 +1,9 @@
+#include <algorithm>
+#include <cstdlib>
 #include <iostream>
+#include <iterator>
 #include <sstream>
 #include <string>
-#include <cstdlib>
 
 #include "game_commands.h"
 
@@ -18,7 +20,9 @@ namespace da_game {
         Terminal::add_function(std::string("talk_to"), &GameCommands::talk_to);
         Terminal::add_function(std::string("help"), &GameCommands::help);
         Terminal::add_function(std::string("inventory"), &GameCommands::inventory);
+        Terminal::add_function(std::string("use"), &GameCommands::use);
     }
+
     int GameCommands::exit(std::string) {
         return 1;
     }
@@ -41,6 +45,7 @@ namespace da_game {
         }
         return 0;
     }
+
     void GameCommands::fight(Actor & attacker, Actor & defender) {
         std::cout << "Fight:\t" << attacker.get_name() << " vs " << defender.get_name() << std::endl;
         for (unsigned int round = 0; attacker.hp > 0 && defender.hp > 0; round++) {
@@ -135,13 +140,71 @@ namespace da_game {
 
         return 0;
     }
-    
 
     int GameCommands::inventory(std::string) {
         std::vector<Object *>::iterator it = player->objects->begin();
         for (; it != player->objects->end(); ++it) {
             std::cout << (*it)->id << "\t" << (*it)->type() << std::endl;
         }
+        return 0;
+    }
+
+    /**
+     * Lets the player use objects, either the objects alone or in
+     * combination with other things such as keys on exits.
+     *
+     * @param arg The specified argument
+     * @return 0 if successfully used
+     */
+    // TODO: make sure the item being used is either in invetory or in the same room
+    int GameCommands::use(std::string arg) {
+        if (arg == "use") {
+            arg = ""; // ugly hack for the words size to be 0
+        }
+
+        // split arg string on whitespace into words vector
+        std::istringstream iss(arg);
+        std::vector<std::string> words;
+        copy(std::istream_iterator<std::string>(iss),
+                std::istream_iterator<std::string>(),
+                std::back_inserter<std::vector<std::string> >(words));
+
+        // get objects from arg words, if possible
+        int id;
+        std::vector<Object *> objs;
+        for (std::vector<std::string>::iterator it = words.begin(); it != words.end(); ++it) {
+            std::istringstream stream(*it);
+            if (stream >> id) {
+                objs.push_back(get_object(player->objects, id));
+                // please notice that indices might get out of sync here
+            }
+        }
+
+        switch (words.size()) {
+        case 0:
+            std::cerr << "What do you want to use?" << std::endl;
+            return -1;
+        case 1:
+            break;
+        case 2: 
+        {
+            // Keys
+            Key * key = dynamic_cast<Key *>(objs[0]);
+            if (key != 0) {
+                Exit * exit = dynamic_cast<Exit *>(player->get_room()->get_exit(words[1]));
+                if (exit != 0) {
+                    exit->toggle_lock(key);
+                }
+            }
+
+            // Do the same for other type of objects here
+            // ...
+            break;
+        }
+        default:
+            return -1;
+        }
+
         return 0;
     }
 

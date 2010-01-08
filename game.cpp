@@ -49,19 +49,6 @@ namespace da_game {
 
     bool Game::playerIsAlive() {
         return player != NULL;
-        // std::cout << "Game::playerIsAlive()";
-        // Player * pl = dynamic_cast<Player *>(player);
-        // std::cout << (pl != NULL) << std::endl;
-        // return (pl != NULL);
-        // std::vector<Actor *>::iterator it = actors->begin();
-        // 
-        // for (; it != actors->end(); ++it) {
-        // Player * pl = dynamic_cast<Player *>(*it);
-        // if (pl != NULL) {
-        // return true;
-        // }
-        // }
-        // return false;
     }
 
     /*
@@ -99,16 +86,19 @@ namespace da_game {
         Object * b2 = new Bag();
         Object * b3 = new Bag();
         Object * b4 = new Food(47);
+        Object * k1 = new Key("e1");
+        Object * k2 = new Key("e2");
+
         r1->drop(b1);
         r1->drop(b2);
         r1->drop(b3);
 
         r2->drop(b4);
 
-
         Object * light_saber = new LightSaber(1000,0.95);
         evil->drop(light_saber);
-
+        evil->drop(k1);
+        evil->drop(k2);
 
 
         // Create the player
