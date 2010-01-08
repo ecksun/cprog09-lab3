@@ -24,7 +24,7 @@ namespace da_game {
         initialize();
         printStory();
         while (running && playerIsAlive() && !playerIsAlone()) {
-            Terminal::print(player->getRoom()->description());
+            Terminal::print(player->get_room()->description());
             switch (terminal.run()) {
                 case 1:
                     running = false;
