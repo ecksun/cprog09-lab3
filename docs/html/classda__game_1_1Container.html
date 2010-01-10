@@ -68,10 +68,16 @@ Collaboration diagram for da_game::Container:</div>
 virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><b>get_hold_weight</b> () const =0</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a884311719474a432f186dfc803e15873"></a><!-- doxytag: member="da_game::Container::get_hold_volume" ref="a884311719474a432f186dfc803e15873" args="() const =0" -->
 virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><b>get_hold_volume</b> () const =0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a32807c145257173e5bb2948c8a7d5207"></a><!-- doxytag: member="da_game::Container::get_weight_left" ref="a32807c145257173e5bb2948c8a7d5207" args="() const " -->
+virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><b>get_weight_left</b> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1fb472908ed21d8268caa65374e195b4"></a><!-- doxytag: member="da_game::Container::get_volume_left" ref="a1fb472908ed21d8268caa65374e195b4" args="() const " -->
+virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><b>get_volume_left</b> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a37fab4911cc993db3f4e26c4e6e95eba"></a><!-- doxytag: member="da_game::Container::add" ref="a37fab4911cc993db3f4e26c4e6e95eba" args="(Object &amp;)=0" -->
 virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>add</b> (<a class="el" href="classda__game_1_1Object.html">Object</a> &amp;)=0</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8bb5c906abd5f6df854e6eab8831305e"></a><!-- doxytag: member="da_game::Container::remove" ref="a8bb5c906abd5f6df854e6eab8831305e" args="(Object &amp;)=0" -->
 virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>remove</b> (<a class="el" href="classda__game_1_1Object.html">Object</a> &amp;)=0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a77eaf77a8ae8f4ddc16067102379f357"></a><!-- doxytag: member="da_game::Container::get_objects" ref="a77eaf77a8ae8f4ddc16067102379f357" args="()" -->
+virtual std::vector&lt; <a class="el" href="classda__game_1_1Object.html">Object</a> * &gt; *&nbsp;</td><td class="memItemRight" valign="bottom"><b>get_objects</b> ()</td></tr>
 <tr><td colspan="2"><h2>Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae00fef93faf3dd5a8535845d0e7f63a0"></a><!-- doxytag: member="da_game::Container::hold_weight" ref="ae00fef93faf3dd5a8535845d0e7f63a0" args="" -->
 int&nbsp;</td><td class="memItemRight" valign="bottom"><b>hold_weight</b></td></tr>
@@ -80,8 +86,9 @@ int&nbsp;</td><td class="memItemRight" valign="bottom"><b>hold_volume</b></td></
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac06cad31bb04667d3fb88c2311422373"></a><!-- doxytag: member="da_game::Container::objects" ref="ac06cad31bb04667d3fb88c2311422373" args="" -->
 std::vector&lt; <a class="el" href="classda__game_1_1Object.html">Object</a> * &gt; *&nbsp;</td><td class="memItemRight" valign="bottom"><b>objects</b></td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="container_8h_source.html">container.h</a></li>
+<li>container.cpp</li>
 </ul>
 </div>
 <!--- window showing the filter options -->
@@ -98,7 +105,7 @@ std::vector&lt; <a class="el" href="classda__game_1_1Object.html">Object</a> * &
 </iframe>
 </div>
 
-<hr size="1"/><address style="text-align: right;"><small>Generated on Fri Jan 8 03:23:17 2010 for xj-cprog09-lab3 by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Fri Jan 8 11:30:20 2010 for xj-cprog09-lab3 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

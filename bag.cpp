@@ -7,8 +7,8 @@ namespace da_game {
 
     Bag::Bag() {
         objects = new std::vector<Object *>();
-        hold_weight = std::rand()%150;
-        hold_volume = std::rand()%50;
+        hold_weight = std::rand()%150+100;
+        hold_volume = std::rand()%50+100;
     }
 
     Bag::~Bag() {
@@ -60,16 +60,14 @@ namespace da_game {
 
     bool Bag::remove(Object & object) {
         std::vector<Object *>::iterator it;
-        bool found;
 
         for (it = objects->begin(); it != objects->end(); it++) {
             if ((*it) == &object) {
                 objects->erase(it);
-                found = true;
+                return true;
             }
         }
-
-        return found;
+        return false;
     }
 
     void Bag::save(std::ofstream & save) {
