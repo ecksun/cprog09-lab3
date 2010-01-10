@@ -181,9 +181,13 @@ namespace da_game {
         std::ifstream file;
         file.open("saveFile");
         std::string line;
+    
+        std::map<int, Environment *> environments;
 
         while (std::getline(file, line)) {
             std::string obj = line.substr(0, 3);
+            std::string id = line.substr(0, line.find_first_of(':'));
+            id = id.substr(3);
 
             if (obj == "ACT") {
                 Actor * actor = Actor::load(line);
@@ -191,6 +195,7 @@ namespace da_game {
             }
             else if (obj == "ENV") {
                 Environment * environment = Environment::load(line);
+
                 add_environment(*environment);
             }
             else if (obj == "OBJ") {
