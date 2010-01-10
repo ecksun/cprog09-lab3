@@ -28,4 +28,9 @@ namespace da_game {
         return "Mat";
     }
 
+    void Food::save(std::ofstream & save) {
+        save << "OBJ" << id << ":" << type(); 
+        save << ":" << weight() << "kg," << volume() << "liter," << price() << "kr," << food_left << "food" << std::endl;
+    }
+
 }

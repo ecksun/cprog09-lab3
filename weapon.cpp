@@ -26,4 +26,9 @@ namespace da_game {
     float Weapon::hit_ratio() const {
         return ratio;
     }
+    void Weapon::save(std::ofstream & save) {
+        save << "OBJ" << id << ":" << type(); 
+        save << ":" << weight() << "kg," << volume() << "liter," << price() << "kr" << std::endl;
+
+    }
 }

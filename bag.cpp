@@ -1,6 +1,7 @@
 #include "bag.h"
 #include <iostream>
 #include <cstdlib>
+#include <fstream>
 
 namespace da_game {
 
@@ -71,4 +72,18 @@ namespace da_game {
         return found;
     }
 
+    void Bag::save(std::ofstream & save) {
+        save << "OBJ" << id << ":" << type() << ":"; 
+        bool first = true;
+
+        for (std::vector<Object *>::iterator it = objects->begin(); it != objects->end(); it++) {
+            if (first)
+                first = false;
+            else 
+                save << ",";
+            save << "OBJ" << (*it)->id;
+        }
+        save << ":" << weight() << "kg," << volume() << "liter," << price() << "kr" << std::endl;
+
+    }
 }

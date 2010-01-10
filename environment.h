@@ -23,6 +23,8 @@ namespace da_game {
 
             ~Environment();
 
+            const int id;
+
             /*
              * Any implementation of this function should return a
              * description of what the environment contains, what 
@@ -50,7 +52,10 @@ namespace da_game {
             virtual std::vector<Object *> get_objects();
 
             virtual std::vector<Actor *> get_actors();
+
+            virtual void save(std::ofstream &);
         protected:
+            static int instances;
             std::vector<Object *> * objects;
             std::vector<Actor *> * actors;
             std::map<std::string, Environment *> neighbors;

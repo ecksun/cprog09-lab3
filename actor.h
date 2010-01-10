@@ -15,6 +15,7 @@ namespace da_game {
     
     class Actor {
         friend class GameCommands;
+        friend class Game;
         public:
             const int id;
             Actor();
@@ -29,6 +30,7 @@ namespace da_game {
             virtual void talk_to(Actor &) = 0;
             virtual Weapon * weapon();
             virtual void fight(Actor &);
+            virtual void save(std::ofstream &);
         protected:
             static int instances;
 

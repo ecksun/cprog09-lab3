@@ -14,6 +14,7 @@ namespace da_game {
             virtual int volume() const;
             virtual int price() const;
             virtual std::string type() const;
+            virtual void save(std::ofstream &);
 
         protected:
             int food_left;

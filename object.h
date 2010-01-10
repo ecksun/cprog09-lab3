@@ -2,6 +2,7 @@
 #define DA_GAME_OBJECT_H
 
 #include <string>
+#include <fstream>
 
 namespace da_game {
 
@@ -17,6 +18,7 @@ namespace da_game {
             virtual std::string type() const = 0;
 
             virtual bool operator==(Object &) const;
+            virtual void save(std::ofstream &) = 0;
 
         protected:
             static int instances;

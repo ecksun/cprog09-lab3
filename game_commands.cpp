@@ -21,10 +21,20 @@ namespace da_game {
         Terminal::add_function(std::string("help"), &GameCommands::help);
         Terminal::add_function(std::string("inventory"), &GameCommands::inventory);
         Terminal::add_function(std::string("use"), &GameCommands::use);
+        Terminal::add_function(std::string("save"), &GameCommands::save);
+        Terminal::add_function(std::string("load"), &GameCommands::load);
     }
 
     int GameCommands::exit(std::string) {
         return 1;
+    }
+
+    int GameCommands::save(std::string) {
+        return 2;
+    }
+
+    int GameCommands::load(std::string) {
+        return 3;
     }
 
     int GameCommands::go(std::string direction) {

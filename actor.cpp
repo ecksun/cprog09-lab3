@@ -24,16 +24,23 @@ namespace da_game {
             delete current_weapon;
         }
 
+        std::cout << "Droping everything Im carrying" << std::endl;
         // science the actor exists no more we drop everything in the current room
         std::vector<Object *>::iterator it;
         for (it = container->get_objects()->begin(); it != container->get_objects()->end(); ++it) {
             current_room->drop(*it);
         }
+        std::cout << "clearing objects" << std::endl;
+        container->get_objects()->clear();
+        std::cout << "~Actor Drop container" << std::endl;
 
         current_room->drop(container);
         
+        std::cout << "Leaving" << std::endl;
         current_room->leave(*this);
+        std::cout << "remove_actor" << std::endl;
         Game::remove_actor(*this);
+        std::cout << "~Actor done" << std::endl;
     }
 
     bool Actor::pick_up(Object * object){
@@ -88,11 +95,12 @@ namespace da_game {
         return current_weapon;
     }
 
-    std::vector<Object *> Environment::get_objects() {
-        return *objects;
-    }
+    void Actor::save(std::ofstream & save) {
+        save << "ACT" << id << ":" << get_type() << ":" << get_name() << ":";
+        save << hp << "hp," << strength << "strength" << ":";
+        save << "OBJ" <<container->id;
 
-    std::vector<Actor *> Environment::get_actors() {
-        return *actors;
+        save << std::endl;
+        container->save(save);
     }
 }

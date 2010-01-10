@@ -16,6 +16,7 @@ namespace da_game {
             void initialize();
             static void remove_actor(Actor &);
             static void add_actor(Actor &);
+            static void add_environment(Environment &);
 
         private:
             static std::vector<Actor *> * actors;
@@ -24,6 +25,9 @@ namespace da_game {
             void printStory();
             bool playerIsAlive();
             bool playerIsAlone();
+            void save();
+            void load();
+            void clear_game();
             Terminal terminal;
             GameCommands * commands;
             static Player * player;

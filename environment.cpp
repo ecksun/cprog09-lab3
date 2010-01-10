@@ -1,17 +1,31 @@
 #include "environment.h"
 #include <iostream>
 #include <sstream>
+#include "game.h"
 
 namespace da_game {
+    int Environment::instances;
 
-    Environment::Environment() {
+    Environment::Environment() :id (instances) {
+        instances++;
         objects = new std::vector<Object *>;
         actors = new std::vector<Actor *>;
+        Game::add_environment(*this);
     }
 
     Environment::~Environment() {
-        delete objects;
+        // when an environment is destroyed everything in it need to be deleted
+        
+        
+        actors->clear();
+        
         delete actors;
+
+        objects->clear();
+
+
+        delete objects;
+        std::cout << "~Env done" << std::endl;
     }
 
     std::string Environment::description() const {
@@ -136,10 +150,61 @@ namespace da_game {
      * @param object The object that is being dropped
      */ 
     void Environment::drop(Object * object) {
+        std::cout << "Env::drop" << std::endl;
         if (object != 0)
             objects->push_back(object);
         else 
             throw;
+    }
+    void Environment::save(std::ofstream & save) {
+        save << "ENV" << id << ":";
+        bool first = true;
+
+        // TODO exits
+        // for (size_t i = 0; i < objects->size(); ++i) {
+            // if (first)
+                // first = false
+            // else
+                // save << ",";
+            // save << "EXI" << objects->at(i)->id;
+        // }
+        first = true;
+        for (size_t i = 0; i < objects->size(); ++i) {
+            if (first)
+                first = false;
+            else
+                save << ",";
+            save << "OBJ" << objects->at(i)->id;
+        }
+        save << ":";
+        first = true;
+        for (size_t i = 0; i < actors->size(); ++i) {
+            if (first)
+                first = false;
+            else
+                save << ",";
+            save << "ACT" << actors->at(i)->id;
+        }
+        save << std::endl;
+
+        for (size_t i = 0; i < objects->size(); ++i) {
+            objects->at(i)->save(save );
+        }
+
+        
+        // std::vector<std::string> exit_names = get_exit_names();
+ // 
+        // for (size_t i = 0; i < exit_names.size(); ++i) {
+            // s << exit_names[i] << std::endl;
+        // }
+ 
+    }
+    std::vector<Object *> Environment::get_objects() {
+        return *objects;
+    }
+
+    std::vector<Actor *> Environment::get_actors() {
+        return *actors;
     }
 
 }

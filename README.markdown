@@ -30,6 +30,9 @@ polymorfi och standardklasserna (STL).
 * <del>Fixa låsmekanismen på Exits.</del>
 * Skapa PairExit som returnerar olika get_outfall beroende på vilket av de två rummen man står i, o.s.v.
 * Se över Segmentation Fault när man dör.
+* Se till så man måste läsa upp en dörr för att komma till evil lair (för att behöva använda nyckel för att klara spelet, light saber får INTE ligga i det låsta rummet :D)
+* stringtoint() måste hantera fel
+
 
 
 ## Rules to conform to ##

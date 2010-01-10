@@ -17,6 +17,9 @@ namespace da_game {
             static int inventory(std::string);
             static int use(std::string);
 
+            static int save(std::string);
+            static int load(std::string);
+
             static void fight(Actor &, Actor &);
 
         private:

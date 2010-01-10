@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <fstream>
 #include "bag.h"
 #include "game.h"
 #include "troll.h"
@@ -28,6 +29,17 @@ namespace da_game {
             switch (terminal.run()) {
                 case 1:
                     running = false;
+                    break;
+                case 2:
+                    save();
+                    running = false;
+                    break;
+                case 3:
+                    clear_game();
+                    std::cout << actors->size() << std::endl;
+                    std::cout << envs->size() << std::endl;
+
+                    load();
                     break;
                 default:
                     run();
@@ -76,10 +88,6 @@ namespace da_game {
         evil->add_exit("east", e2);
         evil->add_exit("west", e1);
 
-        envs->push_back(r1);
-        envs->push_back(r2);
-
-
         // Create objects
         Object * b1 = new Bag();
         Object * b2 = new Bag();
@@ -119,35 +127,29 @@ namespace da_game {
     }
 
     void Game::run() {
-        // std::vector<Actor *>::iterator it;
-
         for (unsigned int i = 0; i < actors->size(); ++i) {
             actors->at(i)->run();
         }
-        // for (it = actors->begin(); it != actors->end(); ++it) {
-            // if (*it == NULL) {
-                // actors->erase(it);
-            // }
-            // std::cout << "Running" << std::endl;
-            // std::cout << "adress:" << *it << std::endl;
-            // std::cout << ++i << "\t" << (*it)->get_name() << " (" << (*it)->get_type() << ")" << std::endl;
-            // (*it)->run();
-            // std::cout << "Done running" << std::endl;
-        // }
     }
 
     void Game::add_actor(Actor & actor) {
         actors->push_back(&actor);
     }
 
+    void Game::add_environment(Environment & env) {
+        envs->push_back(&env);
+    }
+
     void Game::remove_actor(Actor & actor) {
         if (&actor == player) {
             player = 0;
         }
+        std::cout << "Removing actor from game" << std::endl;
         std::vector<Actor *>::iterator it = actors->begin();
         for (; it != actors->end(); ++it) {
             if (&(**it) == &actor) {
                 actors->erase(it);
+                std::cout << "gone" << std::endl;
                 return;
             }
         }
@@ -160,6 +162,34 @@ namespace da_game {
 
     void Game::printStory() {
         Terminal::print("When Anakin entered the Jedi-Tempel after beeing order to destroy the Jedi-order by Darth Sidious he suddenly saw a bright light surround him. When it dissapeared he had been transported to the most peculiar place, he heard sounds of vampires and smellt the smell of trolls, he must have been transported to dev random. As Anakin recently had been turned to the dark side he pushed his confusion from his mind and as the anger overtook him he realised he would not be satisfied until EVERYTHING was DEAD.");
+    }
+
+    void Game::save() {
+        std::ofstream file;
+        file.open ("saveFile");
+        for (std::vector<Actor *>::iterator it = actors->begin(); it != actors->end(); ++it) {
+            (*it)->save(file);
+        }
+        for (std::vector<Environment *>::iterator it = envs->begin(); it != envs->end(); ++it) {
+            (*it)->save(file);
+        }
+        file.close();
+    }
+    void Game::load() {
+        std::ifstream file;
+        file.open("saveFile");
+
+        file.close();
+    }
+    void Game::clear_game() {
+        std::cout << "Removing environments" << std::endl;
+        for (std::vector<Environment *>::iterator it = envs->begin(); it != envs->end(); ++it) {
+            delete *it;
+        }
+        std::cout << "Killing players" << std::endl;
+        for (std::vector<Actor *>::iterator it = actors->begin(); it != actors->end(); ++it) {
+            delete *it;
+        }
     }
 }
 

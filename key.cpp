@@ -71,4 +71,9 @@ namespace da_game {
                 key.type() != this->type();
     }
 
+    void Key::save(std::ofstream & save) {
+        save << "OBJ" << id << ":" << type(); 
+        save << ":" << weight() << "kg," << volume() << "liter," << price() << "kr" << std::endl;
+    }
+
 }
