@@ -54,6 +54,7 @@ namespace da_game {
             virtual std::vector<Actor *> get_actors();
 
             virtual void save(std::ofstream &);
+            static Environment * load(std::string);
         protected:
             static int instances;
             std::vector<Object *> * objects;

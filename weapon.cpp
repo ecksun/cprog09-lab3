@@ -28,7 +28,7 @@ namespace da_game {
     }
     void Weapon::save(std::ofstream & save) {
         save << "OBJ" << id << ":" << type(); 
-        save << ":" << weight() << "kg," << volume() << "liter," << price() << "kr" << std::endl;
+        save << ":" << weight() << "kg," << volume() << "liter," << price() << "kr," << strength << "strength," << ratio << "ratio" << std::endl;
 
     }
 }

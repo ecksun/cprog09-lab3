@@ -1,8 +1,14 @@
 ACT0:factory:Vampire factory:hp=1000,strength=0,frequency=2,age=0:OBJ1
 OBJ1:Orch bag::17kg,50liter,100kr
+<<<<<<< HEAD:saveFile
 ACT1:Player:Klas-Göran:hp=100,strength=2,has_heart=0,max_health=500:OBJ10
 OBJ10:Orch bag::17kg,50liter,100kr
 ACT2:Troll:nisse:hp=1000,strength=88:OBJ12
+=======
+ACT1:DEMAN:Klas-Göran:100hp,2strength:OBJ10
+OBJ10:Orch bag:OBJ7:17kg,50liter,100kr
+ACT2:troll:nisse:1000hp,88strength:OBJ12
+>>>>>>> 3d887d8f8c4ef75651f0bb6f041aedaaa3479057:saveFile
 OBJ12:Orch bag::17kg,50liter,100kr
 ACT3:Wizard:Darth Sidious:hp=150,strength=3,has_heart=1,max_health=100magic=100,max_magic=100,wand=15:OBJ14
 OBJ14:Orch bag:OBJ15:17kg,50liter,100kr
@@ -14,6 +20,6 @@ OBJ7:Key (evil):1kg,1liter,50kr
 ENV1:OBJ5:ACT2
 OBJ5:Mat:5kg,16liter,94kr,47food
 ENV2:OBJ8,OBJ6,OBJ7:ACT0,ACT3
-OBJ8: light saber:5kg,5liter,1000kr
+OBJ8: light saber:5kg,5liter,1000kr,1000strength,0.95ratio
 OBJ6:Key (e1):1kg,1liter,50kr
 OBJ7:Key (evil):1kg,1liter,50kr
