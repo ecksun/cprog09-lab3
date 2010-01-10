@@ -2,6 +2,11 @@
 #include <sstream>
 #include "object.h"
 #include "food.h"
+#include "bag.h"
+#include "light_saber.h"
+#include "key.h"
+
+
 namespace da_game {
 
     int Object::instances;
@@ -30,8 +35,8 @@ namespace da_game {
     Object * Object::load(std::string line) {
         line = line.substr(line.find_first_of(':')+1);
         std::string type = line.substr(0,line.find_first_of(':'));
-        std::cout << line << std::endl;
         if (type == "Orch bag") {
+            return new Bag();
             // Ladda in object
         }
         else if (type == "Mat") {
@@ -42,10 +47,28 @@ namespace da_game {
             stream >> food;
             return new Food(food);
         }
+        //  light saber:5kg,5liter,1000kr,1000strength,0.95ratio
         else if (type == " light saber") {
-
+            std::string ratio = line.substr(line.find_last_of(',')+1);
+            ratio = ratio.substr(0,4);
+            std::string strength = line;
+            strength = strength.substr(strength.find_first_of(',')+1);
+            strength = strength.substr(strength.find_first_of(',')+1);
+            strength = strength.substr(strength.find_first_of(',')+1);
+            strength = strength.substr(0,strength.find_first_of('s'));
+            int str;
+            float rat;
+            std::istringstream stream(strength);
+            stream >> str;
+            std::istringstream iss(ratio);
+            stream >> rat;
+            return new LightSaber(str, rat);
         }
-        // else if its a key
+        else if (type.substr(0,3) == "Key") {
+            std::string name = line.substr(line.find_first_of('(')+1);
+            name = name.substr(0,name.find_first_of(')'));
+            return new Key(name);
+        }
         return NULL;
     }
 }

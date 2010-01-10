@@ -246,6 +246,9 @@ namespace da_game {
                     created_objects.erase(object);
                 }
             }
+            /*
+             * TODO ladda in object i containers
+             */
         }
 
         delete lines;
