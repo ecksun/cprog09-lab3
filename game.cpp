@@ -218,6 +218,12 @@ namespace da_game {
             }
         }
 
+        std::cout << "Loaded objects:" << std::endl;
+
+        for (std::map<std::string, Object *>::iterator it = created_objects.begin(); it != created_objects.end(); ++it) {
+            std::cout << it->first << " => " << it->second->type() << std::endl;
+        }   
+
         for (std::vector<std::string>::iterator it = lines->begin(); it != lines->end(); ++it) {
             line = *it;
             std::string obj = line.substr(0, 3);
@@ -230,19 +236,18 @@ namespace da_game {
              * ENV2:OBJ8,OBJ6,OBJ7:ACT0,ACT3
              */
             if (obj == "ENV") {
-                std::cout << line << std::endl;
                 std::string objects = line.substr(line.find_first_of(':')+1);
                 objects = objects.substr(0,objects.find_first_of(':'));
 
                 while (true) {
                     std::string object = objects.substr(0,objects.find_first_of(','));
-                    object.substr(3);
+                    object =object.substr(3);
                     
                     if (objects.find_first_of(',') == std::string::npos)
                         break;
                     objects = objects.substr(objects.find_first_of(',')+1);
 
-                    // created_envs[id]->drop(created_objects[object]);  FIXME ta bort kommentaren efter att object.load är implem,enterat
+                    created_envs[id]->drop(created_objects[object]);   // FIXME ta bort kommentaren efter att object.load är implem,enterat
                     created_objects.erase(object);
                 }
             }
