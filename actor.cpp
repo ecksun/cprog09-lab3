@@ -4,6 +4,7 @@
 #include "game_commands.h"
 #include "bag.h"
 #include <iostream>
+#include <sstream>
 
 namespace da_game {
     int Actor::instances;
@@ -42,6 +43,7 @@ namespace da_game {
         Game::remove_actor(*this);
         std::cout << "~Actor done" << std::endl;
     }
+
 
     bool Actor::pick_up(Object * object){
         return container->add(*object);
@@ -97,10 +99,63 @@ namespace da_game {
 
     void Actor::save(std::ofstream & save) {
         save << "ACT" << id << ":" << get_type() << ":" << get_name() << ":";
-        save << hp << "hp," << strength << "strength" << ":";
-        save << "OBJ" <<container->id;
+        save << "hp=" << hp << ",strength=" << strength;
+
+        if (serialize().length() > 0) {
+            save << "," << serialize();
+        }
+
+        save << ":OBJ" << container->id;
 
         save << std::endl;
         container->save(save);
     }
+
+    /**
+     * Loads an actor object from the specified string.
+     *
+     * @param line A line describing the object to load
+     * @return A pointer to a the created instance
+     */
+    Actor* Actor::load(const std::string line) {
+        std::istringstream input(line);
+        std::vector<std::string> tokens;
+        std::string token;
+
+        while (std::getline(input, token, ':')) {
+            tokens.push_back(token);
+        }
+
+        std::vector<std::string> properties;
+//        std::stringstream pss(token[
+//        while (std::getline(
+
+        // find type
+        std::string & type = tokens[1];
+        Actor * actor;
+        if (type == "Human") {
+//            actor = new Human();
+        }
+        else if (type == "Player") {
+
+        } 
+        else if (type == "Wizard") {
+
+        } 
+        else if (type == "Troll") {
+
+        } 
+        else if (type == "Vampire") {
+
+        }
+        else if (type == "VampireFactory") {
+
+        }
+        else {
+            std::cerr << "Unrecognized actor type." << std::endl;
+        }
+
+        return actor;
+    }
+
 }

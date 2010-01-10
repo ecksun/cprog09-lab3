@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 
 #include "vampire_factory.h"
 #include "vampire.h"
@@ -38,6 +39,13 @@ namespace da_game {
 
     void VampireFactory::talk_to(Actor &) {
 
+    }
+
+    std::string VampireFactory::serialize() const {
+        std::ostringstream o;
+        o << "frequency=" << frequency;
+        o << ",age=" << age;
+        return o.str();
     }
 }
 

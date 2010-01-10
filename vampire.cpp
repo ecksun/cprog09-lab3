@@ -58,4 +58,9 @@ namespace da_game {
     void Vampire::talk_to(Actor &) {
         std::cout << "SHREEK!" << std::endl;
     }
+
+    std::string Vampire::serialize() const {
+        return "";
+    }
+
 }

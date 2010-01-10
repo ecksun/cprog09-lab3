@@ -21,6 +21,7 @@ namespace da_game {
             virtual std::string get_type() const;
             virtual void run();
             virtual void talk_to(Actor &);
+            virtual std::string serialize() const;
 
 
     };

@@ -19,6 +19,7 @@ namespace da_game {
 
             virtual void run();
             virtual std::string get_type() const;
+            virtual std::string serialize() const;
 
             void eat(Food &);
     };

@@ -17,6 +17,7 @@ namespace da_game {
             virtual bool pick_up(Object *);
             virtual bool drop(Object *);
             virtual void talk_to(Actor &);
+            virtual std::string serialize() const;
     };
 }
 #endif // DA_GAME_TROLL_H
