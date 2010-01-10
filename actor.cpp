@@ -103,4 +103,6 @@ namespace da_game {
         save << std::endl;
         container->save(save);
     }
+    Actor * Actor::load(std::string) {
+    }
 }

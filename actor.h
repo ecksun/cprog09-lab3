@@ -31,6 +31,7 @@ namespace da_game {
             virtual Weapon * weapon();
             virtual void fight(Actor &);
             virtual void save(std::ofstream &);
+            static Actor * load(std::string);
         protected:
             static int instances;
 

@@ -206,5 +206,10 @@ namespace da_game {
     std::vector<Actor *> Environment::get_actors() {
         return *actors;
     }
+    
+    Environment * Environment::load(std::string s) {
+        std::cout << s; 
+        return NULL;
+    }
 
 }

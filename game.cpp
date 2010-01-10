@@ -193,12 +193,12 @@ namespace da_game {
                 Environment * environment = Environment::load(line);
                 add_environment(*environment);
             }
-            else if (obj = "OBJ") {
-                Object * object = Object::load(line);
-                add_object(*object);
+            else if (obj == "OBJ") {
+                // Object * object = Object::load(line);
+                // add_object(*object);
             } 
             else {
-                std::cerr << "Invalid object type in save file: " << object_type << std::endl;
+                std::cerr << "Invalid object type in save file: " << obj << std::endl;
             }
         }
 

@@ -10,4 +10,7 @@ namespace da_game {
     bool Object::operator==(Object & obj) const {
         return obj.id == this->id;
     }
+    Object * Object::load(std::string) {
+        return NULL;
+    }
 }
