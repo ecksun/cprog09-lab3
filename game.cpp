@@ -35,7 +35,7 @@ namespace da_game {
                     running = false;
                     break;
                 case 3:
-                    clear_game();
+//                    clear_game();
                     std::cout << actors->size() << std::endl;
                     std::cout << envs->size() << std::endl;
 
@@ -176,9 +176,32 @@ namespace da_game {
         }
         file.close();
     }
+
     void Game::load() {
         std::ifstream file;
         file.open("saveFile");
+        std::string line;
+
+        while (std::getline(file, line)) {
+            std::string obj = line.substr(0, 3);
+
+            if (obj == "ACT") {
+                Actor * actor = Actor::load(line);
+                add_actor(*actor);
+            }
+            else if (obj == "ENV") {
+                Environment * environment = Environment::load(line);
+                add_environment(*environment);
+            }
+            else if (obj = "OBJ") {
+                Object * object = Object::load(line);
+                add_object(*object);
+            } 
+            else {
+                std::cerr << "Invalid object type in save file: " << object_type << std::endl;
+            }
+        }
+
 
         file.close();
     }
