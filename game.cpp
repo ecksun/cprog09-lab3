@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <fstream>
+#include <map>
 #include "bag.h"
 #include "game.h"
 #include "troll.h"
@@ -181,25 +182,35 @@ namespace da_game {
         std::ifstream file;
         file.open("saveFile");
         std::string line;
+
+        std::vector<std::string> * lines = new std::vector<std::string>;
     
-        std::map<int, Environment *> environments;
+        std::map<std::string, Environment *> created_envs; // nyckeln är IDt som en sträng
+        std::map<std::string, Actor *> created_actors; // nyckeln är IDt som en sträng
+        std::map<std::string, Object *> created_objects; // nyckeln är IDt som en sträng
 
         while (std::getline(file, line)) {
+            lines->push_back(line);
             std::string obj = line.substr(0, 3);
             std::string id = line.substr(0, line.find_first_of(':'));
             id = id.substr(3);
 
             if (obj == "ACT") {
                 Actor * actor = Actor::load(line);
+                created_actors[id] = actor;
                 add_actor(*actor);
             }
             else if (obj == "ENV") {
                 Environment * environment = Environment::load(line);
+                created_envs[id] = environment;
 
                 add_environment(*environment);
             }
             else if (obj == "OBJ") {
-                // Object * object = Object::load(line);
+                Object * object = Object::load(line);
+                if (object == NULL)
+                    std::cerr << "Game::load(): NULL OBJECT RETURNED " << std::endl;
+                created_objects[id] = object;
                 // add_object(*object);
             } 
             else {
@@ -207,7 +218,37 @@ namespace da_game {
             }
         }
 
+        for (std::vector<std::string>::iterator it = lines->begin(); it != lines->end(); ++it) {
+            line = *it;
+            std::string obj = line.substr(0, 3);
+            std::string id = line.substr(0, line.find_first_of(':'));
+            id = id.substr(3);
 
+            /*
+             * ENV0:OBJ2,OBJ3,OBJ4,OBJ7:ACT1
+             * ENV1:OBJ5:ACT2
+             * ENV2:OBJ8,OBJ6,OBJ7:ACT0,ACT3
+             */
+            if (obj == "ENV") {
+                std::cout << line << std::endl;
+                std::string objects = line.substr(line.find_first_of(':')+1);
+                objects = objects.substr(0,objects.find_first_of(':'));
+
+                while (true) {
+                    std::string object = objects.substr(0,objects.find_first_of(','));
+                    object.substr(3);
+                    
+                    if (objects.find_first_of(',') == std::string::npos)
+                        break;
+                    objects = objects.substr(objects.find_first_of(',')+1);
+
+                    // created_envs[id]->drop(created_objects[object]);  FIXME ta bort kommentaren efter att object.load är implem,enterat
+                    created_objects.erase(object);
+                }
+            }
+        }
+
+        delete lines;
         file.close();
     }
     void Game::clear_game() {
