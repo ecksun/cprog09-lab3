@@ -221,6 +221,15 @@ namespace da_game {
         for (std::map<std::string, Object *>::iterator it = created_objects.begin(); it != created_objects.end(); ++it) {
             std::cout << it->first << " => " << it->second->type() << std::endl;
         }   
+        std::cout << "Loaded actors:" << std::endl;
+        for (std::map<std::string, Actor *>::iterator it = created_actors.begin(); it != created_actors.end(); ++it) {
+            // XXX
+            // std::cout << it->first << " => " << it->second->get_type() << std::endl;
+        }   
+        std::cout << "Loaded environments:" << std::endl;
+        for (std::map<std::string, Environment *>::iterator it = created_envs.begin(); it != created_envs.end(); ++it) {
+            std::cout << it->first << " => "  << std::endl;
+        }   
 
         for (std::vector<std::string>::iterator it = lines->begin(); it != lines->end(); ++it) {
             line = *it;
@@ -233,6 +242,8 @@ namespace da_game {
              * ENV1:OBJ5:ACT2
              * ENV2:OBJ8,OBJ6,OBJ7:ACT0,ACT3
              */
+            // Put all objects into their environments
+            // TODO put the actors into their respective environment
             if (obj == "ENV") {
                 std::string objects = line.substr(line.find_first_of(':')+1);
                 objects = objects.substr(0,objects.find_first_of(':'));
@@ -241,11 +252,11 @@ namespace da_game {
                     std::string object = objects.substr(0,objects.find_first_of(','));
                     object =object.substr(3);
                     
-                    std::cout << "Droping object("<<object<<") into env" << std::endl;
+                    // std::cout << "Droping object("<<object<<") into env" << std::endl;
                     if (created_objects.find(object) == created_objects.end())
-                        std::cout << "NOT FOUND" << std::endl;
-                    std::cout << created_objects[object] << std::endl;
-                    std::cout << created_objects[object]->type() << std::endl;
+                        std::cerr << "Game::load(): NOT FOUND" << std::endl;
+                    // std::cout << created_objects[object] << std::endl;
+                    // std::cout << created_objects[object]->type() << std::endl;
                     created_envs[id]->drop(created_objects[object]);  
                     created_objects.erase(object);
 
@@ -255,24 +266,25 @@ namespace da_game {
 
                 }
             }
+            // Put all objects into their containers
             else if (obj == "OBJ") {
                 // Only interesting of obj is a container
                 Container * bag = dynamic_cast<Container *>(created_objects[id]);
                 if (bag != 0) {
                     // we got a container
                     // OBJ14:Orch bag:OBJ15:17kg,50liter,100kr
-                    std::cout << "Container!" << std::endl;
-                    std::cout << line << std::endl;
+                    // std::cout << "Container!" << std::endl;
+                    // std::cout << line << std::endl;
                     std::string objects = line.substr(line.find_first_of(':')+1);
                     objects = objects.substr(objects.find_first_of(':')+1);
                     objects = objects.substr(0,objects.find_first_of(':'));
 
                     // Lets go through the objects that should be inside our container
                     while (objects.length() > 0) {
-                        std::cout << "Objects:" <<objects << std::endl;
+                        // std::cout << "Objects:" <<objects << std::endl;
                         std::string object = objects.substr(0,objects.find_first_of(','));
                         object =object.substr(3);
-                        std::cout << "objecT:" << object << std::endl;
+                        // std::cout << "objecT:" << object << std::endl;
 
                         bag->add(*created_objects[object]);
                         created_objects.erase(object);
@@ -284,9 +296,30 @@ namespace da_game {
                     }
                 }
             }
-            /*
-             * TODO ladda in object i containers
-             */
+            else if (obj == "ACT" && false) { // XXX 
+                std::cout << "ACT" << std::endl;
+
+        std::cout << "Loaded objects:" << std::endl;
+        for (std::map<std::string, Object *>::iterator it = created_objects.begin(); it != created_objects.end(); ++it) {
+            std::cout << it->first << " => " << it->second->type() << std::endl;
+        }   
+                std::cout << line << std::endl;
+                std::string container = line.substr(line.find_last_of(':')+1);
+                container = container.substr(3);
+                std::cout << container << std::endl;
+                Container * bag = dynamic_cast<Container *>(created_objects[container]);
+                if (bag != 0) {
+                    std::cout << "its a bag" << std::endl;
+                    if (created_actors.find(id) == created_actors.end()) 
+                        std::cerr << "Game::load() Couldnt find the created actor" << std::endl;
+                    created_actors[id]->container = bag;
+                    std::cout << "The bag is set" << std::endl;
+                    created_objects.erase(container);
+                }
+                else {
+                    std::cerr << "Game::load(): The container for an actor wasnt a container, shouldnt happen" << std::endl;
+                }
+            }
         }
 
         delete lines;
