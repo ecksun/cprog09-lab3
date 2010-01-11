@@ -107,7 +107,6 @@ namespace da_game {
         Object * light_saber = new LightSaber(1000,0.95);
         evil->drop(light_saber);
         evil->drop(k1);
-        evil->drop(k2);
 
 
         // Create the player
@@ -219,7 +218,6 @@ namespace da_game {
         }
 
         std::cout << "Loaded objects:" << std::endl;
-
         for (std::map<std::string, Object *>::iterator it = created_objects.begin(); it != created_objects.end(); ++it) {
             std::cout << it->first << " => " << it->second->type() << std::endl;
         }   
@@ -243,6 +241,11 @@ namespace da_game {
                     std::string object = objects.substr(0,objects.find_first_of(','));
                     object =object.substr(3);
                     
+                    std::cout << "Droping object("<<object<<") into env" << std::endl;
+                    if (created_objects.find(object) == created_objects.end())
+                        std::cout << "NOT FOUND" << std::endl;
+                    std::cout << created_objects[object] << std::endl;
+                    std::cout << created_objects[object]->type() << std::endl;
                     created_envs[id]->drop(created_objects[object]);  
                     created_objects.erase(object);
 
