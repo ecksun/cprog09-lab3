@@ -183,8 +183,11 @@ namespace da_game {
     }
 
     void Game::load() {
-        std::ifstream file;
-        file.open("saveFile");
+        std::ifstream file("saveFile");
+        if (!file.good()) {
+            initialize();
+            return;
+        }
         std::string line;
 
         std::vector<std::string> * lines = new std::vector<std::string>;
