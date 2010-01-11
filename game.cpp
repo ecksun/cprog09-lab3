@@ -79,7 +79,7 @@ namespace da_game {
         Environment * r2 = new Room();
 
         Environment * evil = new EvilLair();
-        VampireFactory * vamp_fac = new VampireFactory(evil, 2);
+        new VampireFactory(evil, 2);
         // evil->enter(*vamp_fac);
         
         // exits
@@ -123,7 +123,7 @@ namespace da_game {
 
         // Initialize actors
 
-        Troll * t = new Troll(r2, 1000, 88);
+        new Troll(r2, 1000, 88);
         // r2->enter(*t);
 
         Wizard * w = new Wizard(evil, true, 100, 100);
@@ -162,6 +162,9 @@ namespace da_game {
     }
 
     bool Game::playerIsAlone() {
+        for (std::vector<Actor *>::iterator it = actors->begin(); it != actors->end(); ++it) {
+            std::cout << (*it)->get_type() << std::endl;
+        }
         return (playerIsAlive() && (actors->size() == 1));
     }
 

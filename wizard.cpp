@@ -22,6 +22,8 @@ namespace da_game {
             this->strength = strength;
             this->current_room = env;
             this->wand = new Wand(50, 0.9);
+
+            current_room->enter(*this);
     }
 
     Wizard::~Wizard() {
