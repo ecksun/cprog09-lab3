@@ -27,7 +27,7 @@ namespace da_game {
     }
 
     std::string VampireFactory::get_type() const {
-        return "factory";
+        return "VampireFactory";
     }
 
     void VampireFactory::go(std::string) {

@@ -117,7 +117,7 @@ namespace da_game {
      * @param line A line describing the object to load
      * @return A pointer to a the created instance
      */
-    Actor* Actor::load(const std::string line) {
+    Actor * Actor::load(const std::string line) {
         std::istringstream input(line);
         std::vector<std::string> tokens;
         std::string token;
@@ -126,15 +126,19 @@ namespace da_game {
             tokens.push_back(token);
         }
 
+        // extract properties
         std::vector<std::string> properties;
-//        std::stringstream pss(token[
-//        while (std::getline(
+        std::istringstream pss(tokens[1]);
+        while (std::getline(pss, token, ',')) {
+            properties.push_back(token);
+            std::cout << token << std::endl;
+        }
 
         // find type
         std::string & type = tokens[1];
         Actor * actor;
         if (type == "Human") {
-//            actor = new Human();
+
         }
         else if (type == "Player") {
 
@@ -152,7 +156,7 @@ namespace da_game {
 
         }
         else {
-            std::cerr << "Unrecognized actor type." << std::endl;
+            std::cerr << "Unrecognized actor type: " << type << std::endl;
         }
 
         return actor;
