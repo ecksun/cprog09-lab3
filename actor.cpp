@@ -139,7 +139,6 @@ namespace da_game {
         while (std::getline(pss, token, ',')) {
             size_t eq_sign = token.find('=');
             properties.insert(std::pair<std::string, std::string>(token.substr(0, eq_sign), token.substr(eq_sign+1)));
-            std::cout << token.substr(0, eq_sign) <<  " = " << token.substr(eq_sign+1) << std::endl;
         }
 
         // find type
@@ -147,12 +146,28 @@ namespace da_game {
         std::map<std::string, std::string>::iterator prop_it;
         std::map<std::string, Environment *>::const_iterator env_it;
         std::map<std::string, Object *>::iterator obj_it;
+
+        env_it = envs.find("current_room");
+        Environment * current_room = env_it->second;
         Actor * actor = NULL;
+
         if (type == "Human") {
 
         }
         else if (type == "Player") {
+            prop_it = properties.find("hp");
+            int hp = str2int(prop_it->second);
 
+            prop_it = properties.find("strength");
+            int strength = str2int(prop_it->second);
+
+            prop_it = properties.find("has_heart");
+            bool has_heart = str2int(prop_it->second) != 0;
+
+            prop_it = properties.find("max_health");
+            bool max_health = str2int(prop_it->second);
+
+            actor = new Player(current_room, hp, strength, has_heart, max_health);
         } 
         else if (type == "Wizard") {
 
@@ -164,15 +179,10 @@ namespace da_game {
 
         }
         else if (type == "VampireFactory") {
-            env_it = envs.find("current_room");
-            Environment * env = env_it->second;
-
             prop_it = properties.find("frequency");
-            std::istringstream iss(prop_it->second);
-            int frequency;
-            iss >> frequency;
+            int frequency = str2int(prop_it->second);
 
-            actor = new VampireFactory(env, frequency);
+            actor = new VampireFactory(current_room, frequency);
         }
         else {
             std::cerr << "Unrecognized actor type: " << type << std::endl;
@@ -180,5 +190,20 @@ namespace da_game {
 
         return actor;
     }
+
+
+    /**
+     * Quickly converts the specified string to an integer.
+     *
+     * @param str The string to convert
+     * @return The converted integer
+     */
+    int Actor::str2int(std::string str) {
+            std::istringstream iss(str);
+            int number; 
+            iss >> number;
+            return number;
+    }
+
 
 }

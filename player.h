@@ -10,6 +10,7 @@ namespace da_game {
         friend class GameCommands;
         public:
             Player(Environment *);
+            Player(Environment *, int, int, bool, int);
             ~Player();
             virtual void run();
             virtual std::string get_type() const;
