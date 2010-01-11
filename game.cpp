@@ -23,11 +23,15 @@ namespace da_game {
         actors = new std::vector<Actor *>;
         envs = new std::vector<Environment *>;
         bool running = true;
-        // load();
-        initialize();
+        load();
+        // initialize();
         printStory();
         while (running && playerIsAlive() && !playerIsAlone()) {
+            std::cout << "Running" << std::endl;
+            std::cout << "player:" << player << std::endl;
+            std::cout << "player->get_room()" << player->get_room() << std::endl;
             Terminal::print(player->get_room()->description());
+            std::cout << "Termina.run()" << std::endl;
             switch (terminal.run()) {
                 case 1:
                     running = false;
@@ -195,11 +199,12 @@ namespace da_game {
             std::string id = line.substr(0, line.find_first_of(':'));
             id = id.substr(3);
 
-            if (obj == "ACT") {
+            if (obj == "ACT" || obj == "EXI") {
                 // supress warnings for actors, which is handled later
             }
             else if (obj == "ENV") {
                 Environment * environment = Environment::load(line);
+                std::cout << "New environment" << environment << std::endl;
                 created_envs[id] = environment;
 
                 add_environment(*environment);
@@ -219,10 +224,6 @@ namespace da_game {
         std::cout << "Loaded objects:" << std::endl;
         for (std::map<std::string, Object *>::iterator it = created_objects.begin(); it != created_objects.end(); ++it) {
             std::cout << it->first << " => " << it->second->type() << std::endl;
-        }   
-        std::cout << "Loaded environments:" << std::endl;
-        for (std::map<std::string, Environment *>::iterator it = created_envs.begin(); it != created_envs.end(); ++it) {
-            std::cout << it->first << " => "  << std::endl;
         }   
 
         for (std::vector<std::string>::iterator it = lines->begin(); it != lines->end(); ++it) {
@@ -299,22 +300,34 @@ namespace da_game {
         for (std::vector<std::string>::iterator it = lines->begin(); it != lines->end(); ++it) {
             line = *it;
             std::string obj = line.substr(0, 3);
+            std::string id = line.substr(0, line.find_first_of(':'));
+            id = id.substr(3);
 
             if (obj == "ACT") {
-                std::cout << "ACT" << std::endl;
                 Actor * actor = Actor::load(line, created_envs, created_objects); 
                 if (actor != NULL) {
-                    std::cout << "Casting " << std::endl;
                     Player * player = dynamic_cast<Player *>(actor);
                     if (player != 0) {
-                        std::cout << "Initializing player" << std::endl;
                         commands = new GameCommands(player);
+                        this->player = player;
+
                     }
                 }
 
                 // FIXME Do we need to do more? they fix the rest themselves?
             }
 
+            else if (obj == "EXI") {
+                // EXI2:ENV2:has_lock=1,key_code=evil,locked=true,description=
+
+                Exit::load(line, created_envs);
+            }
+
+        }
+
+        std::cout << "Loaded environments:" << std::endl;
+        for (std::map<std::string, Environment * >::iterator it = created_envs.begin(); it != created_envs.end(); ++it) {
+            std::cout << it->first << "=>"<< it->second << std::endl;
         }
         delete lines;
         file.close();

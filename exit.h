@@ -2,6 +2,8 @@
 #define DA_GAME_EXIT_H
 
 #include <string>
+#include <fstream>
+#include <map>
 
 #include "key.h"
 
@@ -15,6 +17,7 @@ namespace da_game {
      */
     class Exit {
         public:
+            const int id;
             Exit();
             explicit Exit(Environment *, bool has_lock=false, std::string code="", bool locked=false, std::string desc="");
             Environment * get_outfall() const;
@@ -26,12 +29,15 @@ namespace da_game {
             bool lock(Key *);
             bool unlock(Key *);
             bool toggle_lock(Key *);
+            void save(std::ofstream &, std::string);
+            static Exit * load(std::string , const std::map<std::string, Environment *> &);
         private:
             Environment * outfall;
             std::string description;
             bool has_lock;
             std::string key_code;
             bool locked;
+            static int instances;
     };
 
 }
