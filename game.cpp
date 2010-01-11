@@ -194,11 +194,9 @@ namespace da_game {
             std::string id = line.substr(0, line.find_first_of(':'));
             id = id.substr(3);
 
-            // if (obj == "ACT") {
-                // Actor * actor = Actor::load(line);
-                // created_actors[id] = actor;
-                // add_actor(*actor);
-            // }
+            if (obj == "ACT") {
+                // supress warnings for actors, which is handled later
+            }
             else if (obj == "ENV") {
                 Environment * environment = Environment::load(line);
                 created_envs[id] = environment;
