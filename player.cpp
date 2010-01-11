@@ -4,10 +4,17 @@
 #include <sstream>
 
 namespace da_game {
-    Player::Player(Environment * room) : Human(false, 500){
+    Player::Player(Environment * room) : Human(false, 500) {
         this->current_room = room;
         this->hp = 100;
         this->strength = 2;
+    }
+
+    Player::Player(Environment * room, int hp, int strength, bool has_heart, int max_health) : 
+        Human(has_heart, max_health)  {
+            this->current_room = room;
+            this->hp = hp;
+            this->strength = strength;
     }
 
     Player::~Player() {

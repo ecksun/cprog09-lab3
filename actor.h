@@ -42,6 +42,8 @@ namespace da_game {
             Weapon * current_weapon;
             Environment * current_room;
             Container * container;
+        private:
+            static int str2int(std::string);
     };
 }
 #endif // DA_GAME_ACTOR_H
