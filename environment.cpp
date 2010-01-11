@@ -186,10 +186,23 @@ namespace da_game {
                 save << ",";
             save << "ACT" << actors->at(i)->id;
         }
+        save << ":";
+        first = true;
+        for (std::map<std::string, Exit *>::iterator it = exits.begin(); it != exits.end(); ++it) {
+            if (first)
+                first=false;
+            else
+                save << ",";
+            save << it->first << "=" << it->second->id;
+        }
         save << std::endl;
 
         for (size_t i = 0; i < objects->size(); ++i) {
             objects->at(i)->save(save );
+        }
+
+        for (std::map<std::string, Exit *>::iterator it = exits.begin(); it != exits.end(); ++it) {
+            it->second->save(save, it->first);
         }
 
         

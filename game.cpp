@@ -195,7 +195,7 @@ namespace da_game {
             std::string id = line.substr(0, line.find_first_of(':'));
             id = id.substr(3);
 
-            if (obj == "ACT") {
+            if (obj == "ACT" || obj == "EXI") {
                 // supress warnings for actors, which is handled later
             }
             else if (obj == "ENV") {
@@ -299,6 +299,8 @@ namespace da_game {
         for (std::vector<std::string>::iterator it = lines->begin(); it != lines->end(); ++it) {
             line = *it;
             std::string obj = line.substr(0, 3);
+            std::string id = line.substr(0, line.find_first_of(':'));
+            id = id.substr(3);
 
             if (obj == "ACT") {
                 std::cout << "ACT" << std::endl;
@@ -313,6 +315,12 @@ namespace da_game {
                 }
 
                 // FIXME Do we need to do more? they fix the rest themselves?
+            }
+
+            else if (obj == "EXI") {
+                // EXI2:ENV2:has_lock=1,key_code=evil,locked=true,description=
+
+                Exit::load(line, created_envs);
             }
 
         }

@@ -1,15 +1,18 @@
 #include "exit.h"
+#include "environment.h"
+#include <sstream>
 
 #include <iostream>
 
 namespace da_game {
 
+    int Exit::instances;
     /**
      * Creates a new exit with some default parameters, but without
      * any outfall. This is probably useless unless an outfall is
      * later set.
      */
-    Exit::Exit() : description(""), has_lock(false), key_code(""), locked(false) {
+    Exit::Exit() : id(instances++), description(""), has_lock(false), key_code(""), locked(false) {
     }
 
     /**
@@ -25,7 +28,7 @@ namespace da_game {
      * @param description A short description of this exit
      */
     Exit::Exit(Environment * outfall, bool has_lock, std::string key_code, bool locked, std::string description) 
-        : outfall(outfall), description(description), has_lock(has_lock), key_code(key_code), locked(locked) {
+        : id(instances++), outfall(outfall), description(description), has_lock(has_lock), key_code(key_code), locked(locked) {
     }
 
     /**
@@ -137,6 +140,75 @@ namespace da_game {
         } else {
             return lock(key);
         }
+    }
+
+    void Exit::save(std::ofstream & save, std::string env_description) {
+        save << "EXI" << id;
+        save << ":ENV" << outfall->id;
+        save << ":has_lock=" << has_lock;
+        save << ",key_code=" << key_code;
+        save << ",locked=";
+        if (locked)
+            save << "true";
+        else
+            save << "false";
+        save << ",description=" << description;
+        save << ",env_desc=" << env_description;
+        save << std::endl;
+
+    }
+
+    Exit * Exit::load(std::string line, const std::map<std::string, Environment *> & envs) {
+
+        line = line.substr(line.find_first_of(':')+1);
+        std::string tmp;
+        tmp = line.substr(0,line.find_first_of(':'));
+        tmp = tmp.substr(3);
+        std::string envID = tmp;
+
+        // std::istringstream iss(tmp);
+        // int envID;
+        // iss >> envID;
+
+        line = line.substr(line.find_first_of(':')+1);
+
+        tmp = line.substr(9);
+        tmp = tmp.substr(0,1);
+
+        bool has_lock = false;
+        if (tmp == "1")
+            has_lock = true;
+
+        line = line.substr(line.find_first_of(',')+1);
+
+        tmp = line.substr(9);
+        tmp = tmp.substr(0,tmp.find_first_of(','));
+
+        std::string key_code = tmp;
+
+
+        line = line.substr(line.find_first_of(',')+1);
+
+        tmp = line.substr(7);
+        tmp = tmp.substr(0,tmp.find_first_of(','));
+
+        bool locked = false;
+        if (tmp == "true")
+            locked = true;
+
+        line = line.substr(line.find_first_of(',')+1);
+
+        std::string description = line.substr(12);
+        description = description.substr(0,description.find_first_of(','));
+
+        line = line.substr(line.find_first_of(',')+1);
+
+        std::string env_desc = line.substr(9);
+
+        Exit * exit = new Exit(envs.find(envID)->second, has_lock, key_code, locked, description);
+        envs.find(envID)->second->add_exit(env_desc, exit);
+        return exit;
+        
     }
 
 }
