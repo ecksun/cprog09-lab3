@@ -299,15 +299,17 @@ namespace da_game {
         for (std::vector<std::string>::iterator it = lines->begin(); it != lines->end(); ++it) {
             line = *it;
             std::string obj = line.substr(0, 3);
-            // std::string id = line.substr(0, line.find_first_of(':'));
-            // id = id.substr(3);
 
             if (obj == "ACT") {
+                std::cout << "ACT" << std::endl;
                 Actor * actor = Actor::load(line, created_envs, created_objects); 
-                Player * player = dynamic_cast<Player *>(actor);
-                if (player != 0) {
-                    std::cout << "Initializing player" << std::endl;
-                    commands = new GameCommands(player);
+                if (actor != NULL) {
+                    std::cout << "Casting " << std::endl;
+                    Player * player = dynamic_cast<Player *>(actor);
+                    if (player != 0) {
+                        std::cout << "Initializing player" << std::endl;
+                        commands = new GameCommands(player);
+                    }
                 }
 
                 // FIXME Do we need to do more? they fix the rest themselves?

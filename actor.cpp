@@ -147,7 +147,7 @@ namespace da_game {
         std::map<std::string, std::string>::iterator prop_it;
         std::map<std::string, Environment *>::const_iterator env_it;
         std::map<std::string, Object *>::iterator obj_it;
-        Actor * actor;
+        Actor * actor = NULL;
         if (type == "Human") {
 
         }
