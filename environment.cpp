@@ -25,7 +25,6 @@ namespace da_game {
 
 
         delete objects;
-        std::cout << "~Env done" << std::endl;
     }
 
     std::string Environment::description() const {
@@ -71,10 +70,6 @@ namespace da_game {
      * @return The exit with the given name
      */
     Exit * Environment::get_exit(std::string name) const {
-        std::cout << "name :'" << name << "'" << std::endl;
-        for (std::map<std::string, Exit*>::const_iterator it = exits.begin(); it != exits.end(); ++it) {
-            std::cout << it->first << "=>" << it->second<<  std::endl;
-        }
         std::map<std::string, Exit *>::const_iterator it = exits.find(name);
 
         if (it != exits.end()) {
@@ -140,7 +135,6 @@ namespace da_game {
         std::vector<Object *>::iterator it = objects->begin();
         for (; it != objects->end(); ++it) {
             if (**it == *object) {
-                std::cout << "Erasing " << (*it)->type() << std::endl;
                 objects->erase(it);
                 return true;
             }
@@ -155,7 +149,6 @@ namespace da_game {
      * @param object The object that is being dropped
      */ 
     void Environment::drop(Object * object) {
-        std::cout << "Env::drop" << std::endl;
         if (object != 0)
             objects->push_back(object);
         else 
@@ -210,11 +203,7 @@ namespace da_game {
         return *actors;
     }
 
-    /*
-ENV0:OBJ2,OBJ3,OBJ4,OBJ7:ACT1
-ENV1:OBJ5:ACT2
-ENV2:OBJ8,OBJ6,OBJ7:ACT0,ACT3
-*/
+
     Environment * Environment::load(std::string) {
         return new Environment;
     }

@@ -32,23 +32,17 @@ namespace da_game {
             delete current_weapon;
         }
 
-        std::cout << "Droping everything Im carrying" << std::endl;
         // science the actor exists no more we drop everything in the current room
         std::vector<Object *>::iterator it;
         for (it = container->get_objects()->begin(); it != container->get_objects()->end(); ++it) {
             current_room->drop(*it);
         }
-        std::cout << "clearing objects" << std::endl;
         container->get_objects()->clear();
-        std::cout << "~Actor Drop container" << std::endl;
 
         current_room->drop(container);
         
-        std::cout << "Leaving" << std::endl;
         current_room->leave(*this);
-        std::cout << "remove_actor" << std::endl;
         Game::remove_actor(*this);
-        std::cout << "~Actor done" << std::endl;
     }
 
 
@@ -156,14 +150,12 @@ namespace da_game {
         Environment * current_room = envs.find(current_room_id)->second;
         int hp = str2int(properties.find("hp")->second);
         int strength = str2int(properties.find("strength")->second);
-        std::cout << "creating new actor in room:" << current_room << std::endl;
         Actor * actor = NULL;
 
         if (type == "Human") {
             // abstract!
         }
         else if (type == "Player") {
-            std::cout << "Im a player" << std::endl;
             bool has_heart = str2int(properties.find("has_heart")->second) != 0;
             int max_health = str2int(properties.find("max_health")->second);
 

@@ -27,11 +27,7 @@ namespace da_game {
         load();
         printStory();
         while (running && playerIsAlive() && !playerIsAlone()) {
-            std::cout << "Running" << std::endl;
-            std::cout << "player:" << player << std::endl;
-            std::cout << "player->get_room()" << player->get_room() << std::endl;
             Terminal::print(player->get_room()->description());
-            std::cout << "Termina.run()" << std::endl;
             switch (terminal.run()) {
                 case 1:
                     running = false;
@@ -150,21 +146,16 @@ namespace da_game {
         if (&actor == player) {
             player = 0;
         }
-        std::cout << "Removing actor from game" << std::endl;
         std::vector<Actor *>::iterator it = actors->begin();
         for (; it != actors->end(); ++it) {
             if (&(**it) == &actor) {
                 actors->erase(it);
-                std::cout << "gone" << std::endl;
                 return;
             }
         }
     }
 
     bool Game::playerIsAlone() {
-        for (std::vector<Actor *>::iterator it = actors->begin(); it != actors->end(); ++it) {
-            std::cout << (*it)->get_type() << std::endl;
-        }
         return (playerIsAlive() && (actors->size() == 1));
     }
 
@@ -196,7 +187,6 @@ namespace da_game {
         std::vector<std::string> * lines = new std::vector<std::string>;
     
         std::map<std::string, Environment *> created_envs; // nyckeln är IDt som en sträng
-        // std::map<std::string, Actor *> created_actors; // nyckeln är IDt som en sträng
         std::map<std::string, Object *> created_objects; // nyckeln är IDt som en sträng
         std::map<std::string, Exit *> created_exits; // nyckeln är IDt som en sträng
 
@@ -211,7 +201,6 @@ namespace da_game {
             }
             else if (obj == "ENV") {
                 Environment * environment = Environment::load(line);
-                std::cout << "New environment" << environment << std::endl;
                 created_envs[id] = environment;
 
                 add_environment(*environment);
@@ -228,10 +217,6 @@ namespace da_game {
             }
         }
 
-        std::cout << "Loaded objects:" << std::endl;
-        for (std::map<std::string, Object *>::iterator it = created_objects.begin(); it != created_objects.end(); ++it) {
-            std::cout << it->first << " => " << it->second->type() << std::endl;
-        }   
 
         for (std::vector<std::string>::iterator it = lines->begin(); it != lines->end(); ++it) {
             line = *it;
@@ -239,13 +224,7 @@ namespace da_game {
             std::string id = line.substr(0, line.find_first_of(':'));
             id = id.substr(3);
 
-            /*
-             * ENV0:OBJ2,OBJ3,OBJ4,OBJ7:ACT1
-             * ENV1:OBJ5:ACT2
-             * ENV2:OBJ8,OBJ6,OBJ7:ACT0,ACT3
-             */
             // Put all objects into their environments
-            // TODO put the actors into their respective environment
             if (obj == "ENV") {
                 std::string objects = line.substr(line.find_first_of(':')+1);
                 objects = objects.substr(0,objects.find_first_of(':'));
@@ -254,15 +233,12 @@ namespace da_game {
                     std::string object = objects.substr(0,objects.find_first_of(','));
                     object =object.substr(3);
                     
-                    // std::cout << "Droping object("<<object<<") into env" << std::endl;
                     if (created_objects.find(object) == created_objects.end())
                         std::cerr << "Game::load(): object NOT FOUND" << std::endl;
-                    // std::cout << created_objects[object] << std::endl;
-                    // std::cout << created_objects[object]->type() << std::endl;
                     created_envs[id]->drop(created_objects[object]);  
 
                     if (created_objects.erase(object) == 0)
-                        std::cout << "Didnt remove anything" << std::endl;
+                        std::cerr << "ERROR: Didnt remove anything" << std::endl;
                     
 
                     if (objects.find_first_of(',') == std::string::npos)
@@ -277,19 +253,14 @@ namespace da_game {
                 Container * bag = dynamic_cast<Container *>(created_objects[id]);
                 if (bag != 0) {
                     // we got a container
-                    // OBJ14:Orch bag:OBJ15:17kg,50liter,100kr
-                    // std::cout << "Container!" << std::endl;
-                    // std::cout << line << std::endl;
                     std::string objects = line.substr(line.find_first_of(':')+1);
                     objects = objects.substr(objects.find_first_of(':')+1);
                     objects = objects.substr(0,objects.find_first_of(':'));
 
                     // Lets go through the objects that should be inside our container
                     while (objects.length() > 0) {
-                        // std::cout << "Objects:" <<objects << std::endl;
                         std::string object = objects.substr(0,objects.find_first_of(','));
                         object =object.substr(3);
-                        // std::cout << "Putting object into container:" << object << std::endl;
 
                         bag->add(*created_objects[object]);
                         created_objects.erase(object);
@@ -321,12 +292,9 @@ namespace da_game {
                     }
                 }
 
-                // FIXME Do we need to do more? they fix the rest themselves?
             }
 
             else if (obj == "EXI") {
-                // EXI2:ENV2:has_lock=1,key_code=evil,locked=true,description=
-
                 Exit * exit =  Exit::load(line, created_envs);
                 created_exits[id] = exit;
             }
@@ -339,7 +307,6 @@ namespace da_game {
             std::string id = line.substr(0, line.find_first_of(':'));
             id = id.substr(3);
             if (obj == "ENV") {
-                std::cout << "ENV" << std::endl;
                 std::istringstream input(line);
                 std::vector<std::string> tokens;
                 std::string token;
@@ -355,23 +322,12 @@ namespace da_game {
                     properties.insert(std::pair<std::string, std::string>(token.substr(0, eq_sign), token.substr(eq_sign+1)));
                 }
                 for (std::map<std::string, std::string>::iterator it = properties.begin(); it != properties.end(); ++it) {
-                    std::cout << "it->first.substr" << it->first.substr(3) << std::endl;
-                    std::cout << "created_exits[]" << created_exits[it->first.substr(3)] << std::endl;
                     created_envs[id]->add_exit(it->second, created_exits[it->first.substr(3)]);
-                    std::cout << it->first << "=>" << it->second << std::endl;
                 }
             }
 
         }
 
-        std::cout << "Loaded environments:" << std::endl;
-        for (std::map<std::string, Environment * >::iterator it = created_envs.begin(); it != created_envs.end(); ++it) {
-            std::cout << it->first << "=>"<< it->second << std::endl;
-        }
-        std::cout << "Loaded exits:" << std::endl;
-        for (std::map<std::string, Exit *>::iterator it = created_exits.begin(); it != created_exits.end(); ++it) {
-            std::cout << it->first << " => " << it->second << std::endl;
-        }   
         delete lines;
         file.close();
     }
