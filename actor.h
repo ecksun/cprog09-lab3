@@ -21,7 +21,7 @@ namespace da_game {
             Actor();
             ~Actor();
 
-            static Actor * load(const std::string);
+            static Actor * load(const std::string, const std::map<std::string, Environment *> &);
 
             virtual void run() = 0;
             virtual std::string get_type() const = 0;
