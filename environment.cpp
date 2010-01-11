@@ -185,7 +185,7 @@ namespace da_game {
                 first=false;
             else
                 save << ",";
-            save << it->first << "=" << it->second->id;
+            save << "EXI" << it->second->id << "=" << it->first;
         }
         save << std::endl;
 

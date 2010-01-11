@@ -153,12 +153,14 @@ namespace da_game {
 
         std::string current_room_id = properties.find("current_room")->second;
         Environment * current_room = envs.find(current_room_id)->second;
+        std::cout << "creating new actor in room:" << current_room << std::endl;
         Actor * actor = NULL;
 
         if (type == "Human") {
 
         }
         else if (type == "Player") {
+            std::cout << "Im a player" << std::endl;
             int hp = str2int(properties.find("hp")->second);
             int strength = str2int(properties.find("strength")->second);
             bool has_heart = str2int(properties.find("has_heart")->second) != 0;
