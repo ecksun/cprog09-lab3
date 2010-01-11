@@ -3,6 +3,7 @@
 #include <ctime>
 #include <fstream>
 #include <map>
+#include <sstream>
 #include "bag.h"
 #include "game.h"
 #include "troll.h"
@@ -23,8 +24,10 @@ namespace da_game {
         actors = new std::vector<Actor *>;
         envs = new std::vector<Environment *>;
         bool running = true;
-        load();
-        // initialize();
+        if (1)
+            load();
+        else
+            initialize();
         printStory();
         while (running && playerIsAlive() && !playerIsAlone()) {
             std::cout << "Running" << std::endl;
@@ -195,6 +198,7 @@ namespace da_game {
         std::map<std::string, Environment *> created_envs; // nyckeln är IDt som en sträng
         // std::map<std::string, Actor *> created_actors; // nyckeln är IDt som en sträng
         std::map<std::string, Object *> created_objects; // nyckeln är IDt som en sträng
+        std::map<std::string, Exit *> created_exits; // nyckeln är IDt som en sträng
 
         while (std::getline(file, line)) {
             lines->push_back(line);
@@ -323,7 +327,29 @@ namespace da_game {
             else if (obj == "EXI") {
                 // EXI2:ENV2:has_lock=1,key_code=evil,locked=true,description=
 
-                Exit::load(line, created_envs);
+                Exit * exit =  Exit::load(line, created_envs);
+                created_exits[id] = exit;
+            }
+            else if (obj == "ENV") {
+                std::cout << "ENV" << std::endl;
+                std::istringstream input(line);
+                std::vector<std::string> tokens;
+                std::string token;
+
+                while (std::getline(input, token, ':')) {
+                    tokens.push_back(token);
+                }
+
+                std::map<std::string, std::string> properties;
+                std::istringstream pss(tokens[3]);
+                while (std::getline(pss, token, ',')) {
+                    size_t eq_sign = token.find('=');
+                    properties.insert(std::pair<std::string, std::string>(token.substr(0, eq_sign), token.substr(eq_sign+1)));
+                }
+                for (std::map<std::string, std::string>::iterator it = properties.begin(); it != properties.end(); ++it) {
+                    created_envs[id]->add_exit(it->second, created_exits[it->first.substr(3)]);
+                    std::cout << it->first << "=>" << it->second << std::endl;
+                }
             }
 
         }

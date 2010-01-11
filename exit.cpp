@@ -206,7 +206,6 @@ namespace da_game {
         std::string env_desc = line.substr(9);
 
         Exit * exit = new Exit(envs.find(envID)->second, has_lock, key_code, locked, description);
-        envs.find(envID)->second->add_exit(env_desc, exit);
         return exit;
         
     }
