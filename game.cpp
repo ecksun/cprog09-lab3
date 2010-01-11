@@ -185,7 +185,7 @@ namespace da_game {
         std::vector<std::string> * lines = new std::vector<std::string>;
     
         std::map<std::string, Environment *> created_envs; // nyckeln är IDt som en sträng
-        std::map<std::string, Actor *> created_actors; // nyckeln är IDt som en sträng
+        // std::map<std::string, Actor *> created_actors; // nyckeln är IDt som en sträng
         std::map<std::string, Object *> created_objects; // nyckeln är IDt som en sträng
 
         while (std::getline(file, line)) {
@@ -194,11 +194,11 @@ namespace da_game {
             std::string id = line.substr(0, line.find_first_of(':'));
             id = id.substr(3);
 
-            if (obj == "ACT") {
-                Actor * actor = Actor::load(line);
-                created_actors[id] = actor;
-                add_actor(*actor);
-            }
+            // if (obj == "ACT") {
+                // Actor * actor = Actor::load(line);
+                // created_actors[id] = actor;
+                // add_actor(*actor);
+            // }
             else if (obj == "ENV") {
                 Environment * environment = Environment::load(line);
                 created_envs[id] = environment;
@@ -217,19 +217,14 @@ namespace da_game {
             }
         }
 
-        std::cout << "Loaded objects:" << std::endl;
-        for (std::map<std::string, Object *>::iterator it = created_objects.begin(); it != created_objects.end(); ++it) {
-            std::cout << it->first << " => " << it->second->type() << std::endl;
-        }   
-        std::cout << "Loaded actors:" << std::endl;
-        for (std::map<std::string, Actor *>::iterator it = created_actors.begin(); it != created_actors.end(); ++it) {
-            // XXX
-            // std::cout << it->first << " => " << it->second->get_type() << std::endl;
-        }   
-        std::cout << "Loaded environments:" << std::endl;
-        for (std::map<std::string, Environment *>::iterator it = created_envs.begin(); it != created_envs.end(); ++it) {
-            std::cout << it->first << " => "  << std::endl;
-        }   
+        // std::cout << "Loaded objects:" << std::endl;
+        // for (std::map<std::string, Object *>::iterator it = created_objects.begin(); it != created_objects.end(); ++it) {
+            // std::cout << it->first << " => " << it->second->type() << std::endl;
+        // }   
+        // std::cout << "Loaded environments:" << std::endl;
+        // for (std::map<std::string, Environment *>::iterator it = created_envs.begin(); it != created_envs.end(); ++it) {
+            // std::cout << it->first << " => "  << std::endl;
+        // }   
 
         for (std::vector<std::string>::iterator it = lines->begin(); it != lines->end(); ++it) {
             line = *it;
@@ -296,31 +291,22 @@ namespace da_game {
                     }
                 }
             }
-            else if (obj == "ACT" && false) { // XXX 
-                std::cout << "ACT" << std::endl;
-
-        std::cout << "Loaded objects:" << std::endl;
-        for (std::map<std::string, Object *>::iterator it = created_objects.begin(); it != created_objects.end(); ++it) {
-            std::cout << it->first << " => " << it->second->type() << std::endl;
-        }   
-                std::cout << line << std::endl;
-                std::string container = line.substr(line.find_last_of(':')+1);
-                container = container.substr(3);
-                std::cout << container << std::endl;
-                Container * bag = dynamic_cast<Container *>(created_objects[container]);
-                if (bag != 0) {
-                    std::cout << "its a bag" << std::endl;
-                    if (created_actors.find(id) == created_actors.end()) 
-                        std::cerr << "Game::load() Couldnt find the created actor" << std::endl;
-                    created_actors[id]->container = bag;
-                    std::cout << "The bag is set" << std::endl;
-                    created_objects.erase(container);
-                }
-                else {
-                    std::cerr << "Game::load(): The container for an actor wasnt a container, shouldnt happen" << std::endl;
-                }
-            }
         }
+
+        // Loop through the actors again, they need initalized envs and objs
+        for (std::vector<std::string>::iterator it = lines->begin(); it != lines->end(); ++it) {
+            line = *it;
+            std::string obj = line.substr(0, 3);
+            // std::string id = line.substr(0, line.find_first_of(':'));
+            // id = id.substr(3);
+
+            if (obj == "ACT") {
+                Actor::load(line, created_envs, created_objects); 
+                // FIXME Do we need to do more? they fix the rest themselves?
+            }
+
+        }
+
 
         delete lines;
         file.close();
