@@ -70,7 +70,7 @@ namespace da_game {
         return false;
     }
 
-    void Bag::save(std::ofstream & save) {
+    void Bag::save(std::fstream & save) {
         save << "OBJ" << id << ":" << type() << ":"; 
         bool first = true;
 

@@ -23,7 +23,7 @@ namespace da_game {
 
             std::string get_key_code() const;
 
-            virtual void save(std::ofstream &);
+            virtual void save(std::fstream &);
 
         private:
             std::string key_code;

@@ -32,7 +32,7 @@ namespace da_game {
             virtual void talk_to(Actor &) = 0;
             virtual Weapon * weapon();
             virtual void fight(Actor &);
-            void save(std::ofstream &);
+            void save(std::fstream &);
             virtual std::string serialize() const = 0;
         protected:
             static int instances;

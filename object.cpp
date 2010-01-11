@@ -69,6 +69,10 @@ namespace da_game {
             name = name.substr(0,name.find_first_of(')'));
             return new Key(name);
         }
+        else {
+            std::cout << "Got type:" << type << std::endl;
+            std::cout << "From line:" << line << std::endl;
+        }
         return NULL;
     }
 }

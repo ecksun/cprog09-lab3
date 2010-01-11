@@ -22,7 +22,7 @@ namespace da_game {
             virtual int get_hold_volume() const;
             virtual bool add(Object &);
             virtual bool remove(Object &);
-            virtual void save(std::ofstream & save);
+            virtual void save(std::fstream & save);
 
     };
 

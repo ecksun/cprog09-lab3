@@ -154,7 +154,8 @@ namespace da_game {
         else 
             throw;
     }
-    void Environment::save(std::ofstream & save) {
+    void Environment::save(std::fstream & save) {
+        std::cout << "Saving environment " << id << std::endl;
         save << "ENV" << id << ":";
         bool first = true;
 

@@ -29,7 +29,7 @@ namespace da_game {
             bool lock(Key *);
             bool unlock(Key *);
             bool toggle_lock(Key *);
-            void save(std::ofstream &, std::string);
+            void save(std::fstream &, std::string);
             static Exit * load(std::string , const std::map<std::string, Environment *> &);
         private:
             Environment * outfall;

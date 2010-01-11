@@ -15,7 +15,7 @@ namespace da_game {
             virtual std::string type() const;
             virtual int attack_strength() const;
             virtual float hit_ratio() const;
-            virtual void save(std::ofstream &);
+            virtual void save(std::fstream &);
 
 
         protected:

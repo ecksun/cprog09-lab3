@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdio>
 #include <cstdlib>
 #include <ctime>
 #include <fstream>
@@ -14,6 +15,7 @@
 #include "evil_lair.h"
 #include "vampire_factory.h"
 #include "light_saber.h"
+#include "bad_format.h"
 
 namespace da_game {
     std::vector<Actor *> * Game::actors;
@@ -165,8 +167,8 @@ namespace da_game {
     }
 
     void Game::save() {
-        std::ofstream file;
-        file.open ("saveFile");
+        std::fstream file;
+        file.open ("saveFile", std::ios_base::out|std::ios_base::trunc);
         for (std::vector<Actor *>::iterator it = actors->begin(); it != actors->end(); ++it) {
             (*it)->save(file);
         }
@@ -179,6 +181,7 @@ namespace da_game {
     void Game::load() {
         std::ifstream file("saveFile");
         if (!file.good()) {
+            std::cout << "File isint good" << std::endl;
             initialize();
             return;
         }
@@ -201,9 +204,10 @@ namespace da_game {
             }
             else if (obj == "ENV") {
                 Environment * environment = Environment::load(line);
+                std::cout << "Loading new environment:" << id << std::endl;
                 created_envs[id] = environment;
 
-                add_environment(*environment);
+                // add_environment(*environment);
             }
             else if (obj == "OBJ") {
                 Object * object = Object::load(line);
@@ -214,6 +218,7 @@ namespace da_game {
             } 
             else {
                 std::cerr << "Invalid object type in save file: " << obj << std::endl;
+                throw BadFileFormatException();
             }
         }
 

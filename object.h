@@ -18,7 +18,7 @@ namespace da_game {
             virtual std::string type() const = 0;
 
             virtual bool operator==(Object &) const;
-            virtual void save(std::ofstream &) = 0;
+            virtual void save(std::fstream &) = 0;
             static Object *load(std::string);
 
         protected:

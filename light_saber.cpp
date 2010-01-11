@@ -28,6 +28,7 @@ namespace da_game {
     }
 
     std::string LightSaber::type() const {
+        return " light saber";
         std::string return_value = "";
         switch (id % 5) {
             case 0:

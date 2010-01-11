@@ -142,7 +142,7 @@ namespace da_game {
         }
     }
 
-    void Exit::save(std::ofstream & save, std::string env_description) {
+    void Exit::save(std::fstream & save, std::string env_description) {
         save << "EXI" << id;
         save << ":ENV" << outfall->id;
         save << ":has_lock=" << has_lock;

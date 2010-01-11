@@ -98,7 +98,7 @@ namespace da_game {
         return current_weapon;
     }
 
-    void Actor::save(std::ofstream & save) {
+    void Actor::save(std::fstream & save) {
         save << "ACT" << id << ":" << get_type() << ":" << get_name() << ":";
         save << "current_room=" << current_room->id;
         save << ",container=" << container->id;
