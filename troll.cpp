@@ -10,6 +10,7 @@ namespace da_game {
         // TODO: Perhaps we should move this up the inheretance tree?
         // might fit better in actor or something 
         this->current_room = current_room;
+        current_room->enter(*this);
     }
     void Troll::eat(Actor &) {
         std::cout << "I dont like white meat" << std::endl;

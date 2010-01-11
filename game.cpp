@@ -80,7 +80,7 @@ namespace da_game {
 
         Environment * evil = new EvilLair();
         VampireFactory * vamp_fac = new VampireFactory(evil, 2);
-        evil->enter(*vamp_fac);
+        // evil->enter(*vamp_fac);
         
         // exits
         Exit * e1 = new Exit(r1, true, "e1", true);
@@ -124,7 +124,7 @@ namespace da_game {
         // Initialize actors
 
         Troll * t = new Troll(r2, 1000, 88);
-        r2->enter(*t);
+        // r2->enter(*t);
 
         Wizard * w = new Wizard(evil, true, 100, 100);
         evil->enter(*w);

@@ -12,6 +12,7 @@ namespace da_game {
             this->current_room = env;
             this->hp = 1000;
             this->strength = 0;
+            current_room->enter(*this);
     }
 
     void VampireFactory::run() {

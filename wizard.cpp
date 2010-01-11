@@ -13,6 +13,7 @@ namespace da_game {
             this->wand = new Wand(50, 0.9);
             std::cout << "A magician has been born, with full magic power.. Kazaaam!" << std::endl;
 
+            env->enter(*this);
     }
 
     Wizard::Wizard(Environment * env, int hp, int strength, bool has_heart, int max_health, int magic, int max_magic)
