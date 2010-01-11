@@ -161,15 +161,7 @@ namespace da_game {
         save << "ENV" << id << ":";
         bool first = true;
 
-        // TODO exits
-        // for (size_t i = 0; i < objects->size(); ++i) {
-            // if (first)
-                // first = false
-            // else
-                // save << ",";
-            // save << "EXI" << objects->at(i)->id;
-        // }
-        first = true;
+             first = true;
         for (size_t i = 0; i < objects->size(); ++i) {
             if (first)
                 first = false;
@@ -204,13 +196,6 @@ namespace da_game {
         for (std::map<std::string, Exit *>::iterator it = exits.begin(); it != exits.end(); ++it) {
             it->second->save(save, it->first);
         }
-
-        
-        // std::vector<std::string> exit_names = get_exit_names();
- // 
-        // for (size_t i = 0; i < exit_names.size(); ++i) {
-            // s << exit_names[i] << std::endl;
-        // }
  
     }
     std::vector<Object *> Environment::get_objects() {
@@ -228,8 +213,6 @@ ENV2:OBJ8,OBJ6,OBJ7:ACT0,ACT3
 */
     Environment * Environment::load(std::string) {
         return new Environment;
-        // std::cout << s << std::endl;; 
-        return NULL;
     }
 
 }
