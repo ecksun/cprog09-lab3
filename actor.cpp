@@ -121,7 +121,8 @@ namespace da_game {
      * @param line A line describing the object to load
      * @return A pointer to a the created instance
      */
-    Actor * Actor::load(const std::string line, const std::map<std::string, Environment *> & created_envs) {
+    Actor * Actor::load(const std::string line, const std::map<std::string, Environment *> & envs,
+            const std::map<std::string, Object *> & objs) {
         std::istringstream input(line);
         std::vector<std::string> tokens;
         std::string token;
