@@ -106,6 +106,7 @@ namespace da_game {
     void Actor::save(std::ofstream & save) {
         save << "ACT" << id << ":" << get_type() << ":" << get_name() << ":";
         save << "current_room=" << current_room->id;
+        save << "container=" << container->id;
         save << ",hp=" << hp;
         save << ",strength=" << strength;
 
@@ -113,6 +114,7 @@ namespace da_game {
             save << "," << serialize();
         }
 
+        // redundant
         save << ":OBJ" << container->id;
 
         save << std::endl;
@@ -149,8 +151,8 @@ namespace da_game {
         std::map<std::string, Environment *>::const_iterator env_it;
         std::map<std::string, Object *>::iterator obj_it;
 
-        env_it = envs.find("current_room");
-        Environment * current_room = env_it->second;
+        std::string current_room_id = properties.find("current_room")->second;
+        Environment * current_room = envs.find(current_room_id)->second;
         Actor * actor = NULL;
 
         if (type == "Human") {
@@ -191,6 +193,10 @@ namespace da_game {
         else {
             std::cerr << "Unrecognized actor type: " << type << std::endl;
         }
+
+        // set general Actor properties, not already set
+//        std::string container_id = properties.find("container")->second;
+//        actor->container = objs.find(container_id)->second;
 
         return actor;
     }
