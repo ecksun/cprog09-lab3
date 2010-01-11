@@ -55,7 +55,7 @@ namespace da_game {
     std::string Wizard::serialize() const {
         std::ostringstream o;
         o << Human::serialize();
-        o << "magic=" << magic;
+        o << ",magic=" << magic;
         o << ",max_magic=" << max_magic;
         o << ",wand=" << wand->id;
         return o.str();

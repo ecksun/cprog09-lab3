@@ -101,7 +101,9 @@ namespace da_game {
 
     void Actor::save(std::ofstream & save) {
         save << "ACT" << id << ":" << get_type() << ":" << get_name() << ":";
-        save << "hp=" << hp << ",strength=" << strength;
+        save << "current_room=" << current_room->id;
+        save << ",hp=" << hp;
+        save << ",strength=" << strength;
 
         if (serialize().length() > 0) {
             save << "," << serialize();
