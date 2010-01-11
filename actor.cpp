@@ -167,12 +167,12 @@ namespace da_game {
             env_it = envs.find("current_room");
             Environment * env = env_it->second;
 
-            prop_it = properties.find("freq");
+            prop_it = properties.find("frequency");
             std::istringstream iss(prop_it->second);
-            int freq;
-            iss >> freq;
+            int frequency;
+            iss >> frequency;
 
-            actor = new VampireFactory(env, freq);
+            actor = new VampireFactory(env, frequency);
         }
         else {
             std::cerr << "Unrecognized actor type: " << type << std::endl;
