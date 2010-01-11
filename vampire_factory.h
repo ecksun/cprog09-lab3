@@ -14,8 +14,8 @@ namespace da_game {
             virtual std::string get_type() const;
             virtual void go(std::string);
             virtual void fight(Actor &);
-
             virtual void talk_to(Actor &);
+            virtual std::string serialize() const;
 
         private:
             unsigned int frequency;

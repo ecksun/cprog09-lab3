@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 
 #include "wizard.h"
 
@@ -44,5 +45,14 @@ namespace da_game {
 
     void Wizard::talk_to(Actor &)  {
         std::cout << "zoom zoom zoom" << std::endl;
+    }
+
+    std::string Wizard::serialize() const {
+        std::ostringstream o;
+        o << Human::serialize();
+        o << "magic=" << magic;
+        o << ",max_magic=" << max_magic;
+        o << ",wand=" << wand->id;
+        return o.str();
     }
 }

@@ -23,7 +23,7 @@ namespace da_game {
         Terminal::print(s.str()); 
     }
     std::string Player::get_type() const{
-        return "DEMAN";
+        return "Player";
     }
     std::string Player::get_name() const{
         return "Klas-Göran";
@@ -42,5 +42,9 @@ namespace da_game {
 
     Environment * Player::get_room() const {
         return current_room;
+    }
+
+    std::string Player::serialize() const {
+        return Human::serialize();
     }
 }

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 
 #include "human.h"
 
@@ -26,6 +27,13 @@ namespace da_game {
         hp += food.health_increase();
         if (hp > max_health)
             hp = max_health;
+    }
+
+    std::string Human::serialize() const {
+        std::ostringstream o;
+        o << "has_heart=" << has_heart;
+        o << ",max_health=" << max_health;
+        return o.str();
     }
 
 }

@@ -21,6 +21,8 @@ namespace da_game {
             Actor();
             ~Actor();
 
+            static Actor * load(const std::string);
+
             virtual void run() = 0;
             virtual std::string get_type() const = 0;
             virtual std::string get_name() const = 0;
@@ -30,8 +32,8 @@ namespace da_game {
             virtual void talk_to(Actor &) = 0;
             virtual Weapon * weapon();
             virtual void fight(Actor &);
-            virtual void save(std::ofstream &);
-            static Actor * load(std::string);
+            void save(std::ofstream &);
+            virtual std::string serialize() const = 0;
         protected:
             static int instances;
 

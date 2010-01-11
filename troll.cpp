@@ -47,7 +47,7 @@ namespace da_game {
     }
 
     std::string Troll::get_type() const {
-        return "troll";
+        return "Troll";
     }
 
     std::string Troll::get_name() const {
@@ -68,4 +68,9 @@ namespace da_game {
         std::cout << "GRUF!" << std::endl;
         actor.fight(*this);
     }
+
+    std::string Troll::serialize() const {
+        return "";
+    }
+
 }
