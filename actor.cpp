@@ -3,7 +3,9 @@
 #include "default_weapon.h"
 #include "game.h"
 #include "game_commands.h"
+#include "vampire_factory.h"
 
+#include <cstdlib>
 #include <iostream>
 #include <map>
 #include <sstream>
@@ -142,6 +144,9 @@ namespace da_game {
 
         // find type
         std::string & type = tokens[1];
+        std::map<std::string, std::string>::iterator prop_it;
+        std::map<std::string, Environment *>::const_iterator env_it;
+        std::map<std::string, Object *>::iterator obj_it;
         Actor * actor;
         if (type == "Human") {
 
@@ -159,7 +164,15 @@ namespace da_game {
 
         }
         else if (type == "VampireFactory") {
+            env_it = envs.find("current_room");
+            Environment * env = env_it->second;
 
+            prop_it = properties.find("freq");
+            std::istringstream iss(prop_it->second);
+            int freq;
+            iss >> freq;
+
+            actor = new VampireFactory(env, freq);
         }
         else {
             std::cerr << "Unrecognized actor type: " << type << std::endl;
