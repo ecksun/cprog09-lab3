@@ -327,7 +327,15 @@ namespace da_game {
                 Exit * exit =  Exit::load(line, created_envs);
                 created_exits[id] = exit;
             }
-            else if (obj == "ENV") {
+        }
+
+
+        for (std::vector<std::string>::iterator it = lines->begin(); it != lines->end(); ++it) {
+            line = *it;
+            std::string obj = line.substr(0, 3);
+            std::string id = line.substr(0, line.find_first_of(':'));
+            id = id.substr(3);
+            if (obj == "ENV") {
                 std::cout << "ENV" << std::endl;
                 std::istringstream input(line);
                 std::vector<std::string> tokens;
@@ -344,6 +352,8 @@ namespace da_game {
                     properties.insert(std::pair<std::string, std::string>(token.substr(0, eq_sign), token.substr(eq_sign+1)));
                 }
                 for (std::map<std::string, std::string>::iterator it = properties.begin(); it != properties.end(); ++it) {
+                    std::cout << "it->first.substr" << it->first.substr(3) << std::endl;
+                    std::cout << "created_exits[]" << created_exits[it->first.substr(3)] << std::endl;
                     created_envs[id]->add_exit(it->second, created_exits[it->first.substr(3)]);
                     std::cout << it->first << "=>" << it->second << std::endl;
                 }
@@ -355,6 +365,10 @@ namespace da_game {
         for (std::map<std::string, Environment * >::iterator it = created_envs.begin(); it != created_envs.end(); ++it) {
             std::cout << it->first << "=>"<< it->second << std::endl;
         }
+        std::cout << "Loaded exits:" << std::endl;
+        for (std::map<std::string, Exit *>::iterator it = created_exits.begin(); it != created_exits.end(); ++it) {
+            std::cout << it->first << " => " << it->second << std::endl;
+        }   
         delete lines;
         file.close();
     }

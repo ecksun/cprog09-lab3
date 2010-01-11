@@ -71,6 +71,10 @@ namespace da_game {
      * @return The exit with the given name
      */
     Exit * Environment::get_exit(std::string name) const {
+        std::cout << "name :'" << name << "'" << std::endl;
+        for (std::map<std::string, Exit*>::const_iterator it = exits.begin(); it != exits.end(); ++it) {
+            std::cout << it->first << "=>" << it->second<<  std::endl;
+        }
         std::map<std::string, Exit *>::const_iterator it = exits.find(name);
 
         if (it != exits.end()) {
