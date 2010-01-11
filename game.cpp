@@ -24,10 +24,7 @@ namespace da_game {
         actors = new std::vector<Actor *>;
         envs = new std::vector<Environment *>;
         bool running = true;
-        if (1)
-            load();
-        else
-            initialize();
+        load();
         printStory();
         while (running && playerIsAlive() && !playerIsAlone()) {
             std::cout << "Running" << std::endl;
