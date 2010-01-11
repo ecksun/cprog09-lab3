@@ -5,6 +5,7 @@
 #include "game_commands.h"
 #include "vampire_factory.h"
 #include "troll.h"
+#include "vampire.h"
 #include "wizard.h"
 
 #include <cstdlib>
@@ -153,24 +154,22 @@ namespace da_game {
 
         std::string current_room_id = properties.find("current_room")->second;
         Environment * current_room = envs.find(current_room_id)->second;
+        int hp = str2int(properties.find("hp")->second);
+        int strength = str2int(properties.find("strength")->second);
         std::cout << "creating new actor in room:" << current_room << std::endl;
         Actor * actor = NULL;
 
         if (type == "Human") {
-
+            // abstract!
         }
         else if (type == "Player") {
             std::cout << "Im a player" << std::endl;
-            int hp = str2int(properties.find("hp")->second);
-            int strength = str2int(properties.find("strength")->second);
             bool has_heart = str2int(properties.find("has_heart")->second) != 0;
             int max_health = str2int(properties.find("max_health")->second);
 
             actor = new Player(current_room, hp, strength, has_heart, max_health);
         } 
         else if (type == "Wizard") {
-            int hp = str2int(properties.find("hp")->second);
-            int strength = str2int(properties.find("strength")->second);
             bool has_heart = str2int(properties.find("has_heart")->second) != 0;
             int max_health = str2int(properties.find("max_health")->second);
             int magic = str2int(properties.find("magic")->second);
@@ -179,13 +178,10 @@ namespace da_game {
             actor = new Wizard(current_room, hp, strength, has_heart, max_health, magic, max_magic);
         } 
         else if (type == "Troll") {
-            int hp = str2int(properties.find("hp")->second);
-            int strength = str2int(properties.find("strength")->second);
-
             actor = new Troll(current_room, hp, strength);
         } 
         else if (type == "Vampire") {
-
+            actor = new Vampire(current_room, hp, strength);
         }
         else if (type == "VampireFactory") {
             int frequency = str2int(properties.find("frequency")->second);
