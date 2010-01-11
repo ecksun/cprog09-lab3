@@ -75,6 +75,7 @@ namespace da_game {
         bool first = true;
 
         for (std::vector<Object *>::iterator it = objects->begin(); it != objects->end(); it++) {
+            std::cout << "Saving " << (*it)->id << std::endl;
             if (first)
                 first = false;
             else 
@@ -82,6 +83,10 @@ namespace da_game {
             save << "OBJ" << (*it)->id;
         }
         save << ":" << weight() << "kg," << volume() << "liter," << price() << "kr" << std::endl;
+        
+        for (std::vector<Object *>::iterator it = objects->begin(); it != objects->end(); it++) {
+            (*it)->save(save);
+        }
 
     }
 }

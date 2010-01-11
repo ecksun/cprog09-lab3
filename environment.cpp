@@ -136,6 +136,7 @@ namespace da_game {
         std::vector<Object *>::iterator it = objects->begin();
         for (; it != objects->end(); ++it) {
             if (**it == *object) {
+                std::cout << "Erasing " << (*it)->type() << std::endl;
                 objects->erase(it);
                 return true;
             }
