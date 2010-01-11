@@ -23,6 +23,7 @@ namespace da_game {
         actors = new std::vector<Actor *>;
         envs = new std::vector<Environment *>;
         bool running = true;
+        // load();
         initialize();
         printStory();
         while (running && playerIsAlive() && !playerIsAlone()) {
@@ -215,14 +216,14 @@ namespace da_game {
             }
         }
 
-        // std::cout << "Loaded objects:" << std::endl;
-        // for (std::map<std::string, Object *>::iterator it = created_objects.begin(); it != created_objects.end(); ++it) {
-            // std::cout << it->first << " => " << it->second->type() << std::endl;
-        // }   
-        // std::cout << "Loaded environments:" << std::endl;
-        // for (std::map<std::string, Environment *>::iterator it = created_envs.begin(); it != created_envs.end(); ++it) {
-            // std::cout << it->first << " => "  << std::endl;
-        // }   
+        std::cout << "Loaded objects:" << std::endl;
+        for (std::map<std::string, Object *>::iterator it = created_objects.begin(); it != created_objects.end(); ++it) {
+            std::cout << it->first << " => " << it->second->type() << std::endl;
+        }   
+        std::cout << "Loaded environments:" << std::endl;
+        for (std::map<std::string, Environment *>::iterator it = created_envs.begin(); it != created_envs.end(); ++it) {
+            std::cout << it->first << " => "  << std::endl;
+        }   
 
         for (std::vector<std::string>::iterator it = lines->begin(); it != lines->end(); ++it) {
             line = *it;
@@ -247,11 +248,14 @@ namespace da_game {
                     
                     // std::cout << "Droping object("<<object<<") into env" << std::endl;
                     if (created_objects.find(object) == created_objects.end())
-                        std::cerr << "Game::load(): NOT FOUND" << std::endl;
+                        std::cerr << "Game::load(): object NOT FOUND" << std::endl;
                     // std::cout << created_objects[object] << std::endl;
                     // std::cout << created_objects[object]->type() << std::endl;
                     created_envs[id]->drop(created_objects[object]);  
-                    created_objects.erase(object);
+
+                    if (created_objects.erase(object) == 0)
+                        std::cout << "Didnt remove anything" << std::endl;
+                    
 
                     if (objects.find_first_of(',') == std::string::npos)
                         break;
@@ -277,7 +281,7 @@ namespace da_game {
                         // std::cout << "Objects:" <<objects << std::endl;
                         std::string object = objects.substr(0,objects.find_first_of(','));
                         object =object.substr(3);
-                        // std::cout << "objecT:" << object << std::endl;
+                        // std::cout << "Putting object into container:" << object << std::endl;
 
                         bag->add(*created_objects[object]);
                         created_objects.erase(object);
@@ -295,17 +299,23 @@ namespace da_game {
         for (std::vector<std::string>::iterator it = lines->begin(); it != lines->end(); ++it) {
             line = *it;
             std::string obj = line.substr(0, 3);
-            // std::string id = line.substr(0, line.find_first_of(':'));
-            // id = id.substr(3);
 
             if (obj == "ACT") {
-                Actor::load(line, created_envs, created_objects); 
+                std::cout << "ACT" << std::endl;
+                Actor * actor = Actor::load(line, created_envs, created_objects); 
+                if (actor != NULL) {
+                    std::cout << "Casting " << std::endl;
+                    Player * player = dynamic_cast<Player *>(actor);
+                    if (player != 0) {
+                        std::cout << "Initializing player" << std::endl;
+                        commands = new GameCommands(player);
+                    }
+                }
+
                 // FIXME Do we need to do more? they fix the rest themselves?
             }
 
         }
-
-
         delete lines;
         file.close();
     }

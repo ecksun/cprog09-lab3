@@ -149,7 +149,7 @@ namespace da_game {
 
         env_it = envs.find("current_room");
         Environment * current_room = env_it->second;
-        Actor * actor;
+        Actor * actor = NULL;
 
         if (type == "Human") {
 
