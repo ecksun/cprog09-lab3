@@ -4,6 +4,8 @@
 #include "game.h"
 #include "game_commands.h"
 #include "vampire_factory.h"
+#include "troll.h"
+#include "wizard.h"
 
 #include <cstdlib>
 #include <iostream>
@@ -155,32 +157,34 @@ namespace da_game {
 
         }
         else if (type == "Player") {
-            prop_it = properties.find("hp");
-            int hp = str2int(prop_it->second);
-
-            prop_it = properties.find("strength");
-            int strength = str2int(prop_it->second);
-
-            prop_it = properties.find("has_heart");
-            bool has_heart = str2int(prop_it->second) != 0;
-
-            prop_it = properties.find("max_health");
-            bool max_health = str2int(prop_it->second);
+            int hp = str2int(properties.find("hp")->second);
+            int strength = str2int(properties.find("strength")->second);
+            bool has_heart = str2int(properties.find("has_heart")->second) != 0;
+            int max_health = str2int(properties.find("max_health")->second);
 
             actor = new Player(current_room, hp, strength, has_heart, max_health);
         } 
         else if (type == "Wizard") {
+            int hp = str2int(properties.find("hp")->second);
+            int strength = str2int(properties.find("strength")->second);
+            bool has_heart = str2int(properties.find("has_heart")->second) != 0;
+            int max_health = str2int(properties.find("max_health")->second);
+            int magic = str2int(properties.find("magic")->second);
+            int max_magic = str2int(properties.find("max_magic")->second);
 
+            actor = new Wizard(current_room, hp, strength, has_heart, max_health, magic, max_magic);
         } 
         else if (type == "Troll") {
+            int hp = str2int(properties.find("hp")->second);
+            int strength = str2int(properties.find("strength")->second);
 
+            actor = new Troll(current_room, hp, strength);
         } 
         else if (type == "Vampire") {
 
         }
         else if (type == "VampireFactory") {
-            prop_it = properties.find("frequency");
-            int frequency = str2int(prop_it->second);
+            int frequency = str2int(properties.find("frequency")->second);
 
             actor = new VampireFactory(current_room, frequency);
         }

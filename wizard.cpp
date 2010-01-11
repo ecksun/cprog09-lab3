@@ -7,15 +7,20 @@ namespace da_game {
 
     Wizard::Wizard(Environment * env, bool has_heart, int max_health, int max_magic)
         : Human(has_heart, max_health), magic(max_magic), max_magic(max_magic) {
-            hp = 150;
-            strength = 3;
+            this->hp = 150;
+            this->strength = 3;
             this->current_room = env;
-            // this->default_weapon = current_weapon; // instansiated in actor
-
-            wand = new Wand(50, 0.9);
-            // container->get_objects()->push_back(wand);
+            this->wand = new Wand(50, 0.9);
             std::cout << "A magician has been born, with full magic power.. Kazaaam!" << std::endl;
 
+    }
+
+    Wizard::Wizard(Environment * env, int hp, int strength, bool has_heart, int max_health, int magic, int max_magic)
+        : Human(has_heart, max_health), magic(magic), max_magic(max_magic) {
+            this->hp = hp;
+            this->strength = strength;
+            this->current_room = env;
+            this->wand = new Wand(50, 0.9);
     }
 
     Wizard::~Wizard() {
@@ -57,7 +62,6 @@ namespace da_game {
         o << Human::serialize();
         o << ",magic=" << magic;
         o << ",max_magic=" << max_magic;
-        o << ",wand=" << wand->id;
         return o.str();
     }
 }

@@ -17,6 +17,7 @@ namespace da_game {
         public: 
             ~Wizard();
             Wizard(Environment *, bool, int, int);
+            Wizard(Environment *, int, int, bool, int, int, int);
             virtual Weapon * weapon();
             virtual std::string get_name() const;
             virtual std::string get_type() const;
