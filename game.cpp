@@ -243,12 +243,42 @@ namespace da_game {
                     std::string object = objects.substr(0,objects.find_first_of(','));
                     object =object.substr(3);
                     
+                    created_envs[id]->drop(created_objects[object]);  
+                    created_objects.erase(object);
+
                     if (objects.find_first_of(',') == std::string::npos)
                         break;
                     objects = objects.substr(objects.find_first_of(',')+1);
 
-                    created_envs[id]->drop(created_objects[object]);   // FIXME ta bort kommentaren efter att object.load är implem,enterat
-                    created_objects.erase(object);
+                }
+            }
+            else if (obj == "OBJ") {
+                // Only interesting of obj is a container
+                Container * bag = dynamic_cast<Container *>(created_objects[id]);
+                if (bag != 0) {
+                    // we got a container
+                    // OBJ14:Orch bag:OBJ15:17kg,50liter,100kr
+                    std::cout << "Container!" << std::endl;
+                    std::cout << line << std::endl;
+                    std::string objects = line.substr(line.find_first_of(':')+1);
+                    objects = objects.substr(objects.find_first_of(':')+1);
+                    objects = objects.substr(0,objects.find_first_of(':'));
+
+                    // Lets go through the objects that should be inside our container
+                    while (objects.length() > 0) {
+                        std::cout << "Objects:" <<objects << std::endl;
+                        std::string object = objects.substr(0,objects.find_first_of(','));
+                        object =object.substr(3);
+                        std::cout << "objecT:" << object << std::endl;
+
+                        bag->add(*created_objects[object]);
+                        created_objects.erase(object);
+
+                        if (objects.find_first_of(',') == std::string::npos)
+                            break;
+                        objects = objects.substr(objects.find_first_of(',')+1);
+
+                    }
                 }
             }
             /*
