@@ -1,9 +1,11 @@
-#include "game.h"
 #include "actor.h"
-#include "default_weapon.h"
-#include "game_commands.h"
 #include "bag.h"
+#include "default_weapon.h"
+#include "game.h"
+#include "game_commands.h"
+
 #include <iostream>
+#include <map>
 #include <sstream>
 
 namespace da_game {
@@ -127,11 +129,12 @@ namespace da_game {
         }
 
         // extract properties
-        std::vector<std::string> properties;
-        std::istringstream pss(tokens[1]);
+        std::map<std::string, std::string> properties;
+        std::istringstream pss(tokens[3]);
         while (std::getline(pss, token, ',')) {
-            properties.push_back(token);
-            std::cout << token << std::endl;
+            size_t eq_sign = token.find('=');
+            properties.insert(std::pair<std::string, std::string>(token.substr(0, eq_sign), token.substr(eq_sign+1)));
+            std::cout << token.substr(0, eq_sign) <<  " = " << token.substr(eq_sign+1) << std::endl;
         }
 
         // find type
