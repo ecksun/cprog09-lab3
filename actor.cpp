@@ -195,8 +195,12 @@ namespace da_game {
         }
 
         // set general Actor properties, not already set
-//        std::string container_id = properties.find("container")->second;
-//        actor->container = objs.find(container_id)->second;
+        std::string container_id = properties.find("container")->second;
+        Object * cont_obj = objs.find(container_id)->second; 
+        Container * cont;
+        if ((cont = dynamic_cast<Container *>(cont_obj))) {
+            actor->container = cont;
+        }
 
         return actor;
     }
